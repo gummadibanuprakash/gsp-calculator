@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsche Börse GSP Calculator 2026</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #0a0f1e;
+            font-size: 13px;
+            color: #e2e8f0;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(0,80,180,0.18) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(0,120,212,0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 80%, rgba(0,51,102,0.22) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .app {
+            display: grid;
+            grid-template-rows: 64px 1fr 22px;
+            height: 100vh;
+            padding: 10px;
+            gap: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── HEADER ── */
+        .header {
+            background: linear-gradient(135deg, rgba(0,51,102,0.97) 0%, rgba(0,90,158,0.97) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 0 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #0078d4, #00b4d8);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 2px 12px rgba(0,120,212,0.6);
+            flex-shrink: 0;
+        }
+
+        .header-left h1 {
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .header-left p {
+            font-size: 11px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 2px;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 6px;
+        }
+
+        .hstat {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 6px 14px;
+            text-align: center;
+            transition: background 0.2s;
+            cursor: default;
+        }
+
+        .hstat:hover { background: rgba(255,255,255,0.13); }
+
+        .hstat-label {
+            font-size: 9px;
+            color: rgba(255,255,255,0.45);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .hstat-value {
+            font-size: 14px;
+            font-weight: 800;
+            color: #7dd3fc;
+            margin-top: 1px;
+        }
+
+        .header-badges {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .badge-blue {
+            background: rgba(0,120,212,0.3);
+            border: 1px solid rgba(0,120,212,0.5);
+            color: #7dd3fc;
+        }
+
+        .badge-gold {
+            background: rgba(251,191,36,0.2);
+            border: 1px solid rgba(251,191,36,0.4);
+            color: #fbbf24;
+        }
+
+        /* ── MAIN 3-COL GRID ── */
+        .main {
+            display: grid;
+            grid-template-columns: 320px 1fr 260px;
+            gap: 8px;
+            overflow: hidden;
+        }
+
+        /* ── GLASS PANELS ── */
+        .panel {
+            background: rgba(15,25,50,0.88);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 14px 16px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+
+        .panel-title {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #7dd3fc;
+            padding-bottom: 9px;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            flex-shrink: 0;
+        }
+
+        .pt-icon {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #0078d4, #00b4d8);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+        }
+
+        /* ── TIER PILLS ── */
+        .tier-strip {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+            flex-shrink: 0;
+        }
+
+        .tier-pill {
+            flex: 1;
+            border-radius: 10px;
+            padding: 10px 6px 8px;
+            text-align: center;
+            cursor: default;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tier-pill:hover { transform: translateY(-3px); }
+
+        .tier-pill.t1 {
+            background: linear-gradient(135deg, rgba(0,51,102,0.85), rgba(0,80,160,0.65));
+            border: 1px solid rgba(0,120,212,0.55);
+            box-shadow: 0 3px 14px rgba(0,51,102,0.45);
+        }
+        .tier-pill.t1:hover { box-shadow: 0 8px 24px rgba(0,80,160,0.65); }
+
+        .tier-pill.t2 {
+            background: linear-gradient(135deg, rgba(0,80,160,0.65), rgba(0,120,212,0.45));
+            border: 1px solid rgba(0,180,216,0.45);
+            box-shadow: 0 3px 14px rgba(0,120,212,0.35);
+        }
+        .tier-pill.t2:hover { box-shadow: 0 8px 24px rgba(0,120,212,0.55); }
+
+        .tier-pill.t3 {
+            background: linear-gradient(135deg, rgba(0,120,212,0.45), rgba(0,180,216,0.32));
+            border: 1px solid rgba(125,211,252,0.35);
+            box-shadow: 0 3px 14px rgba(0,180,216,0.25);
+        }
+        .tier-pill.t3:hover { box-shadow: 0 8px 24px rgba(0,180,216,0.45); }
+
+        .tp-discount {
+            font-size: 26px;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .t1 .tp-discount { color: #60a5fa; }
+        .t2 .tp-discount { color: #7dd3fc; }
+        .t3 .tp-discount { color: #bae6fd; }
+
+        .tp-range {
+            font-size: 9px;
+            color: rgba(255,255,255,0.5);
+            margin: 3px 0;
+        }
+
+        .tp-price {
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .tp-active {
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255,255,255,0.1);
+            overflow: hidden;
+            margin-top: 6px;
+        }
+
+        .tp-active-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .t1 .tp-active-fill { background: linear-gradient(90deg,#1d4ed8,#60a5fa); }
+        .t2 .tp-active-fill { background: linear-gradient(90deg,#0078d4,#7dd3fc); }
+        .t3 .tp-active-fill { background: linear-gradient(90deg,#0ea5e9,#bae6fd); }
+
+        /* ── INPUTS ── */
+        .input-group {
+            margin-bottom: 10px;
+            flex-shrink: 0;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 10px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 5px;
+        }
+
+        .input-wrapper { position: relative; }
+
+        .input-prefix {
+            position: absolute;
+            left: 11px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7dd3fc;
+            font-weight: 700;
+            font-size: 14px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 9px 10px 9px 26px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #e2e8f0;
+            transition: all 0.2s;
+            -moz-appearance: textfield;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+        input[type="number"].no-prefix { padding-left: 10px; }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #0078d4;
+            background: rgba(0,120,212,0.1);
+            box-shadow: 0 0 0 3px rgba(0,120,212,0.18);
+        }
+
+        /* ── SLIDER ── */
+        .slider-wrap { margin-top: 6px; }
+
+        input[type="range"] {
+            width: 100%;
+            height: 5px;
+            border-radius: 3px;
+            background: rgba(255,255,255,0.1);
+            outline: none;
+            cursor: pointer;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0078d4, #00b4d8);
+            cursor: pointer;
+            border: 2px solid rgba(255,255,255,0.35);
+            box-shadow: 0 2px 10px rgba(0,120,212,0.7);
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.25);
+            box-shadow: 0 4px 18px rgba(0,120,212,0.9);
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 9px;
+            color: rgba(255,255,255,0.3);
+            margin-top: 4px;
+        }
+
+        /* ── SHARE BAR ── */
+        .share-bar-wrap { margin: 8px 0 4px; }
+
+        .share-bar {
+            display: flex;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.06);
+        }
+
+        .sb1 { background: linear-gradient(90deg,#1d4ed8,#2563eb); transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
+        .sb2 { background: linear-gradient(90deg,#0078d4,#0ea5e9); transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
+        .sb3 { background: linear-gradient(90deg,#0ea5e9,#38bdf8); transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
+
+        .bar-legend {
+            display: flex;
+            gap: 12px;
+            margin-top: 5px;
+        }
+
+        .bl-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 10px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .bl-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        /* ── DATES ── */
+        .dates-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            margin-top: auto;
+            padding-top: 10px;
+            flex-shrink: 0;
+        }
+
+        .date-chip {
+            background: rgba(0,120,212,0.1);
+            border: 1px solid rgba(0,120,212,0.22);
+            border-radius: 7px;
+            padding: 6px 8px;
+            transition: background 0.2s;
+            cursor: default;
+        }
+
+        .date-chip:hover { background: rgba(0,120,212,0.22); }
+
+        .dc-label {
+            font-size: 8.5px;
+            color: rgba(255,255,255,0.38);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .dc-value {
+            font-size: 11px;
+            font-weight: 700;
+            color: #7dd3fc;
+            margin-top: 1px;
+        }
+
+        /* ── STAT BOXES ── */
+        .results-top {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin-bottom: 10px;
+            flex-shrink: 0;
+        }
+
+        .stat-box {
+            border-radius: 10px;
+            padding: 12px 10px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: default;
+        }
+
+        .stat-box:hover { transform: translateY(-3px); }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .stat-box.blue {
+            background: linear-gradient(135deg, rgba(0,51,102,0.85), rgba(0,80,160,0.65));
+            border: 1px solid rgba(0,120,212,0.32);
+            box-shadow: 0 4px 18px rgba(0,51,102,0.45);
+        }
+        .stat-box.blue::before { background: linear-gradient(90deg,#1d4ed8,#0078d4); }
+        .stat-box.blue:hover   { box-shadow: 0 10px 28px rgba(0,80,160,0.55); }
+
+        .stat-box.green {
+            background: linear-gradient(135deg, rgba(5,46,22,0.85), rgba(22,101,52,0.65));
+            border: 1px solid rgba(22,163,74,0.32);
+            box-shadow: 0 4px 18px rgba(5,46,22,0.45);
+        }
+        .stat-box.green::before { background: linear-gradient(90deg,#166534,#16a34a); }
+        .stat-box.green:hover   { box-shadow: 0 10px 28px rgba(22,101,52,0.55); }
+
+        .stat-box.indigo {
+            background: linear-gradient(135deg, rgba(30,58,138,0.85), rgba(37,99,235,0.55));
+            border: 1px solid rgba(99,102,241,0.32);
+            box-shadow: 0 4px 18px rgba(30,58,138,0.45);
+        }
+        .stat-box.indigo::before { background: linear-gradient(90deg,#4338ca,#6366f1); }
+        .stat-box.indigo:hover   { box-shadow: 0 10px 28px rgba(37,99,235,0.55); }
+
+        .stat-box.amber {
+            background: linear-gradient(135deg, rgba(120,53,15,0.85), rgba(180,83,9,0.65));
+            border: 1px solid rgba(217,119,6,0.32);
+            box-shadow: 0 4px 18px rgba(120,53,15,0.45);
+        }
+        .stat-box.amber::before { background: linear-gradient(90deg,#b45309,#d97706); }
+        .stat-box.amber:hover   { box-shadow: 0 10px 28px rgba(180,83,9,0.55); }
+
+        .sb-label {
+            font-size: 9px;
+            color: rgba(255,255,255,0.55);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .sb-value {
+            font-size: 20px;
+            font-weight: 800;
+            color: white;
+            line-height: 1;
+            transition: all 0.3s;
+        }
+
+        .sb-value.updated { animation: pulse 0.4s ease; }
+
+        @keyframes pulse {
+            0%   { transform: scale(1); }
+            50%  { transform: scale(1.07); }
+            100% { transform: scale(1); }
+        }
+
+        .sb-sub {
+            font-size: 9px;
+            color: rgba(255,255,255,0.38);
+            margin-top: 3px;
+        }
+
+        /* ── TABLE ── */
+        .table-wrap {
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        thead th {
+            background: rgba(0,51,102,0.85);
+            color: rgba(255,255,255,0.65);
+            padding: 7px 10px;
+            text-align: left;
+            font-size: 9.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+
+        thead th:first-child { border-radius: 6px 0 0 0; }
+        thead th:last-child  { border-radius: 0 6px 0 0; }
+
+        tbody td {
+            padding: 6px 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            color: rgba(255,255,255,0.8);
+            transition: background 0.15s;
+        }
+
+        tbody tr:hover td { background: rgba(255,255,255,0.04); }
+
+        .tr-total td {
+            background: rgba(0,80,160,0.32) !important;
+            font-weight: 700;
+            color: #7dd3fc;
+            border-top: 1px solid rgba(0,120,212,0.4);
+        }
+
+        .tr-allowance td {
+            background: rgba(251,191,36,0.09) !important;
+            color: #fbbf24;
+            font-weight: 600;
+        }
+
+        .tr-taxable td {
+            background: rgba(239,68,68,0.11) !important;
+            color: #f87171;
+            font-weight: 700;
+        }
+
+        /* ── NET GRID ── */
+        .net-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin-top: 8px;
+            flex-shrink: 0;
+        }
+
+        .net-item {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 8px;
+            padding: 8px 10px;
+            text-align: center;
+            transition: all 0.2s;
+            cursor: default;
+        }
+
+        .net-item:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(0,120,212,0.35);
+        }
+
+        .ni-label {
+            font-size: 9px;
+            color: rgba(255,255,255,0.38);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            margin-bottom: 3px;
+        }
+
+        .ni-value {
+            font-size: 15px;
+            font-weight: 800;
+            color: #e2e8f0;
+        }
+
+        .ni-value.green { color: #4ade80; }
+        .ni-value.red   { color: #f87171; }
+        .ni-value.blue  { color: #7dd3fc; }
+
+        /* ── RIGHT PANEL ── */
+        .tax-block {
+            background: rgba(251,191,36,0.05);
+            border: 1px solid rgba(251,191,36,0.15);
+            border-left: 3px solid #f59e0b;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            flex-shrink: 0;
+        }
+
+        .tax-block h4 {
+            font-size: 9.5px;
+            font-weight: 700;
+            color: #fbbf24;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 7px;
+        }
+
+        .tax-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(251,191,36,0.08);
+            font-size: 11px;
+        }
+
+        .tax-row:last-child { border-bottom: none; }
+        .tax-row .tl { color: rgba(255,255,255,0.48); }
+        .tax-row .tv { font-weight: 700; color: #e2e8f0; }
+        .tax-row .tv.red   { color: #f87171; }
+        .tax-row .tv.green { color: #4ade80; }
+
+        .info-block {
+            background: rgba(0,120,212,0.06);
+            border: 1px solid rgba(0,120,212,0.16);
+            border-left: 3px solid #0078d4;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            flex-shrink: 0;
+        }
+
+        .info-block h4 {
+            font-size: 9.5px;
+            font-weight: 700;
+            color: #7dd3fc;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 7px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            padding: 3px 0;
+            border-bottom: 1px solid rgba(0,120,212,0.08);
+        }
+
+        .info-row:last-child { border-bottom: none; }
+        .info-row .il { color: rgba(255,255,255,0.44); }
+        .info-row .iv { font-weight: 700; color: #7dd3fc; }
+
+        /* ── GAUGE ── */
+        .gauge-wrap {
+            text-align: center;
+            margin-bottom: 8px;
+            flex-shrink: 0;
+        }
+
+        .gauge-label {
+            font-size: 9px;
+            color: rgba(255,255,255,0.38);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 4px;
+        }
+
+        .gauge-svg { width: 100%; max-width: 160px; }
+
+        .gauge-value-text {
+            font-size: 11px;
+            font-weight: 800;
+            fill: #4ade80;
+        }
+
+        .gauge-sub-text {
+            font-size: 6.5px;
+            fill: rgba(255,255,255,0.35);
+        }
+
+        /* ── BUTTONS ── */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: auto;
+            flex-shrink: 0;
+        }
+
+        .btn {
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            letter-spacing: 0.2px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0078d4, #0ea5e9);
+            color: white;
+            box-shadow: 0 3px 12px rgba(0,120,212,0.45);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,120,212,0.65);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.11);
+            color: white;
+        }
+
+        /* ── DISCLAIMER ── */
+        .disclaimer {
+            font-size: 8.5px;
+            color: rgba(255,255,255,0.22);
+            line-height: 1.55;
+            padding-top: 7px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            margin-top: 7px;
+            flex-shrink: 0;
+        }
+
+        /* ── FOOTER CREDIT BAR ── */
+        .footer-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            user-select: none;
+        }
+
+        .footer-credit {
+            font-size: 10px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.22);
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            cursor: default;
+            padding: 2px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(255,255,255,0.03);
+            transition: color 0.3s, border-color 0.3s, background 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .footer-credit:hover {
+            color: rgba(125,211,252,0.5);
+            border-color: rgba(0,120,212,0.2);
+        }
+
+        /* First right-click highlight */
+        .footer-credit.one-click {
+            color: rgba(125,211,252,0.75);
+            border-color: rgba(0,120,212,0.4);
+            background: rgba(0,120,212,0.08);
+            box-shadow: 0 0 10px rgba(0,120,212,0.2);
+        }
+
+        /* ── CUSTOM MODAL ── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(6px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-box {
+            background: linear-gradient(135deg, rgba(10,20,45,0.98), rgba(0,40,90,0.98));
+            border: 1px solid rgba(0,120,212,0.4);
+            border-radius: 16px;
+            padding: 36px 44px;
+            text-align: center;
+            box-shadow:
+                0 24px 60px rgba(0,0,0,0.7),
+                0 0 0 1px rgba(255,255,255,0.05),
+                inset 0 1px 0 rgba(255,255,255,0.08);
+            transform: scale(0.88) translateY(12px);
+            transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
+            opacity: 0;
+            max-width: 380px;
+            width: 90%;
+        }
+
+        .modal-overlay.show .modal-box {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        .modal-avatar {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #0078d4, #00b4d8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 16px;
+            box-shadow: 0 4px 20px rgba(0,120,212,0.6);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(-6px); }
+        }
+
+        .modal-tag {
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #7dd3fc;
+            margin-bottom: 8px;
+        }
+
+        .modal-title {
+            font-size: 11px;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        .modal-name {
+            font-size: 26px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #60a5fa, #7dd3fc, #4ade80);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-dept {
+            font-size: 11px;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 22px;
+            letter-spacing: 0.3px;
+        }
+
+        .modal-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0,120,212,0.4), transparent);
+            margin-bottom: 18px;
+        }
+
+        .modal-close {
+            background: linear-gradient(135deg, #0078d4, #0ea5e9);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 28px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 3px 12px rgba(0,120,212,0.45);
+            letter-spacing: 0.3px;
+        }
+
+        .modal-close:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,120,212,0.65);
+        }
+
+        @keyframes glow {
+            0%   { box-shadow: 0 0 0 rgba(0,120,212,0); }
+            50%  { box-shadow: 0 0 24px rgba(0,120,212,0.45); }
+            100% { box-shadow: 0 0 0 rgba(0,120,212,0); }
+        }
+
+        @media print {
+            body { overflow: visible; background: white; color: black; }
+            html, body { height: auto; }
+            .app { height: auto; }
+            .btn-group, .footer-bar, .modal-overlay { display: none; }
+        }
+    </style>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:MediaServiceImageTags msdt:dt="string"></mso:MediaServiceImageTags>
+<mso:lcf76f155ced4ddcb4097134ff3c332f msdt:dt="string"></mso:lcf76f155ced4ddcb4097134ff3c332f>
+<mso:TaxCatchAll msdt:dt="string"></mso:TaxCatchAll>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+<div class="app">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <div class="logo-icon">📈</div>
+            <div>
+                <h1>Deutsche Börse Group — Group Share Plan Calculator</h1>
+                <p>Estimate your investment, benefit in kind and net position · GSP 2026</p>
+            </div>
+        </div>
+        <div class="header-stats">
+            <div class="hstat">
+                <div class="hstat-label">Reference Price</div>
+                <div class="hstat-value">€241.60</div>
+            </div>
+            <div class="hstat">
+                <div class="hstat-label">Xetra® Date</div>
+                <div class="hstat-value">14 May 2026</div>
+            </div>
+            <div class="hstat">
+                <div class="hstat-label">Max Shares</div>
+                <div class="hstat-value">80</div>
+            </div>
+            <div class="hstat">
+                <div class="hstat-label">Tax Allowance</div>
+                <div class="hstat-value">€2,000</div>
+            </div>
+            <div class="hstat">
+                <div class="hstat-label">Deadline</div>
+                <div class="hstat-value">5 Aug 2026</div>
+            </div>
+        </div>
+        <div class="header-badges">
+            <span class="badge badge-blue">2026 Edition</span>
+            <span class="badge badge-gold">⚡ Up to 60% Off</span>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <!-- LEFT: INPUTS -->
+        <div class="panel">
+            <div class="panel-title">
+                <div class="pt-icon">⚙</div>
+                Your Inputs
+            </div>
+
+            <div class="tier-strip">
+                <div class="tier-pill t1">
+                    <div class="tp-discount">60%</div>
+                    <div class="tp-range">Shares 1 – 20</div>
+                    <div class="tp-price">€96.64</div>
+                    <div class="tp-active"><div class="tp-active-fill" id="tp1fill" style="width:0%"></div></div>
+                </div>
+                <div class="tier-pill t2">
+                    <div class="tp-discount">20%</div>
+                    <div class="tp-range">Shares 21 – 40</div>
+                    <div class="tp-price">€193.28</div>
+                    <div class="tp-active"><div class="tp-active-fill" id="tp2fill" style="width:0%"></div></div>
+                </div>
+                <div class="tier-pill t3">
+                    <div class="tp-discount">10%</div>
+                    <div class="tp-range">Shares 41 – 80</div>
+                    <div class="tp-price">€217.44</div>
+                    <div class="tp-active"><div class="tp-active-fill" id="tp3fill" style="width:0%"></div></div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Number of Shares (1 – 80)</label>
+                <input type="number" id="numShares" class="no-prefix" min="1" max="80" value="20"
+                       oninput="syncSlider();calculate()">
+                <div class="slider-wrap">
+                    <input type="range" id="sharesSlider" min="1" max="80" value="20"
+                           oninput="syncInput();calculate()">
+                    <div class="slider-labels">
+                        <span>1</span><span>20</span><span>40</span><span>60</span><span>80</span>
+                    </div>
+                </div>
+                <div class="share-bar-wrap">
+                    <div class="share-bar">
+                        <div class="sb1" id="bar1" style="width:25%"></div>
+                        <div class="sb2" id="bar2" style="width:0%"></div>
+                        <div class="sb3" id="bar3" style="width:0%"></div>
+                    </div>
+                    <div class="bar-legend">
+                        <div class="bl-item"><div class="bl-dot" style="background:#2563eb"></div><span id="bl1">T1: 20</span></div>
+                        <div class="bl-item"><div class="bl-dot" style="background:#0ea5e9"></div><span id="bl2">T2: 0</span></div>
+                        <div class="bl-item"><div class="bl-dot" style="background:#38bdf8"></div><span id="bl3">T3: 0</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Estimated Share Price at Booking (€)</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">€</span>
+                    <input type="number" id="bookingPrice" min="0" step="0.01" value="285.00"
+                           oninput="calculate()">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Your Income Tax Rate (%)</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">%</span>
+                    <input type="number" id="taxRate" min="0" max="100" step="0.5" value="42"
+                           oninput="calculate()">
+                </div>
+            </div>
+
+            <div class="dates-grid">
+                <div class="date-chip">
+                    <div class="dc-label">Terms Published</div>
+                    <div class="dc-value">Jun 8 – 12, 2026</div>
+                </div>
+                <div class="date-chip">
+                    <div class="dc-label">New Participant Docs</div>
+                    <div class="dc-value">Jul 6 – 10, 2026</div>
+                </div>
+                <div class="date-chip">
+                    <div class="dc-label">Subscription Opens</div>
+                    <div class="dc-value">Jul 23, 2026</div>
+                </div>
+                <div class="date-chip">
+                    <div class="dc-label">Deadline 23:59 CEST</div>
+                    <div class="dc-value">Aug 5, 2026</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MIDDLE: RESULTS -->
+        <div class="panel">
+            <div class="panel-title">
+                <div class="pt-icon">📊</div>
+                Results & Breakdown
+            </div>
+
+            <div class="results-top">
+                <div class="stat-box blue">
+                    <div class="sb-label">Total Purchase Cost</div>
+                    <div class="sb-value" id="r_totalCost">—</div>
+                    <div class="sb-sub">What you pay</div>
+                </div>
+                <div class="stat-box green">
+                    <div class="sb-label">Total Discount</div>
+                    <div class="sb-value" id="r_totalDiscount">—</div>
+                    <div class="sb-sub">vs. reference price</div>
+                </div>
+                <div class="stat-box indigo">
+                    <div class="sb-label">Gross Benefit in Kind</div>
+                    <div class="sb-value" id="r_grossBik">—</div>
+                    <div class="sb-sub">Before allowance</div>
+                </div>
+                <div class="stat-box amber">
+                    <div class="sb-label">Taxable BiK</div>
+                    <div class="sb-value" id="r_taxableBik">—</div>
+                    <div class="sb-sub">After €2,000 allowance</div>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tier</th>
+                            <th>Shares</th>
+                            <th>Discount</th>
+                            <th>Price / Share</th>
+                            <th>Total Cost</th>
+                            <th>BiK / Share</th>
+                            <th>Total BiK</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+
+            <div class="net-grid">
+                <div class="net-item">
+                    <div class="ni-label">Portfolio Value</div>
+                    <div class="ni-value green" id="n_portfolio">—</div>
+                </div>
+                <div class="net-item">
+                    <div class="ni-label">Cost + Est. Tax</div>
+                    <div class="ni-value red" id="n_deductions">—</div>
+                </div>
+                <div class="net-item">
+                    <div class="ni-label">Est. Net Gain</div>
+                    <div class="ni-value green" id="n_netGain">—</div>
+                </div>
+                <div class="net-item">
+                    <div class="ni-label">Eff. Discount (post-tax)</div>
+                    <div class="ni-value blue" id="n_effDiscount">—</div>
+                </div>
+                <div class="net-item">
+                    <div class="ni-label">Est. Tax on BiK</div>
+                    <div class="ni-value red" id="n_taxDue">—</div>
+                </div>
+                <div class="net-item">
+                    <div class="ni-label">Allowance Used</div>
+                    <div class="ni-value green" id="n_allowance">—</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: TAX & INFO -->
+        <div class="panel">
+            <div class="panel-title">
+                <div class="pt-icon">💡</div>
+                Tax & Summary
+            </div>
+
+            <div class="gauge-wrap">
+                <div class="gauge-label">Net Gain as % of Portfolio Value</div>
+                <svg class="gauge-svg" viewBox="0 0 160 95">
+                    <defs>
+                        <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%"   style="stop-color:#1d4ed8"/>
+                            <stop offset="50%"  style="stop-color:#0ea5e9"/>
+                            <stop offset="100%" style="stop-color:#4ade80"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M 18 82 A 62 62 0 0 1 142 82"
+                          fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="10" stroke-linecap="round"/>
+                    <path id="gaugeFill"
+                          d="M 18 82 A 62 62 0 0 1 142 82"
+                          fill="none" stroke="url(#gaugeGrad)" stroke-width="10" stroke-linecap="round"
+                          stroke-dasharray="195" stroke-dashoffset="195"
+                          style="transition: stroke-dashoffset 0.65s cubic-bezier(0.4,0,0.2,1)"/>
+                    <circle id="gaugeNeedle" cx="18" cy="82" r="5"
+                            fill="#4ade80" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"
+                            style="transition: all 0.65s cubic-bezier(0.4,0,0.2,1); filter:drop-shadow(0 0 4px #4ade80)"/>
+                    <text id="gaugeText" x="80" y="72" text-anchor="middle" class="gauge-value-text">0.0%</text>
+                    <text x="80" y="84" text-anchor="middle" class="gauge-sub-text">Net Gain / Portfolio</text>
+                </svg>
+            </div>
+
+            <div class="tax-block">
+                <h4>⚠️ Benefit in Kind</h4>
+                <div class="tax-row">
+                    <span class="tl">Gross BiK</span>
+                    <span class="tv" id="t_grossBik">—</span>
+                </div>
+                <div class="tax-row">
+                    <span class="tl">§3 No.39 Allowance</span>
+                    <span class="tv green" id="t_allowance">—</span>
+                </div>
+                <div class="tax-row">
+                    <span class="tl">Taxable BiK</span>
+                    <span class="tv red" id="t_taxableBik">—</span>
+                </div>
+                <div class="tax-row">
+                    <span class="tl">Tax Rate Applied</span>
+                    <span class="tv" id="t_taxRate">—</span>
+                </div>
+                <div class="tax-row">
+                    <span class="tl">Est. Tax Due</span>
+                    <span class="tv red" id="t_taxDue">—</span>
+                </div>
+            </div>
+
+            <div class="info-block">
+                <h4>📋 Tier Allocation</h4>
+                <div class="info-row">
+                    <span class="il">Tier 1 (60% off)</span>
+                    <span class="iv" id="s_t1">—</span>
+                </div>
+                <div class="info-row">
+                    <span class="il">Tier 2 (20% off)</span>
+                    <span class="iv" id="s_t2">—</span>
+                </div>
+                <div class="info-row">
+                    <span class="il">Tier 3 (10% off)</span>
+                    <span class="iv" id="s_t3">—</span>
+                </div>
+                <div class="info-row">
+                    <span class="il">Total Shares</span>
+                    <span class="iv" id="s_total">—</span>
+                </div>
+            </div>
+
+            <div class="info-block">
+                <h4>📌 Programme Info</h4>
+                <div class="info-row">
+                    <span class="il">Reference Price</span>
+                    <span class="iv">€241.60</span>
+                </div>
+                <div class="info-row">
+                    <span class="il">Processor</span>
+                    <span class="iv">Commerzbank AG</span>
+                </div>
+                <div class="info-row">
+                    <span class="il">Subscription Period</span>
+                    <span class="iv">Jul 23 – Aug 5</span>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="window.print()">🖨️ Print / Save as PDF</button>
+                <button class="btn btn-secondary" onclick="resetForm()">🔄 Reset to Defaults</button>
+            </div>
+
+            <div class="disclaimer">
+                <strong>Disclaimer:</strong> Illustrative only. BiK uses lowest quoted price at share assignment.
+                Excludes church tax, solidarity surcharge &amp; social security. Consult your tax advisor.
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER CREDIT BAR -->
+    <div class="footer-bar">
+        <span class="footer-credit" id="footerCredit">
+            ✦ Designed for Revenue Management ✦
+        </span>
+    </div>
+
+</div>
+
+<!-- CUSTOM MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+        <div class="modal-avatar">👨‍💻</div>
+        <div class="modal-tag">Creator</div>
+        <div class="modal-title">This tool was designed by</div>
+        <div class="modal-name">Banu Prakash</div>
+        <div class="modal-dept">Revenue Management · Deutsche Börse Group</div>
+        <div class="modal-divider"></div>
+        <button class="modal-close" onclick="closeModal()">Close</button>
+    </div>
+</div>
+
+<script>
+    /* ── EASTER EGG: double right-click on footer credit ── */
+    let rightClickCount = 0;
+    let rightClickTimer = null;
+
+    const footerCredit  = document.getElementById('footerCredit');
+    const modalOverlay  = document.getElementById('modalOverlay');
+
+    footerCredit.addEventListener('contextmenu', function (e) {
+        e.preventDefault(); // suppress browser context menu
+
+        rightClickCount++;
+
+        if (rightClickCount === 1) {
+            // First right-click: highlight the label as a hint
+            footerCredit.classList.add('one-click');
+
+            // Reset if second click doesn't come within 1.5 s
+            rightClickTimer = setTimeout(() => {
+                rightClickCount = 0;
+                footerCredit.classList.remove('one-click');
+            }, 1500);
+
+        } else if (rightClickCount >= 2) {
+            // Second right-click: show modal
+            clearTimeout(rightClickTimer);
+            rightClickCount = 0;
+            footerCredit.classList.remove('one-click');
+            openModal();
+        }
+    });
+
+    function openModal() {
+        modalOverlay.classList.add('show');
+    }
+
+    function closeModal(e) {
+        // Close when clicking overlay background or the close button
+        if (!e || e.target === modalOverlay) {
+            modalOverlay.classList.remove('show');
+        }
+    }
+
+    // Also close with Escape key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') modalOverlay.classList.remove('show');
+    });
+
+    /* ── CALCULATOR LOGIC ── */
+    const REF   = 241.60;
+    const P1    = 96.64;
+    const P2    = 193.28;
+    const P3    = 217.44;
+    const ALLOW = 2000;
+    const MAX   = 80;
+
+    function fmt(n)  { return '€' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function fmtP(n) { return n.toFixed(1) + '%'; }
+
+    function animateValue(el, newText) {
+        el.textContent = newText;
+        el.classList.remove('updated');
+        void el.offsetWidth;
+        el.classList.add('updated');
+    }
+
+    function syncSlider() {
+        const v = Math.min(Math.max(parseInt(document.getElementById('numShares').value) || 1, 1), MAX);
+        document.getElementById('sharesSlider').value = v;
+        updateBar(v);
+    }
+
+    function syncInput() {
+        const v = parseInt(document.getElementById('sharesSlider').value) || 1;
+        document.getElementById('numShares').value = v;
+        updateBar(v);
+    }
+
+    function updateBar(total) {
+        const t1 = Math.min(total, 20);
+        const t2 = Math.max(0, Math.min(total - 20, 20));
+        const t3 = Math.max(0, total - 40);
+
+        document.getElementById('bar1').style.width = (t1 / MAX * 100) + '%';
+        document.getElementById('bar2').style.width = (t2 / MAX * 100) + '%';
+        document.getElementById('bar3').style.width = (t3 / MAX * 100) + '%';
+
+        document.getElementById('bl1').textContent = 'T1: ' + t1;
+        document.getElementById('bl2').textContent = 'T2: ' + t2;
+        document.getElementById('bl3').textContent = 'T3: ' + t3;
+
+        document.getElementById('tp1fill').style.width = (t1 / 20 * 100) + '%';
+        document.getElementById('tp2fill').style.width = (t2 / 20 * 100) + '%';
+        document.getElementById('tp3fill').style.width = (t3 / 40 * 100) + '%';
+    }
+
+    function updateGauge(pct) {
+        const clamped  = Math.min(Math.max(pct, 0), 100);
+        const totalArc = 195;
+        const offset   = totalArc - (clamped / 100 * totalArc);
+        document.getElementById('gaugeFill').style.strokeDashoffset = offset;
+        document.getElementById('gaugeText').textContent = fmtP(clamped);
+
+        const angle = -180 + (clamped / 100 * 180);
+        const rad   = angle * Math.PI / 180;
+        const cx    = 80 + 62 * Math.cos(rad);
+        const cy    = 82 + 62 * Math.sin(rad);
+        document.getElementById('gaugeNeedle').setAttribute('cx', cx.toFixed(2));
+        document.getElementById('gaugeNeedle').setAttribute('cy', cy.toFixed(2));
+    }
+
+    function calculate() {
+        const shares  = Math.min(Math.max(parseInt(document.getElementById('numShares').value)  || 0, 0), MAX);
+        const bPrice  = parseFloat(document.getElementById('bookingPrice').value) || 0;
+        const taxRate = parseFloat(document.getElementById('taxRate').value)      || 0;
+
+        if (shares === 0 || bPrice === 0) return;
+
+        const t1 = Math.min(shares, 20);
+        const t2 = Math.max(0, Math.min(shares - 20, 20));
+        const t3 = Math.max(0, shares - 40);
+
+        const c1 = t1 * P1, c2 = t2 * P2, c3 = t3 * P3;
+        const totalCost     = c1 + c2 + c3;
+        const totalDiscount = (shares * REF) - totalCost;
+
+        const bik1     = t1 * Math.max(0, bPrice - P1);
+        const bik2     = t2 * Math.max(0, bPrice - P2);
+        const bik3     = t3 * Math.max(0, bPrice - P3);
+        const grossBik = bik1 + bik2 + bik3;
+
+        const allowUsed  = Math.min(grossBik, ALLOW);
+        const taxableBik = Math.max(0, grossBik - ALLOW);
+        const taxDue     = taxableBik * (taxRate / 100);
+        const portfolio  = shares * bPrice;
+        const netGain    = portfolio - totalCost - taxDue;
+        const effDisc    = portfolio > 0 ? (netGain / portfolio * 100) : 0;
+
+        animateValue(document.getElementById('r_totalCost'),     fmt(totalCost));
+        animateValue(document.getElementById('r_totalDiscount'), fmt(totalDiscount));
+        animateValue(document.getElementById('r_grossBik'),      fmt(grossBik));
+        animateValue(document.getElementById('r_taxableBik'),    fmt(taxableBik));
+
+        document.getElementById('n_portfolio').textContent   = fmt(portfolio);
+        document.getElementById('n_deductions').textContent  = '- ' + fmt(totalCost + taxDue);
+        document.getElementById('n_netGain').textContent     = fmt(netGain);
+        document.getElementById('n_effDiscount').textContent = fmtP(effDisc);
+        document.getElementById('n_taxDue').textContent      = fmt(taxDue);
+        document.getElementById('n_allowance').textContent   = fmt(allowUsed);
+
+        document.getElementById('t_grossBik').textContent   = fmt(grossBik);
+        document.getElementById('t_allowance').textContent  = '- ' + fmt(allowUsed);
+        document.getElementById('t_taxableBik').textContent = fmt(taxableBik);
+        document.getElementById('t_taxRate').textContent    = fmtP(taxRate);
+        document.getElementById('t_taxDue').textContent     = fmt(taxDue);
+
+        document.getElementById('s_t1').textContent    = t1 + ' shares';
+        document.getElementById('s_t2').textContent    = t2 + ' shares';
+        document.getElementById('s_t3').textContent    = t3 + ' shares';
+        document.getElementById('s_total').textContent = shares + ' shares';
+
+        updateGauge(effDisc);
+
+        const tbody = document.getElementById('tableBody');
+        tbody.innerHTML = '';
+
+        const rows = [
+            { label:'Tier 1 (60% off)', sh:t1, disc:'60%', price:P1, cost:c1, bikPS:t1>0?Math.max(0,bPrice-P1):0, bik:bik1 },
+            { label:'Tier 2 (20% off)', sh:t2, disc:'20%', price:P2, cost:c2, bikPS:t2>0?Math.max(0,bPrice-P2):0, bik:bik2 },
+            { label:'Tier 3 (10% off)', sh:t3, disc:'10%', price:P3, cost:c3, bikPS:t3>0?Math.max(0,bPrice-P3):0, bik:bik3 },
+        ];
+
+        rows.forEach(r => {
+            if (r.sh > 0) {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${r.label}</td>
+                    <td><strong style="color:#7dd3fc">${r.sh}</strong></td>
+                    <td><span style="color:#4ade80;font-weight:700">${r.disc}</span></td>
+                    <td>${fmt(r.price)}</td>
+                    <td>${fmt(r.cost)}</td>
+                    <td>${fmt(r.bikPS)}</td>
+                    <td><strong>${fmt(r.bik)}</strong></td>`;
+                tbody.appendChild(tr);
+            }
+        });
+
+        const addRow = (cls, cols) => {
+            const tr = document.createElement('tr');
+            tr.className = cls;
+            tr.innerHTML = cols.map(c => `<td>${c}</td>`).join('');
+            tbody.appendChild(tr);
+        };
+
+        addRow('tr-total',    ['TOTAL', `<strong>${shares} shares</strong>`, '—', '—', fmt(totalCost), '—', fmt(grossBik)]);
+        addRow('tr-allowance',['§3 No.39 Allowance', '', '', '', '', '', '- ' + fmt(allowUsed)]);
+        addRow('tr-taxable',  ['Taxable Benefit in Kind', '', '', '', '', '', fmt(taxableBik)]);
+
+        updateBar(shares);
+    }
+
+    function resetForm() {
+        document.getElementById('numShares').value    = 20;
+        document.getElementById('sharesSlider').value = 20;
+        document.getElementById('bookingPrice').value = 285.00;
+        document.getElementById('taxRate').value      = 42;
+        calculate();
+        updateBar(20);
+    }
+
+    window.onload = () => { calculate(); updateBar(20); };
+</script>
+</body>
+</html>
