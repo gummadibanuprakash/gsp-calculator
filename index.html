@@ -1,19 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Deutsche Börse GSP Calculator 2026</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html, body {
-            height: 100%;
-            overflow: hidden;
+        :root {
+            --bg: #0a0f1e;
+            --panel: rgba(15,25,50,0.92);
+            --border: rgba(255,255,255,0.08);
+            --blue1: #0078d4;
+            --blue2: #00b4d8;
+            --accent: #7dd3fc;
+            --green: #4ade80;
+            --red: #f87171;
+            --amber: #fbbf24;
+            --text: #e2e8f0;
+            --muted: rgba(255,255,255,0.45);
+        }
+
+        html { font-size: 13px; }
+
+        body {
             font-family: 'Segoe UI', system-ui, sans-serif;
-            background: #0a0f1e;
-            font-size: 13px;
-            color: #e2e8f0;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
         body::before {
@@ -29,133 +46,135 @@
         }
 
         .app {
-            display: grid;
-            grid-template-rows: 64px 1fr 22px;
-            height: 100vh;
-            padding: 10px;
-            gap: 8px;
             position: relative;
             z-index: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 8px;
+            gap: 8px;
         }
 
         /* ── HEADER ── */
         .header {
-            background: linear-gradient(135deg, rgba(0,51,102,0.97) 0%, rgba(0,90,158,0.97) 100%);
+            background: linear-gradient(135deg, rgba(0,51,102,0.97), rgba(0,90,158,0.97));
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 12px;
-            padding: 0 22px;
+            padding: 10px 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+            flex-shrink: 0;
         }
 
         .header-left {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            min-width: 0;
         }
 
         .logo-icon {
-            width: 40px;
-            height: 40px;
+            width: 38px; height: 38px;
             background: linear-gradient(135deg, #0078d4, #00b4d8);
             border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px;
             box-shadow: 0 2px 12px rgba(0,120,212,0.6);
             flex-shrink: 0;
         }
 
-        .header-left h1 {
-            font-size: 16px;
-            font-weight: 700;
-            color: white;
-        }
-
-        .header-left p {
-            font-size: 11px;
-            color: rgba(255,255,255,0.5);
-            margin-top: 2px;
-        }
+        .header-left h1 { font-size: 14px; font-weight: 700; color: white; white-space: nowrap; }
+        .header-left p  { font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 1px; }
 
         .header-stats {
             display: flex;
-            gap: 6px;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .hstat {
             background: rgba(255,255,255,0.07);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 8px;
-            padding: 6px 14px;
+            padding: 5px 10px;
             text-align: center;
-            transition: background 0.2s;
             cursor: default;
         }
 
-        .hstat:hover { background: rgba(255,255,255,0.13); }
+        .hstat-label { font-size: 8px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.5px; }
+        .hstat-value { font-size: 13px; font-weight: 800; color: var(--accent); margin-top: 1px; }
 
-        .hstat-label {
-            font-size: 9px;
-            color: rgba(255,255,255,0.45);
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-        }
-
-        .hstat-value {
-            font-size: 14px;
-            font-weight: 800;
-            color: #7dd3fc;
-            margin-top: 1px;
-        }
-
-        .header-badges {
-            display: flex;
-            gap: 6px;
-            align-items: center;
-        }
+        .header-badges { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; }
 
         .badge {
-            padding: 5px 12px;
-            border-radius: 20px;
+            padding: 4px 10px; border-radius: 20px;
+            font-size: 10px; font-weight: 700; letter-spacing: 0.3px;
+        }
+
+        .badge-blue { background: rgba(0,120,212,0.3); border: 1px solid rgba(0,120,212,0.5); color: var(--accent); }
+        .badge-gold { background: rgba(251,191,36,0.2); border: 1px solid rgba(251,191,36,0.4); color: var(--amber); }
+
+        /* ── TAB NAV ── */
+        .tab-nav {
+            display: flex;
+            gap: 4px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 4px;
+            flex-shrink: 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .tab-nav::-webkit-scrollbar { display: none; }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 100px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 7px;
+            background: transparent;
+            color: var(--muted);
             font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.3px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
         }
 
-        .badge-blue {
-            background: rgba(0,120,212,0.3);
-            border: 1px solid rgba(0,120,212,0.5);
-            color: #7dd3fc;
+        .tab-btn:hover { background: rgba(255,255,255,0.06); color: var(--text); }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, rgba(0,120,212,0.4), rgba(0,180,216,0.25));
+            color: var(--accent);
+            border: 1px solid rgba(0,120,212,0.35);
+            box-shadow: 0 2px 10px rgba(0,120,212,0.25);
         }
 
-        .badge-gold {
-            background: rgba(251,191,36,0.2);
-            border: 1px solid rgba(251,191,36,0.4);
-            color: #fbbf24;
-        }
+        /* ── CONTENT AREA ── */
+        .content-area { flex: 1; display: flex; flex-direction: column; gap: 8px; min-height: 0; }
 
-        /* ── MAIN 3-COL GRID ── */
-        .main {
-            display: grid;
-            grid-template-columns: 320px 1fr 260px;
-            gap: 8px;
-            overflow: hidden;
-        }
+        .tab-content { display: none; flex: 1; }
+        .tab-content.active { display: flex; flex-direction: column; gap: 8px; }
 
-        /* ── GLASS PANELS ── */
+        /* ── PANEL ── */
         .panel {
-            background: rgba(15,25,50,0.88);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: var(--panel);
+            border: 1px solid var(--border);
             border-radius: 12px;
             padding: 14px 16px;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
             backdrop-filter: blur(14px);
             box-shadow: 0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
         }
@@ -165,44 +184,43 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.2px;
-            color: #7dd3fc;
+            color: var(--accent);
             padding-bottom: 9px;
             border-bottom: 1px solid rgba(255,255,255,0.07);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 7px;
-            flex-shrink: 0;
         }
 
         .pt-icon {
-            width: 20px;
-            height: 20px;
+            width: 20px; height: 20px;
             background: linear-gradient(135deg, #0078d4, #00b4d8);
             border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             font-size: 11px;
         }
 
-        /* ── TIER PILLS ── */
-        .tier-strip {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 12px;
-            flex-shrink: 0;
+        /* ── CALCULATOR TAB LAYOUT ── */
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr 240px;
+            gap: 8px;
         }
 
+        .calc-left, .calc-mid, .calc-right {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        /* ── TIER PILLS ── */
+        .tier-strip { display: flex; gap: 6px; }
+
         .tier-pill {
-            flex: 1;
-            border-radius: 10px;
-            padding: 10px 6px 8px;
-            text-align: center;
-            cursor: default;
+            flex: 1; border-radius: 10px; padding: 10px 6px 8px;
+            text-align: center; cursor: default;
             transition: transform 0.2s, box-shadow 0.2s;
-            position: relative;
-            overflow: hidden;
         }
 
         .tier-pill:hover { transform: translateY(-3px); }
@@ -210,305 +228,126 @@
         .tier-pill.t1 {
             background: linear-gradient(135deg, rgba(0,51,102,0.85), rgba(0,80,160,0.65));
             border: 1px solid rgba(0,120,212,0.55);
-            box-shadow: 0 3px 14px rgba(0,51,102,0.45);
         }
-        .tier-pill.t1:hover { box-shadow: 0 8px 24px rgba(0,80,160,0.65); }
-
         .tier-pill.t2 {
             background: linear-gradient(135deg, rgba(0,80,160,0.65), rgba(0,120,212,0.45));
             border: 1px solid rgba(0,180,216,0.45);
-            box-shadow: 0 3px 14px rgba(0,120,212,0.35);
         }
-        .tier-pill.t2:hover { box-shadow: 0 8px 24px rgba(0,120,212,0.55); }
-
         .tier-pill.t3 {
             background: linear-gradient(135deg, rgba(0,120,212,0.45), rgba(0,180,216,0.32));
             border: 1px solid rgba(125,211,252,0.35);
-            box-shadow: 0 3px 14px rgba(0,180,216,0.25);
-        }
-        .tier-pill.t3:hover { box-shadow: 0 8px 24px rgba(0,180,216,0.45); }
-
-        .tp-discount {
-            font-size: 26px;
-            font-weight: 900;
-            line-height: 1;
         }
 
+        .tp-discount { font-size: 24px; font-weight: 900; line-height: 1; }
         .t1 .tp-discount { color: #60a5fa; }
         .t2 .tp-discount { color: #7dd3fc; }
         .t3 .tp-discount { color: #bae6fd; }
-
-        .tp-range {
-            font-size: 9px;
-            color: rgba(255,255,255,0.5);
-            margin: 3px 0;
-        }
-
-        .tp-price {
-            font-size: 14px;
-            font-weight: 700;
-            color: white;
-        }
-
-        .tp-active {
-            height: 4px;
-            border-radius: 2px;
-            background: rgba(255,255,255,0.1);
-            overflow: hidden;
-            margin-top: 6px;
-        }
-
-        .tp-active-fill {
-            height: 100%;
-            border-radius: 2px;
-            transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
-        }
-
+        .tp-range  { font-size: 9px; color: rgba(255,255,255,0.5); margin: 3px 0; }
+        .tp-price  { font-size: 13px; font-weight: 700; color: white; }
+        .tp-active { height: 4px; border-radius: 2px; background: rgba(255,255,255,0.1); overflow: hidden; margin-top: 6px; }
+        .tp-active-fill { height: 100%; border-radius: 2px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
         .t1 .tp-active-fill { background: linear-gradient(90deg,#1d4ed8,#60a5fa); }
         .t2 .tp-active-fill { background: linear-gradient(90deg,#0078d4,#7dd3fc); }
         .t3 .tp-active-fill { background: linear-gradient(90deg,#0ea5e9,#bae6fd); }
 
         /* ── INPUTS ── */
-        .input-group {
-            margin-bottom: 10px;
-            flex-shrink: 0;
-        }
-
+        .input-group { margin-bottom: 10px; }
         .input-group label {
-            display: block;
-            font-size: 10px;
-            font-weight: 600;
-            color: rgba(255,255,255,0.5);
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            margin-bottom: 5px;
+            display: block; font-size: 10px; font-weight: 600;
+            color: rgba(255,255,255,0.5); text-transform: uppercase;
+            letter-spacing: 0.6px; margin-bottom: 5px;
         }
 
         .input-wrapper { position: relative; }
-
         .input-prefix {
-            position: absolute;
-            left: 11px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #7dd3fc;
-            font-weight: 700;
-            font-size: 14px;
-            pointer-events: none;
-            z-index: 1;
+            position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+            color: var(--accent); font-weight: 700; font-size: 14px;
+            pointer-events: none; z-index: 1;
         }
 
         input[type="number"] {
-            width: 100%;
-            padding: 9px 10px 9px 26px;
+            width: 100%; padding: 9px 10px 9px 26px;
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 700;
-            color: #e2e8f0;
-            transition: all 0.2s;
+            border-radius: 8px; font-size: 15px; font-weight: 700;
+            color: var(--text); transition: all 0.2s;
             -moz-appearance: textfield;
         }
 
         input[type="number"]::-webkit-inner-spin-button,
         input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
-
         input[type="number"].no-prefix { padding-left: 10px; }
 
         input[type="number"]:focus {
-            outline: none;
-            border-color: #0078d4;
+            outline: none; border-color: var(--blue1);
             background: rgba(0,120,212,0.1);
             box-shadow: 0 0 0 3px rgba(0,120,212,0.18);
         }
 
-        /* ── SLIDER ── */
-        .slider-wrap { margin-top: 6px; }
-
         input[type="range"] {
-            width: 100%;
-            height: 5px;
-            border-radius: 3px;
-            background: rgba(255,255,255,0.1);
-            outline: none;
-            cursor: pointer;
-            -webkit-appearance: none;
+            width: 100%; height: 5px; border-radius: 3px;
+            background: rgba(255,255,255,0.1); outline: none;
+            cursor: pointer; -webkit-appearance: none; margin-top: 6px;
         }
 
         input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
+            -webkit-appearance: none; width: 20px; height: 20px;
             border-radius: 50%;
             background: linear-gradient(135deg, #0078d4, #00b4d8);
-            cursor: pointer;
-            border: 2px solid rgba(255,255,255,0.35);
+            cursor: pointer; border: 2px solid rgba(255,255,255,0.35);
             box-shadow: 0 2px 10px rgba(0,120,212,0.7);
-            transition: transform 0.15s, box-shadow 0.15s;
+            transition: transform 0.15s;
         }
 
-        input[type="range"]::-webkit-slider-thumb:hover {
-            transform: scale(1.25);
-            box-shadow: 0 4px 18px rgba(0,120,212,0.9);
-        }
+        input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.25); }
 
         .slider-labels {
-            display: flex;
-            justify-content: space-between;
-            font-size: 9px;
-            color: rgba(255,255,255,0.3);
-            margin-top: 4px;
+            display: flex; justify-content: space-between;
+            font-size: 9px; color: rgba(255,255,255,0.3); margin-top: 4px;
         }
 
         /* ── SHARE BAR ── */
-        .share-bar-wrap { margin: 8px 0 4px; }
-
-        .share-bar {
-            display: flex;
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-            background: rgba(255,255,255,0.06);
-        }
-
+        .share-bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; background: rgba(255,255,255,0.06); margin: 8px 0 4px; }
         .sb1 { background: linear-gradient(90deg,#1d4ed8,#2563eb); transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
         .sb2 { background: linear-gradient(90deg,#0078d4,#0ea5e9); transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
         .sb3 { background: linear-gradient(90deg,#0ea5e9,#38bdf8); transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
 
-        .bar-legend {
-            display: flex;
-            gap: 12px;
-            margin-top: 5px;
-        }
-
-        .bl-item {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 10px;
-            color: rgba(255,255,255,0.5);
-        }
-
-        .bl-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
-
-        /* ── DATES ── */
-        .dates-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5px;
-            margin-top: auto;
-            padding-top: 10px;
-            flex-shrink: 0;
-        }
-
-        .date-chip {
-            background: rgba(0,120,212,0.1);
-            border: 1px solid rgba(0,120,212,0.22);
-            border-radius: 7px;
-            padding: 6px 8px;
-            transition: background 0.2s;
-            cursor: default;
-        }
-
-        .date-chip:hover { background: rgba(0,120,212,0.22); }
-
-        .dc-label {
-            font-size: 8.5px;
-            color: rgba(255,255,255,0.38);
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-        }
-
-        .dc-value {
-            font-size: 11px;
-            font-weight: 700;
-            color: #7dd3fc;
-            margin-top: 1px;
-        }
+        .bar-legend { display: flex; gap: 10px; }
+        .bl-item { display: flex; align-items: center; gap: 4px; font-size: 10px; color: rgba(255,255,255,0.5); }
+        .bl-dot  { width: 8px; height: 8px; border-radius: 50%; }
 
         /* ── STAT BOXES ── */
         .results-top {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 6px;
-            margin-bottom: 10px;
-            flex-shrink: 0;
         }
 
         .stat-box {
-            border-radius: 10px;
-            padding: 12px 10px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s;
-            cursor: default;
+            border-radius: 10px; padding: 12px 10px; text-align: center;
+            position: relative; overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s; cursor: default;
         }
 
         .stat-box:hover { transform: translateY(-3px); }
 
         .stat-box::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            border-radius: 10px 10px 0 0;
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 3px; border-radius: 10px 10px 0 0;
         }
 
-        .stat-box.blue {
-            background: linear-gradient(135deg, rgba(0,51,102,0.85), rgba(0,80,160,0.65));
-            border: 1px solid rgba(0,120,212,0.32);
-            box-shadow: 0 4px 18px rgba(0,51,102,0.45);
-        }
+        .stat-box.blue   { background: linear-gradient(135deg, rgba(0,51,102,0.85), rgba(0,80,160,0.65)); border: 1px solid rgba(0,120,212,0.32); }
         .stat-box.blue::before { background: linear-gradient(90deg,#1d4ed8,#0078d4); }
-        .stat-box.blue:hover   { box-shadow: 0 10px 28px rgba(0,80,160,0.55); }
-
-        .stat-box.green {
-            background: linear-gradient(135deg, rgba(5,46,22,0.85), rgba(22,101,52,0.65));
-            border: 1px solid rgba(22,163,74,0.32);
-            box-shadow: 0 4px 18px rgba(5,46,22,0.45);
-        }
+        .stat-box.green  { background: linear-gradient(135deg, rgba(5,46,22,0.85), rgba(22,101,52,0.65)); border: 1px solid rgba(22,163,74,0.32); }
         .stat-box.green::before { background: linear-gradient(90deg,#166534,#16a34a); }
-        .stat-box.green:hover   { box-shadow: 0 10px 28px rgba(22,101,52,0.55); }
-
-        .stat-box.indigo {
-            background: linear-gradient(135deg, rgba(30,58,138,0.85), rgba(37,99,235,0.55));
-            border: 1px solid rgba(99,102,241,0.32);
-            box-shadow: 0 4px 18px rgba(30,58,138,0.45);
-        }
+        .stat-box.indigo { background: linear-gradient(135deg, rgba(30,58,138,0.85), rgba(37,99,235,0.55)); border: 1px solid rgba(99,102,241,0.32); }
         .stat-box.indigo::before { background: linear-gradient(90deg,#4338ca,#6366f1); }
-        .stat-box.indigo:hover   { box-shadow: 0 10px 28px rgba(37,99,235,0.55); }
-
-        .stat-box.amber {
-            background: linear-gradient(135deg, rgba(120,53,15,0.85), rgba(180,83,9,0.65));
-            border: 1px solid rgba(217,119,6,0.32);
-            box-shadow: 0 4px 18px rgba(120,53,15,0.45);
-        }
+        .stat-box.amber  { background: linear-gradient(135deg, rgba(120,53,15,0.85), rgba(180,83,9,0.65)); border: 1px solid rgba(217,119,6,0.32); }
         .stat-box.amber::before { background: linear-gradient(90deg,#b45309,#d97706); }
-        .stat-box.amber:hover   { box-shadow: 0 10px 28px rgba(180,83,9,0.55); }
 
-        .sb-label {
-            font-size: 9px;
-            color: rgba(255,255,255,0.55);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 5px;
-        }
-
-        .sb-value {
-            font-size: 20px;
-            font-weight: 800;
-            color: white;
-            line-height: 1;
-            transition: all 0.3s;
-        }
-
-        .sb-value.updated { animation: pulse 0.4s ease; }
+        .sb-label { font-size: 9px; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; }
+        .sb-value { font-size: 18px; font-weight: 800; color: white; line-height: 1; }
+        .sb-sub   { font-size: 9px; color: rgba(255,255,255,0.38); margin-top: 3px; }
 
         @keyframes pulse {
             0%   { transform: scale(1); }
@@ -516,439 +355,420 @@
             100% { transform: scale(1); }
         }
 
-        .sb-sub {
-            font-size: 9px;
-            color: rgba(255,255,255,0.38);
-            margin-top: 3px;
-        }
+        .sb-value.updated { animation: pulse 0.4s ease; }
 
         /* ── TABLE ── */
-        .table-wrap {
-            flex: 1;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            min-height: 0;
-        }
+        .table-wrap { overflow-x: auto; }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
-        }
+        table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 500px; }
 
         thead th {
-            background: rgba(0,51,102,0.85);
-            color: rgba(255,255,255,0.65);
-            padding: 7px 10px;
-            text-align: left;
-            font-size: 9.5px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
-            position: sticky;
-            top: 0;
+            background: rgba(0,51,102,0.85); color: rgba(255,255,255,0.65);
+            padding: 7px 10px; text-align: left; font-size: 9.5px;
+            text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;
+            position: sticky; top: 0;
         }
 
         thead th:first-child { border-radius: 6px 0 0 0; }
         thead th:last-child  { border-radius: 0 6px 0 0; }
 
         tbody td {
-            padding: 6px 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-            color: rgba(255,255,255,0.8);
-            transition: background 0.15s;
+            padding: 6px 10px; border-bottom: 1px solid rgba(255,255,255,0.04);
+            color: rgba(255,255,255,0.8); transition: background 0.15s;
         }
 
         tbody tr:hover td { background: rgba(255,255,255,0.04); }
 
-        .tr-total td {
-            background: rgba(0,80,160,0.32) !important;
-            font-weight: 700;
-            color: #7dd3fc;
-            border-top: 1px solid rgba(0,120,212,0.4);
-        }
-
-        .tr-allowance td {
-            background: rgba(251,191,36,0.09) !important;
-            color: #fbbf24;
-            font-weight: 600;
-        }
-
-        .tr-taxable td {
-            background: rgba(239,68,68,0.11) !important;
-            color: #f87171;
-            font-weight: 700;
-        }
+        .tr-total td     { background: rgba(0,80,160,0.32) !important; font-weight: 700; color: var(--accent); border-top: 1px solid rgba(0,120,212,0.4); }
+        .tr-allowance td { background: rgba(251,191,36,0.09) !important; color: var(--amber); font-weight: 600; }
+        .tr-taxable td   { background: rgba(239,68,68,0.11) !important; color: var(--red); font-weight: 700; }
 
         /* ── NET GRID ── */
         .net-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 6px;
-            margin-top: 8px;
-            flex-shrink: 0;
         }
 
         .net-item {
             background: rgba(255,255,255,0.04);
             border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 8px;
-            padding: 8px 10px;
-            text-align: center;
-            transition: all 0.2s;
-            cursor: default;
+            border-radius: 8px; padding: 8px 10px; text-align: center;
+            transition: all 0.2s; cursor: default;
         }
 
-        .net-item:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(0,120,212,0.35);
-        }
+        .net-item:hover { background: rgba(255,255,255,0.08); border-color: rgba(0,120,212,0.35); }
 
-        .ni-label {
-            font-size: 9px;
-            color: rgba(255,255,255,0.38);
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-            margin-bottom: 3px;
-        }
+        .ni-label { font-size: 9px; color: rgba(255,255,255,0.38); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 3px; }
+        .ni-value { font-size: 14px; font-weight: 800; color: var(--text); }
+        .ni-value.green { color: var(--green); }
+        .ni-value.red   { color: var(--red); }
+        .ni-value.blue  { color: var(--accent); }
 
-        .ni-value {
-            font-size: 15px;
-            font-weight: 800;
-            color: #e2e8f0;
-        }
-
-        .ni-value.green { color: #4ade80; }
-        .ni-value.red   { color: #f87171; }
-        .ni-value.blue  { color: #7dd3fc; }
-
-        /* ── RIGHT PANEL ── */
+        /* ── RIGHT PANEL BLOCKS ── */
         .tax-block {
             background: rgba(251,191,36,0.05);
             border: 1px solid rgba(251,191,36,0.15);
             border-left: 3px solid #f59e0b;
-            border-radius: 8px;
-            padding: 10px 12px;
-            margin-bottom: 8px;
-            flex-shrink: 0;
+            border-radius: 8px; padding: 10px 12px;
         }
 
-        .tax-block h4 {
-            font-size: 9.5px;
-            font-weight: 700;
-            color: #fbbf24;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            margin-bottom: 7px;
-        }
+        .tax-block h4 { font-size: 9.5px; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 7px; }
 
         .tax-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 4px 0;
-            border-bottom: 1px solid rgba(251,191,36,0.08);
-            font-size: 11px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 4px 0; border-bottom: 1px solid rgba(251,191,36,0.08); font-size: 11px;
         }
 
         .tax-row:last-child { border-bottom: none; }
         .tax-row .tl { color: rgba(255,255,255,0.48); }
-        .tax-row .tv { font-weight: 700; color: #e2e8f0; }
-        .tax-row .tv.red   { color: #f87171; }
-        .tax-row .tv.green { color: #4ade80; }
+        .tax-row .tv { font-weight: 700; color: var(--text); }
+        .tax-row .tv.red   { color: var(--red); }
+        .tax-row .tv.green { color: var(--green); }
 
         .info-block {
             background: rgba(0,120,212,0.06);
             border: 1px solid rgba(0,120,212,0.16);
             border-left: 3px solid #0078d4;
-            border-radius: 8px;
-            padding: 10px 12px;
-            margin-bottom: 8px;
-            flex-shrink: 0;
+            border-radius: 8px; padding: 10px 12px;
         }
 
-        .info-block h4 {
-            font-size: 9.5px;
-            font-weight: 700;
-            color: #7dd3fc;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            margin-bottom: 7px;
-        }
+        .info-block h4 { font-size: 9.5px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 7px; }
 
         .info-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 11px;
-            padding: 3px 0;
+            display: flex; justify-content: space-between;
+            font-size: 11px; padding: 3px 0;
             border-bottom: 1px solid rgba(0,120,212,0.08);
         }
 
         .info-row:last-child { border-bottom: none; }
         .info-row .il { color: rgba(255,255,255,0.44); }
-        .info-row .iv { font-weight: 700; color: #7dd3fc; }
+        .info-row .iv { font-weight: 700; color: var(--accent); }
 
         /* ── GAUGE ── */
-        .gauge-wrap {
-            text-align: center;
-            margin-bottom: 8px;
-            flex-shrink: 0;
+        .gauge-wrap { text-align: center; }
+        .gauge-label { font-size: 9px; color: rgba(255,255,255,0.38); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 4px; }
+        .gauge-svg { width: 100%; max-width: 150px; }
+        .gauge-value-text { font-size: 11px; font-weight: 800; fill: var(--green); }
+        .gauge-sub-text   { font-size: 6.5px; fill: rgba(255,255,255,0.35); }
+
+        /* ── DATES ── */
+        .dates-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+
+        .date-chip {
+            background: rgba(0,120,212,0.1); border: 1px solid rgba(0,120,212,0.22);
+            border-radius: 7px; padding: 6px 8px; cursor: default;
+            transition: background 0.2s;
         }
 
-        .gauge-label {
-            font-size: 9px;
-            color: rgba(255,255,255,0.38);
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            margin-bottom: 4px;
-        }
-
-        .gauge-svg { width: 100%; max-width: 160px; }
-
-        .gauge-value-text {
-            font-size: 11px;
-            font-weight: 800;
-            fill: #4ade80;
-        }
-
-        .gauge-sub-text {
-            font-size: 6.5px;
-            fill: rgba(255,255,255,0.35);
-        }
+        .date-chip:hover { background: rgba(0,120,212,0.22); }
+        .dc-label { font-size: 8.5px; color: rgba(255,255,255,0.38); text-transform: uppercase; letter-spacing: 0.4px; }
+        .dc-value { font-size: 11px; font-weight: 700; color: var(--accent); margin-top: 1px; }
 
         /* ── BUTTONS ── */
-        .btn-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            margin-top: auto;
-            flex-shrink: 0;
-        }
+        .btn-group { display: flex; flex-direction: column; gap: 6px; }
 
         .btn {
-            padding: 10px;
-            border: none;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-align: center;
-            letter-spacing: 0.2px;
+            padding: 10px; border: none; border-radius: 8px;
+            font-size: 12px; font-weight: 600; cursor: pointer;
+            transition: all 0.2s; text-align: center; letter-spacing: 0.2px;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, #0078d4, #0ea5e9);
-            color: white;
-            box-shadow: 0 3px 12px rgba(0,120,212,0.45);
+            color: white; box-shadow: 0 3px 12px rgba(0,120,212,0.45);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,120,212,0.65);
-        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,120,212,0.65); }
 
         .btn-secondary {
-            background: rgba(255,255,255,0.06);
-            color: rgba(255,255,255,0.7);
+            background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7);
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.11);
-            color: white;
-        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.11); color: white; }
 
-        /* ── DISCLAIMER ── */
         .disclaimer {
-            font-size: 8.5px;
-            color: rgba(255,255,255,0.22);
-            line-height: 1.55;
-            padding-top: 7px;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            margin-top: 7px;
-            flex-shrink: 0;
+            font-size: 8.5px; color: rgba(255,255,255,0.22); line-height: 1.55;
+            padding-top: 7px; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 7px;
         }
 
-        /* ── FOOTER CREDIT BAR ── */
-        .footer-bar {
+        /* ── CHARTS TAB ── */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .chart-panel {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 16px;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            user-select: none;
+            flex-direction: column;
+        }
+
+        .chart-panel.full-width { grid-column: 1 / -1; }
+
+        .chart-title {
+            font-size: 10px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1.2px; color: var(--accent);
+            padding-bottom: 9px; border-bottom: 1px solid rgba(255,255,255,0.07);
+            margin-bottom: 12px; display: flex; align-items: center; gap: 7px;
+        }
+
+        .chart-container { position: relative; flex: 1; min-height: 200px; }
+
+        /* ── ANALYTICS TAB ── */
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+        }
+
+        .analytics-grid .full { grid-column: 1 / -1; }
+        .analytics-grid .half { grid-column: span 1; }
+
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .kpi-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            backdrop-filter: blur(14px);
+            transition: transform 0.2s;
+            cursor: default;
+        }
+
+        .kpi-card:hover { transform: translateY(-3px); }
+
+        .kpi-icon { font-size: 24px; margin-bottom: 8px; }
+        .kpi-label { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 4px; }
+        .kpi-value { font-size: 22px; font-weight: 900; color: white; }
+        .kpi-sub   { font-size: 10px; color: var(--muted); margin-top: 4px; }
+        .kpi-trend { font-size: 11px; font-weight: 700; margin-top: 4px; }
+        .kpi-trend.up   { color: var(--green); }
+        .kpi-trend.down { color: var(--red); }
+
+        /* ── SCENARIO TABLE ── */
+        .scenario-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+
+        .scenario-table th {
+            background: rgba(0,51,102,0.85); color: rgba(255,255,255,0.65);
+            padding: 8px 10px; text-align: left; font-size: 9px;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+
+        .scenario-table td {
+            padding: 7px 10px; border-bottom: 1px solid rgba(255,255,255,0.04);
+            color: rgba(255,255,255,0.8);
+        }
+
+        .scenario-table tr:hover td { background: rgba(255,255,255,0.04); }
+        .scenario-table .highlight td { background: rgba(0,120,212,0.15) !important; color: var(--accent); font-weight: 700; }
+
+        /* ── DECISION HELPER ── */
+        .decision-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .decision-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            backdrop-filter: blur(14px);
+            transition: all 0.2s;
+            cursor: default;
+        }
+
+        .decision-card:hover { transform: translateY(-3px); border-color: rgba(0,120,212,0.35); }
+
+        .dc-icon { font-size: 28px; margin-bottom: 10px; }
+        .dc-title { font-size: 13px; font-weight: 700; color: white; margin-bottom: 6px; }
+        .dc-desc  { font-size: 11px; color: var(--muted); line-height: 1.6; }
+        .dc-metric { font-size: 20px; font-weight: 900; margin: 10px 0 4px; }
+        .dc-metric.green { color: var(--green); }
+        .dc-metric.blue  { color: var(--accent); }
+        .dc-metric.amber { color: var(--amber); }
+
+        /* ── PROGRESS RING ── */
+        .progress-ring-wrap { display: flex; align-items: center; gap: 16px; }
+        .ring-info { flex: 1; }
+        .ring-label { font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+        .ring-value { font-size: 18px; font-weight: 800; color: white; }
+
+        /* ── FOOTER ── */
+        .footer-bar {
+            display: flex; align-items: center; justify-content: center;
+            gap: 6px; padding: 4px 0; flex-shrink: 0;
         }
 
         .footer-credit {
-            font-size: 10px;
-            font-weight: 500;
-            color: rgba(255,255,255,0.22);
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            cursor: default;
-            padding: 2px 14px;
-            border-radius: 20px;
+            font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.22);
+            letter-spacing: 0.8px; text-transform: uppercase; cursor: default;
+            padding: 2px 14px; border-radius: 20px;
             border: 1px solid rgba(255,255,255,0.06);
             background: rgba(255,255,255,0.03);
-            transition: color 0.3s, border-color 0.3s, background 0.3s, box-shadow 0.3s;
-            position: relative;
+            transition: all 0.3s;
         }
 
-        .footer-credit:hover {
-            color: rgba(125,211,252,0.5);
-            border-color: rgba(0,120,212,0.2);
-        }
+        .footer-credit:hover { color: rgba(125,211,252,0.5); border-color: rgba(0,120,212,0.2); }
+        .footer-credit.one-click { color: rgba(125,211,252,0.75); border-color: rgba(0,120,212,0.4); background: rgba(0,120,212,0.08); }
 
-        /* First right-click highlight */
-        .footer-credit.one-click {
-            color: rgba(125,211,252,0.75);
-            border-color: rgba(0,120,212,0.4);
-            background: rgba(0,120,212,0.08);
-            box-shadow: 0 0 10px rgba(0,120,212,0.2);
-        }
-
-        /* ── CUSTOM MODAL ── */
+        /* ── MODAL ── */
         .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.65);
-            backdrop-filter: blur(6px);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
+            position: fixed; inset: 0; background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(6px); z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s;
         }
 
-        .modal-overlay.show {
-            opacity: 1;
-            pointer-events: all;
-        }
+        .modal-overlay.show { opacity: 1; pointer-events: all; }
 
         .modal-box {
             background: linear-gradient(135deg, rgba(10,20,45,0.98), rgba(0,40,90,0.98));
-            border: 1px solid rgba(0,120,212,0.4);
-            border-radius: 16px;
-            padding: 36px 44px;
-            text-align: center;
-            box-shadow:
-                0 24px 60px rgba(0,0,0,0.7),
-                0 0 0 1px rgba(255,255,255,0.05),
-                inset 0 1px 0 rgba(255,255,255,0.08);
+            border: 1px solid rgba(0,120,212,0.4); border-radius: 16px;
+            padding: 36px 44px; text-align: center;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.08);
             transform: scale(0.88) translateY(12px);
             transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
-            opacity: 0;
-            max-width: 380px;
-            width: 90%;
+            opacity: 0; max-width: 380px; width: 90%;
         }
 
-        .modal-overlay.show .modal-box {
-            transform: scale(1) translateY(0);
-            opacity: 1;
-        }
+        .modal-overlay.show .modal-box { transform: scale(1) translateY(0); opacity: 1; }
 
         .modal-avatar {
-            width: 64px;
-            height: 64px;
+            width: 64px; height: 64px;
             background: linear-gradient(135deg, #0078d4, #00b4d8);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            margin: 0 auto 16px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 30px; margin: 0 auto 16px;
             box-shadow: 0 4px 20px rgba(0,120,212,0.6);
             animation: float 3s ease-in-out infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50%       { transform: translateY(-6px); }
-        }
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
-        .modal-tag {
-            font-size: 9px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #7dd3fc;
-            margin-bottom: 8px;
-        }
-
-        .modal-title {
-            font-size: 11px;
-            color: rgba(255,255,255,0.45);
-            margin-bottom: 6px;
-            letter-spacing: 0.3px;
-        }
-
-        .modal-name {
-            font-size: 26px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #60a5fa, #7dd3fc, #4ade80);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 6px;
-            letter-spacing: 0.5px;
-        }
-
-        .modal-dept {
-            font-size: 11px;
-            color: rgba(255,255,255,0.35);
-            margin-bottom: 22px;
-            letter-spacing: 0.3px;
-        }
-
-        .modal-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0,120,212,0.4), transparent);
-            margin-bottom: 18px;
-        }
+        .modal-tag   { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 8px; }
+        .modal-title { font-size: 11px; color: rgba(255,255,255,0.45); margin-bottom: 6px; }
+        .modal-name  { font-size: 26px; font-weight: 900; background: linear-gradient(135deg, #60a5fa, #7dd3fc, #4ade80); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 6px; }
+        .modal-dept  { font-size: 11px; color: rgba(255,255,255,0.35); margin-bottom: 22px; }
+        .modal-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(0,120,212,0.4), transparent); margin-bottom: 18px; }
 
         .modal-close {
-            background: linear-gradient(135deg, #0078d4, #0ea5e9);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 10px 28px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 3px 12px rgba(0,120,212,0.45);
-            letter-spacing: 0.3px;
+            background: linear-gradient(135deg, #0078d4, #0ea5e9); color: white;
+            border: none; border-radius: 8px; padding: 10px 28px;
+            font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s;
         }
 
-        .modal-close:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,120,212,0.65);
+        .modal-close:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,120,212,0.65); }
+
+        /* ── TOOLTIP ── */
+        .tooltip-wrap { position: relative; display: inline-block; }
+        .tooltip-wrap .tooltip-text {
+            visibility: hidden; opacity: 0;
+            background: rgba(0,20,50,0.95); color: var(--text);
+            font-size: 10px; border-radius: 6px; padding: 6px 10px;
+            position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%);
+            white-space: nowrap; border: 1px solid rgba(0,120,212,0.3);
+            transition: opacity 0.2s; z-index: 100; pointer-events: none;
         }
 
-        @keyframes glow {
-            0%   { box-shadow: 0 0 0 rgba(0,120,212,0); }
-            50%  { box-shadow: 0 0 24px rgba(0,120,212,0.45); }
-            100% { box-shadow: 0 0 0 rgba(0,120,212,0); }
+        .tooltip-wrap:hover .tooltip-text { visibility: visible; opacity: 1; }
+
+        /* ── MOBILE RESPONSIVE ── */
+        @media (max-width: 900px) {
+            html { font-size: 12px; }
+
+            .header { padding: 8px 12px; }
+            .header-left h1 { font-size: 12px; }
+            .header-stats { display: none; }
+
+            .calc-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results-top { grid-template-columns: repeat(2, 1fr); }
+
+            .charts-grid { grid-template-columns: 1fr; }
+            .chart-panel.full-width { grid-column: 1; }
+
+            .analytics-grid { grid-template-columns: 1fr; }
+            .analytics-grid .full { grid-column: 1; }
+
+            .kpi-row { grid-template-columns: repeat(2, 1fr); }
+
+            .decision-grid { grid-template-columns: 1fr; }
+
+            .net-grid { grid-template-columns: repeat(2, 1fr); }
+
+            .tab-btn { min-width: 80px; font-size: 10px; padding: 7px 8px; }
         }
+
+        @media (max-width: 600px) {
+            .app { padding: 6px; gap: 6px; }
+            .header-badges { display: none; }
+            .results-top { grid-template-columns: 1fr 1fr; }
+            .kpi-row { grid-template-columns: 1fr 1fr; }
+            .net-grid { grid-template-columns: 1fr 1fr; }
+            .dates-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* ── SCROLLABLE CONTENT ── */
+        .scrollable { overflow-y: auto; }
+        .scrollable::-webkit-scrollbar { width: 4px; }
+        .scrollable::-webkit-scrollbar-track { background: transparent; }
+        .scrollable::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+
+        /* ── HIGHLIGHT ANIMATION ── */
+        @keyframes highlightIn {
+            from { background: rgba(0,120,212,0.3); }
+            to   { background: transparent; }
+        }
+
+        .highlight-anim { animation: highlightIn 1s ease; }
+
+        /* ── BREAKEVEN INDICATOR ── */
+        .breakeven-bar {
+            height: 6px; border-radius: 3px;
+            background: rgba(255,255,255,0.08);
+            overflow: hidden; margin: 6px 0;
+        }
+
+        .breakeven-fill {
+            height: 100%; border-radius: 3px;
+            transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        /* ── SCENARIO SLIDER ── */
+        .scenario-controls {
+            display: flex; gap: 10px; align-items: center;
+            flex-wrap: wrap; margin-bottom: 12px;
+        }
+
+        .scenario-controls label { font-size: 10px; color: var(--muted); white-space: nowrap; }
+
+        .scenario-controls input[type="range"] { flex: 1; min-width: 100px; }
+
+        .scenario-val { font-size: 12px; font-weight: 700; color: var(--accent); min-width: 50px; }
 
         @media print {
-            body { overflow: visible; background: white; color: black; }
-            html, body { height: auto; }
-            .app { height: auto; }
-            .btn-group, .footer-bar, .modal-overlay { display: none; }
+            body { background: white; color: black; }
+            .tab-nav, .btn-group, .footer-bar, .modal-overlay { display: none !important; }
+            .tab-content { display: block !important; }
         }
     </style>
-
-<!--[if gte mso 9]><xml>
-<mso:CustomDocumentProperties>
-<mso:MediaServiceImageTags msdt:dt="string"></mso:MediaServiceImageTags>
-<mso:lcf76f155ced4ddcb4097134ff3c332f msdt:dt="string"></mso:lcf76f155ced4ddcb4097134ff3c332f>
-<mso:TaxCatchAll msdt:dt="string"></mso:TaxCatchAll>
-</mso:CustomDocumentProperties>
-</xml><![endif]-->
 </head>
 <body>
 <div class="app">
@@ -959,30 +779,15 @@
             <div class="logo-icon">📈</div>
             <div>
                 <h1>Deutsche Börse Group — Group Share Plan Calculator</h1>
-                <p>Estimate your investment, benefit in kind and net position · GSP 2026</p>
+                <p>Interactive analytics & decision support · GSP 2026</p>
             </div>
         </div>
         <div class="header-stats">
-            <div class="hstat">
-                <div class="hstat-label">Reference Price</div>
-                <div class="hstat-value">€241.60</div>
-            </div>
-            <div class="hstat">
-                <div class="hstat-label">Xetra® Date</div>
-                <div class="hstat-value">14 May 2026</div>
-            </div>
-            <div class="hstat">
-                <div class="hstat-label">Max Shares</div>
-                <div class="hstat-value">80</div>
-            </div>
-            <div class="hstat">
-                <div class="hstat-label">Tax Allowance</div>
-                <div class="hstat-value">€2,000</div>
-            </div>
-            <div class="hstat">
-                <div class="hstat-label">Deadline</div>
-                <div class="hstat-value">5 Aug 2026</div>
-            </div>
+            <div class="hstat"><div class="hstat-label">Reference Price</div><div class="hstat-value">€241.60</div></div>
+            <div class="hstat"><div class="hstat-label">Xetra® Date</div><div class="hstat-value">14 May 2026</div></div>
+            <div class="hstat"><div class="hstat-label">Max Shares</div><div class="hstat-value">80</div></div>
+            <div class="hstat"><div class="hstat-label">Tax Allowance</div><div class="hstat-value">€2,000</div></div>
+            <div class="hstat"><div class="hstat-label">Deadline</div><div class="hstat-value">5 Aug 2026</div></div>
         </div>
         <div class="header-badges">
             <span class="badge badge-blue">2026 Edition</span>
@@ -990,290 +795,410 @@
         </div>
     </div>
 
-    <!-- MAIN -->
-    <div class="main">
+    <!-- TAB NAV -->
+    <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('calculator')">⚙️ Calculator</button>
+        <button class="tab-btn" onclick="switchTab('charts')">📊 Charts</button>
+        <button class="tab-btn" onclick="switchTab('analytics')">🔬 Analytics</button>
+        <button class="tab-btn" onclick="switchTab('scenarios')">🎯 Scenarios</button>
+        <button class="tab-btn" onclick="switchTab('decision')">💡 Decision Helper</button>
+    </div>
 
-        <!-- LEFT: INPUTS -->
-        <div class="panel">
-            <div class="panel-title">
-                <div class="pt-icon">⚙</div>
-                Your Inputs
-            </div>
+    <!-- CONTENT AREA -->
+    <div class="content-area scrollable">
 
-            <div class="tier-strip">
-                <div class="tier-pill t1">
-                    <div class="tp-discount">60%</div>
-                    <div class="tp-range">Shares 1 – 20</div>
-                    <div class="tp-price">€96.64</div>
-                    <div class="tp-active"><div class="tp-active-fill" id="tp1fill" style="width:0%"></div></div>
-                </div>
-                <div class="tier-pill t2">
-                    <div class="tp-discount">20%</div>
-                    <div class="tp-range">Shares 21 – 40</div>
-                    <div class="tp-price">€193.28</div>
-                    <div class="tp-active"><div class="tp-active-fill" id="tp2fill" style="width:0%"></div></div>
-                </div>
-                <div class="tier-pill t3">
-                    <div class="tp-discount">10%</div>
-                    <div class="tp-range">Shares 41 – 80</div>
-                    <div class="tp-price">€217.44</div>
-                    <div class="tp-active"><div class="tp-active-fill" id="tp3fill" style="width:0%"></div></div>
-                </div>
-            </div>
+        <!-- ══════════════════════════════════════════════════════════
+             TAB 1: CALCULATOR
+        ══════════════════════════════════════════════════════════ -->
+        <div class="tab-content active" id="tab-calculator">
+            <div class="calc-grid">
 
-            <div class="input-group">
-                <label>Number of Shares (1 – 80)</label>
-                <input type="number" id="numShares" class="no-prefix" min="1" max="80" value="20"
-                       oninput="syncSlider();calculate()">
-                <div class="slider-wrap">
-                    <input type="range" id="sharesSlider" min="1" max="80" value="20"
-                           oninput="syncInput();calculate()">
-                    <div class="slider-labels">
-                        <span>1</span><span>20</span><span>40</span><span>60</span><span>80</span>
+                <!-- LEFT -->
+                <div class="calc-left">
+                    <div class="panel">
+                        <div class="panel-title"><div class="pt-icon">⚙</div>Your Inputs</div>
+
+                        <div class="tier-strip">
+                            <div class="tier-pill t1">
+                                <div class="tp-discount">60%</div>
+                                <div class="tp-range">Shares 1–20</div>
+                                <div class="tp-price">€96.64</div>
+                                <div class="tp-active"><div class="tp-active-fill" id="tp1fill" style="width:0%"></div></div>
+                            </div>
+                            <div class="tier-pill t2">
+                                <div class="tp-discount">20%</div>
+                                <div class="tp-range">Shares 21–40</div>
+                                <div class="tp-price">€193.28</div>
+                                <div class="tp-active"><div class="tp-active-fill" id="tp2fill" style="width:0%"></div></div>
+                            </div>
+                            <div class="tier-pill t3">
+                                <div class="tp-discount">10%</div>
+                                <div class="tp-range">Shares 41–80</div>
+                                <div class="tp-price">€217.44</div>
+                                <div class="tp-active"><div class="tp-active-fill" id="tp3fill" style="width:0%"></div></div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Number of Shares (1–80)</label>
+                            <input type="number" id="numShares" class="no-prefix" min="1" max="80" value="20"
+                                   oninput="syncSlider();calculate()">
+                            <input type="range" id="sharesSlider" min="1" max="80" value="20"
+                                   oninput="syncInput();calculate()">
+                            <div class="slider-labels"><span>1</span><span>20</span><span>40</span><span>60</span><span>80</span></div>
+                            <div class="share-bar">
+                                <div class="sb1" id="bar1" style="width:25%"></div>
+                                <div class="sb2" id="bar2" style="width:0%"></div>
+                                <div class="sb3" id="bar3" style="width:0%"></div>
+                            </div>
+                            <div class="bar-legend">
+                                <div class="bl-item"><div class="bl-dot" style="background:#2563eb"></div><span id="bl1">T1: 20</span></div>
+                                <div class="bl-item"><div class="bl-dot" style="background:#0ea5e9"></div><span id="bl2">T2: 0</span></div>
+                                <div class="bl-item"><div class="bl-dot" style="background:#38bdf8"></div><span id="bl3">T3: 0</span></div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Estimated Share Price at Booking (€)</label>
+                            <div class="input-wrapper">
+                                <span class="input-prefix">€</span>
+                                <input type="number" id="bookingPrice" min="0" step="0.01" value="285.00" oninput="calculate()">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Your Income Tax Rate (%)</label>
+                            <div class="input-wrapper">
+                                <span class="input-prefix">%</span>
+                                <input type="number" id="taxRate" min="0" max="100" step="0.5" value="42" oninput="calculate()">
+                            </div>
+                        </div>
+
+                        <div class="dates-grid">
+                            <div class="date-chip"><div class="dc-label">Terms Published</div><div class="dc-value">Jun 8–12, 2026</div></div>
+                            <div class="date-chip"><div class="dc-label">New Participant Docs</div><div class="dc-value">Jul 6–10, 2026</div></div>
+                            <div class="date-chip"><div class="dc-label">Subscription Opens</div><div class="dc-value">Jul 23, 2026</div></div>
+                            <div class="date-chip"><div class="dc-label">Deadline 23:59 CEST</div><div class="dc-value">Aug 5, 2026</div></div>
+                        </div>
                     </div>
                 </div>
-                <div class="share-bar-wrap">
-                    <div class="share-bar">
-                        <div class="sb1" id="bar1" style="width:25%"></div>
-                        <div class="sb2" id="bar2" style="width:0%"></div>
-                        <div class="sb3" id="bar3" style="width:0%"></div>
+
+                <!-- MIDDLE -->
+                <div class="calc-mid">
+                    <div class="panel">
+                        <div class="panel-title"><div class="pt-icon">📊</div>Results & Breakdown</div>
+
+                        <div class="results-top" style="margin-bottom:10px">
+                            <div class="stat-box blue">
+                                <div class="sb-label">Total Purchase Cost</div>
+                                <div class="sb-value" id="r_totalCost">—</div>
+                                <div class="sb-sub">What you pay</div>
+                            </div>
+                            <div class="stat-box green">
+                                <div class="sb-label">Total Discount</div>
+                                <div class="sb-value" id="r_totalDiscount">—</div>
+                                <div class="sb-sub">vs. reference price</div>
+                            </div>
+                            <div class="stat-box indigo">
+                                <div class="sb-label">Gross Benefit in Kind</div>
+                                <div class="sb-value" id="r_grossBik">—</div>
+                                <div class="sb-sub">Before allowance</div>
+                            </div>
+                            <div class="stat-box amber">
+                                <div class="sb-label">Taxable BiK</div>
+                                <div class="sb-value" id="r_taxableBik">—</div>
+                                <div class="sb-sub">After €2,000 allowance</div>
+                            </div>
+                        </div>
+
+                        <div class="table-wrap" style="margin-bottom:10px">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tier</th><th>Shares</th><th>Discount</th>
+                                        <th>Price/Share</th><th>Total Cost</th>
+                                        <th>BiK/Share</th><th>Total BiK</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableBody"></tbody>
+                            </table>
+                        </div>
+
+                        <div class="net-grid">
+                            <div class="net-item"><div class="ni-label">Portfolio Value</div><div class="ni-value green" id="n_portfolio">—</div></div>
+                            <div class="net-item"><div class="ni-label">Cost + Est. Tax</div><div class="ni-value red" id="n_deductions">—</div></div>
+                            <div class="net-item"><div class="ni-label">Est. Net Gain</div><div class="ni-value green" id="n_netGain">—</div></div>
+                            <div class="net-item"><div class="ni-label">Eff. Discount (post-tax)</div><div class="ni-value blue" id="n_effDiscount">—</div></div>
+                            <div class="net-item"><div class="ni-label">Est. Tax on BiK</div><div class="ni-value red" id="n_taxDue">—</div></div>
+                            <div class="net-item"><div class="ni-label">Allowance Used</div><div class="ni-value green" id="n_allowance">—</div></div>
+                        </div>
                     </div>
-                    <div class="bar-legend">
-                        <div class="bl-item"><div class="bl-dot" style="background:#2563eb"></div><span id="bl1">T1: 20</span></div>
-                        <div class="bl-item"><div class="bl-dot" style="background:#0ea5e9"></div><span id="bl2">T2: 0</span></div>
-                        <div class="bl-item"><div class="bl-dot" style="background:#38bdf8"></div><span id="bl3">T3: 0</span></div>
+                </div>
+
+                <!-- RIGHT -->
+                <div class="calc-right">
+                    <div class="panel" style="display:flex;flex-direction:column;gap:8px">
+                        <div class="panel-title"><div class="pt-icon">💡</div>Tax & Summary</div>
+
+                        <div class="gauge-wrap">
+                            <div class="gauge-label">Net Gain as % of Portfolio</div>
+                            <svg class="gauge-svg" viewBox="0 0 160 95">
+                                <defs>
+                                    <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%"   style="stop-color:#1d4ed8"/>
+                                        <stop offset="50%"  style="stop-color:#0ea5e9"/>
+                                        <stop offset="100%" style="stop-color:#4ade80"/>
+                                    </linearGradient>
+                                </defs>
+                                <path d="M 18 82 A 62 62 0 0 1 142 82" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="10" stroke-linecap="round"/>
+                                <path id="gaugeFill" d="M 18 82 A 62 62 0 0 1 142 82" fill="none" stroke="url(#gaugeGrad)" stroke-width="10" stroke-linecap="round" stroke-dasharray="195" stroke-dashoffset="195" style="transition: stroke-dashoffset 0.65s cubic-bezier(0.4,0,0.2,1)"/>
+                                <circle id="gaugeNeedle" cx="18" cy="82" r="5" fill="#4ade80" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" style="transition: all 0.65s cubic-bezier(0.4,0,0.2,1); filter:drop-shadow(0 0 4px #4ade80)"/>
+                                <text id="gaugeText" x="80" y="72" text-anchor="middle" class="gauge-value-text">0.0%</text>
+                                <text x="80" y="84" text-anchor="middle" class="gauge-sub-text">Net Gain / Portfolio</text>
+                            </svg>
+                        </div>
+
+                        <div class="tax-block">
+                            <h4>⚠️ Benefit in Kind</h4>
+                            <div class="tax-row"><span class="tl">Gross BiK</span><span class="tv" id="t_grossBik">—</span></div>
+                            <div class="tax-row"><span class="tl">§3 No.39 Allowance</span><span class="tv green" id="t_allowance">—</span></div>
+                            <div class="tax-row"><span class="tl">Taxable BiK</span><span class="tv red" id="t_taxableBik">—</span></div>
+                            <div class="tax-row"><span class="tl">Tax Rate Applied</span><span class="tv" id="t_taxRate">—</span></div>
+                            <div class="tax-row"><span class="tl">Est. Tax Due</span><span class="tv red" id="t_taxDue">—</span></div>
+                        </div>
+
+                        <div class="info-block">
+                            <h4>📋 Tier Allocation</h4>
+                            <div class="info-row"><span class="il">Tier 1 (60% off)</span><span class="iv" id="s_t1">—</span></div>
+                            <div class="info-row"><span class="il">Tier 2 (20% off)</span><span class="iv" id="s_t2">—</span></div>
+                            <div class="info-row"><span class="il">Tier 3 (10% off)</span><span class="iv" id="s_t3">—</span></div>
+                            <div class="info-row"><span class="il">Total Shares</span><span class="iv" id="s_total">—</span></div>
+                        </div>
+
+                        <div class="info-block">
+                            <h4>📌 Programme Info</h4>
+                            <div class="info-row"><span class="il">Reference Price</span><span class="iv">€241.60</span></div>
+                            <div class="info-row"><span class="il">Processor</span><span class="iv">Commerzbank AG</span></div>
+                            <div class="info-row"><span class="il">Subscription Period</span><span class="iv">Jul 23 – Aug 5</span></div>
+                        </div>
+
+                        <div class="btn-group">
+                            <button class="btn btn-primary" onclick="window.print()">🖨️ Print / Save as PDF</button>
+                            <button class="btn btn-secondary" onclick="resetForm()">🔄 Reset to Defaults</button>
+                        </div>
+
+                        <div class="disclaimer">
+                            <strong>Disclaimer:</strong> Illustrative only. BiK uses lowest quoted price at share assignment.
+                            Excludes church tax, solidarity surcharge &amp; social security. Consult your tax advisor.
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="input-group">
-                <label>Estimated Share Price at Booking (€)</label>
-                <div class="input-wrapper">
-                    <span class="input-prefix">€</span>
-                    <input type="number" id="bookingPrice" min="0" step="0.01" value="285.00"
-                           oninput="calculate()">
-                </div>
-            </div>
-
-            <div class="input-group">
-                <label>Your Income Tax Rate (%)</label>
-                <div class="input-wrapper">
-                    <span class="input-prefix">%</span>
-                    <input type="number" id="taxRate" min="0" max="100" step="0.5" value="42"
-                           oninput="calculate()">
-                </div>
-            </div>
-
-            <div class="dates-grid">
-                <div class="date-chip">
-                    <div class="dc-label">Terms Published</div>
-                    <div class="dc-value">Jun 8 – 12, 2026</div>
-                </div>
-                <div class="date-chip">
-                    <div class="dc-label">New Participant Docs</div>
-                    <div class="dc-value">Jul 6 – 10, 2026</div>
-                </div>
-                <div class="date-chip">
-                    <div class="dc-label">Subscription Opens</div>
-                    <div class="dc-value">Jul 23, 2026</div>
-                </div>
-                <div class="date-chip">
-                    <div class="dc-label">Deadline 23:59 CEST</div>
-                    <div class="dc-value">Aug 5, 2026</div>
-                </div>
             </div>
         </div>
 
-        <!-- MIDDLE: RESULTS -->
-        <div class="panel">
-            <div class="panel-title">
-                <div class="pt-icon">📊</div>
-                Results & Breakdown
-            </div>
+        <!-- ══════════════════════════════════════════════════════════
+             TAB 2: CHARTS
+        ══════════════════════════════════════════════════════════ -->
+        <div class="tab-content" id="tab-charts">
+            <div class="charts-grid">
 
-            <div class="results-top">
-                <div class="stat-box blue">
-                    <div class="sb-label">Total Purchase Cost</div>
-                    <div class="sb-value" id="r_totalCost">—</div>
-                    <div class="sb-sub">What you pay</div>
+                <div class="chart-panel">
+                    <div class="chart-title"><div class="pt-icon">📊</div>Cost vs. Market Value by Tier</div>
+                    <div class="chart-container"><canvas id="chartCostVsValue"></canvas></div>
                 </div>
-                <div class="stat-box green">
-                    <div class="sb-label">Total Discount</div>
-                    <div class="sb-value" id="r_totalDiscount">—</div>
-                    <div class="sb-sub">vs. reference price</div>
-                </div>
-                <div class="stat-box indigo">
-                    <div class="sb-label">Gross Benefit in Kind</div>
-                    <div class="sb-value" id="r_grossBik">—</div>
-                    <div class="sb-sub">Before allowance</div>
-                </div>
-                <div class="stat-box amber">
-                    <div class="sb-label">Taxable BiK</div>
-                    <div class="sb-value" id="r_taxableBik">—</div>
-                    <div class="sb-sub">After €2,000 allowance</div>
-                </div>
-            </div>
 
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Tier</th>
-                            <th>Shares</th>
-                            <th>Discount</th>
-                            <th>Price / Share</th>
-                            <th>Total Cost</th>
-                            <th>BiK / Share</th>
-                            <th>Total BiK</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody"></tbody>
-                </table>
-            </div>
+                <div class="chart-panel">
+                    <div class="chart-title"><div class="pt-icon">🥧</div>Discount Distribution</div>
+                    <div class="chart-container"><canvas id="chartDiscount"></canvas></div>
+                </div>
 
-            <div class="net-grid">
-                <div class="net-item">
-                    <div class="ni-label">Portfolio Value</div>
-                    <div class="ni-value green" id="n_portfolio">—</div>
+                <div class="chart-panel full-width">
+                    <div class="chart-title"><div class="pt-icon">📈</div>Net Gain vs. Share Price (Sensitivity Analysis)</div>
+                    <div class="chart-container" style="min-height:240px"><canvas id="chartSensitivity"></canvas></div>
                 </div>
-                <div class="net-item">
-                    <div class="ni-label">Cost + Est. Tax</div>
-                    <div class="ni-value red" id="n_deductions">—</div>
+
+                <div class="chart-panel">
+                    <div class="chart-title"><div class="pt-icon">💰</div>Cash Flow Waterfall</div>
+                    <div class="chart-container"><canvas id="chartWaterfall"></canvas></div>
                 </div>
-                <div class="net-item">
-                    <div class="ni-label">Est. Net Gain</div>
-                    <div class="ni-value green" id="n_netGain">—</div>
+
+                <div class="chart-panel">
+                    <div class="chart-title"><div class="pt-icon">🎯</div>Effective Discount by Share Count</div>
+                    <div class="chart-container"><canvas id="chartEffDiscount"></canvas></div>
                 </div>
-                <div class="net-item">
-                    <div class="ni-label">Eff. Discount (post-tax)</div>
-                    <div class="ni-value blue" id="n_effDiscount">—</div>
-                </div>
-                <div class="net-item">
-                    <div class="ni-label">Est. Tax on BiK</div>
-                    <div class="ni-value red" id="n_taxDue">—</div>
-                </div>
-                <div class="net-item">
-                    <div class="ni-label">Allowance Used</div>
-                    <div class="ni-value green" id="n_allowance">—</div>
-                </div>
+
             </div>
         </div>
 
-        <!-- RIGHT: TAX & INFO -->
-        <div class="panel">
-            <div class="panel-title">
-                <div class="pt-icon">💡</div>
-                Tax & Summary
-            </div>
+        <!-- ══════════════════════════════════════════════════════════
+             TAB 3: ANALYTICS
+        ══════════════════════════════════════════════════════════ -->
+        <div class="tab-content" id="tab-analytics">
 
-            <div class="gauge-wrap">
-                <div class="gauge-label">Net Gain as % of Portfolio Value</div>
-                <svg class="gauge-svg" viewBox="0 0 160 95">
-                    <defs>
-                        <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%"   style="stop-color:#1d4ed8"/>
-                            <stop offset="50%"  style="stop-color:#0ea5e9"/>
-                            <stop offset="100%" style="stop-color:#4ade80"/>
-                        </linearGradient>
-                    </defs>
-                    <path d="M 18 82 A 62 62 0 0 1 142 82"
-                          fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="10" stroke-linecap="round"/>
-                    <path id="gaugeFill"
-                          d="M 18 82 A 62 62 0 0 1 142 82"
-                          fill="none" stroke="url(#gaugeGrad)" stroke-width="10" stroke-linecap="round"
-                          stroke-dasharray="195" stroke-dashoffset="195"
-                          style="transition: stroke-dashoffset 0.65s cubic-bezier(0.4,0,0.2,1)"/>
-                    <circle id="gaugeNeedle" cx="18" cy="82" r="5"
-                            fill="#4ade80" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"
-                            style="transition: all 0.65s cubic-bezier(0.4,0,0.2,1); filter:drop-shadow(0 0 4px #4ade80)"/>
-                    <text id="gaugeText" x="80" y="72" text-anchor="middle" class="gauge-value-text">0.0%</text>
-                    <text x="80" y="84" text-anchor="middle" class="gauge-sub-text">Net Gain / Portfolio</text>
-                </svg>
-            </div>
-
-            <div class="tax-block">
-                <h4>⚠️ Benefit in Kind</h4>
-                <div class="tax-row">
-                    <span class="tl">Gross BiK</span>
-                    <span class="tv" id="t_grossBik">—</span>
+            <div class="kpi-row" style="margin-bottom:8px">
+                <div class="kpi-card">
+                    <div class="kpi-icon">💵</div>
+                    <div class="kpi-label">Return on Investment</div>
+                    <div class="kpi-value" id="kpi_roi">—</div>
+                    <div class="kpi-sub">Net Gain / Cost Paid</div>
+                    <div class="kpi-trend up" id="kpi_roi_trend">↑ Positive</div>
                 </div>
-                <div class="tax-row">
-                    <span class="tl">§3 No.39 Allowance</span>
-                    <span class="tv green" id="t_allowance">—</span>
+                <div class="kpi-card">
+                    <div class="kpi-icon">🛡️</div>
+                    <div class="kpi-label">Downside Protection</div>
+                    <div class="kpi-value" id="kpi_downside">—</div>
+                    <div class="kpi-sub">Price drop before loss</div>
+                    <div class="kpi-trend up" id="kpi_downside_trend">↑ Protected</div>
                 </div>
-                <div class="tax-row">
-                    <span class="tl">Taxable BiK</span>
-                    <span class="tv red" id="t_taxableBik">—</span>
+                <div class="kpi-card">
+                    <div class="kpi-icon">⚖️</div>
+                    <div class="kpi-label">Break-Even Price</div>
+                    <div class="kpi-value" id="kpi_breakeven">—</div>
+                    <div class="kpi-sub">Min price for profit</div>
+                    <div class="kpi-trend" id="kpi_be_trend">vs. €241.60 ref</div>
                 </div>
-                <div class="tax-row">
-                    <span class="tl">Tax Rate Applied</span>
-                    <span class="tv" id="t_taxRate">—</span>
-                </div>
-                <div class="tax-row">
-                    <span class="tl">Est. Tax Due</span>
-                    <span class="tv red" id="t_taxDue">—</span>
+                <div class="kpi-card">
+                    <div class="kpi-icon">📅</div>
+                    <div class="kpi-label">Days to Deadline</div>
+                    <div class="kpi-value" id="kpi_days">—</div>
+                    <div class="kpi-sub">Until Aug 5, 2026</div>
+                    <div class="kpi-trend amber" id="kpi_days_trend">Act now</div>
                 </div>
             </div>
 
-            <div class="info-block">
-                <h4>📋 Tier Allocation</h4>
-                <div class="info-row">
-                    <span class="il">Tier 1 (60% off)</span>
-                    <span class="iv" id="s_t1">—</span>
+            <div class="analytics-grid">
+
+                <div class="chart-panel">
+                    <div class="chart-title"><div class="pt-icon">📉</div>Break-Even Analysis</div>
+                    <div class="chart-container" style="min-height:220px"><canvas id="chartBreakeven"></canvas></div>
                 </div>
-                <div class="info-row">
-                    <span class="il">Tier 2 (20% off)</span>
-                    <span class="iv" id="s_t2">—</span>
+
+                <div class="chart-panel">
+                    <div class="chart-title"><div class="pt-icon">🔥</div>Tax Impact Breakdown</div>
+                    <div class="chart-container" style="min-height:220px"><canvas id="chartTaxImpact"></canvas></div>
                 </div>
-                <div class="info-row">
-                    <span class="il">Tier 3 (10% off)</span>
-                    <span class="iv" id="s_t3">—</span>
+
+                <div class="chart-panel">
+                    <div class="chart-title"><div class="pt-icon">📊</div>Cumulative Net Gain by Shares</div>
+                    <div class="chart-container" style="min-height:220px"><canvas id="chartCumulative"></canvas></div>
                 </div>
-                <div class="info-row">
-                    <span class="il">Total Shares</span>
-                    <span class="iv" id="s_total">—</span>
+
+                <div class="chart-panel full" style="grid-column:1/-1">
+                    <div class="chart-title"><div class="pt-icon">🌡️</div>Net Gain Heatmap: Shares × Price</div>
+                    <div id="heatmapContainer" style="overflow-x:auto"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════
+             TAB 4: SCENARIOS
+        ══════════════════════════════════════════════════════════ -->
+        <div class="tab-content" id="tab-scenarios">
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+
+                <div class="panel">
+                    <div class="panel-title"><div class="pt-icon">🎯</div>Scenario Comparison</div>
+                    <div class="scenario-controls">
+                        <label>Price Range: €<span id="scen_min_lbl">150</span> – €<span id="scen_max_lbl">400</span></label>
+                        <input type="range" id="scen_min" min="100" max="300" value="150" oninput="updateScenarios()">
+                        <input type="range" id="scen_max" min="200" max="600" value="400" oninput="updateScenarios()">
+                    </div>
+                    <div class="table-wrap">
+                        <table class="scenario-table" id="scenarioTable">
+                            <thead>
+                                <tr>
+                                    <th>Price</th><th>Portfolio</th><th>Net Gain</th>
+                                    <th>ROI</th><th>Eff. Disc.</th><th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="scenarioBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-title"><div class="pt-icon">📊</div>Scenario Chart</div>
+                    <div class="chart-container" style="min-height:300px"><canvas id="chartScenario"></canvas></div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-title"><div class="pt-icon">🔢</div>Share Count Comparison</div>
+                    <div class="chart-container" style="min-height:260px"><canvas id="chartShareCount"></canvas></div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-title"><div class="pt-icon">💹</div>Tax Rate Sensitivity</div>
+                    <div class="chart-container" style="min-height:260px"><canvas id="chartTaxSensitivity"></canvas></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════
+             TAB 5: DECISION HELPER
+        ══════════════════════════════════════════════════════════ -->
+        <div class="tab-content" id="tab-decision">
+
+            <div class="decision-grid" style="margin-bottom:8px">
+                <div class="decision-card">
+                    <div class="dc-icon">🏆</div>
+                    <div class="dc-title">Optimal Share Count</div>
+                    <div class="dc-metric green" id="d_optimal">—</div>
+                    <div class="dc-desc">Based on your inputs, this share count maximises your post-tax net gain relative to cost.</div>
+                </div>
+                <div class="decision-card">
+                    <div class="dc-icon">🛡️</div>
+                    <div class="dc-title">Allowance Optimisation</div>
+                    <div class="dc-metric blue" id="d_allowance_shares">—</div>
+                    <div class="dc-desc">Shares needed to fully utilise the €2,000 tax-free allowance at your booking price.</div>
+                </div>
+                <div class="decision-card">
+                    <div class="dc-icon">⚡</div>
+                    <div class="dc-title">Immediate Gain (Day 1)</div>
+                    <div class="dc-metric amber" id="d_day1">—</div>
+                    <div class="dc-desc">Estimated gain if you sold all shares immediately at the booking price (before CGT).</div>
                 </div>
             </div>
 
-            <div class="info-block">
-                <h4>📌 Programme Info</h4>
-                <div class="info-row">
-                    <span class="il">Reference Price</span>
-                    <span class="iv">€241.60</span>
-                </div>
-                <div class="info-row">
-                    <span class="il">Processor</span>
-                    <span class="iv">Commerzbank AG</span>
-                </div>
-                <div class="info-row">
-                    <span class="il">Subscription Period</span>
-                    <span class="iv">Jul 23 – Aug 5</span>
-                </div>
-            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
 
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="window.print()">🖨️ Print / Save as PDF</button>
-                <button class="btn btn-secondary" onclick="resetForm()">🔄 Reset to Defaults</button>
-            </div>
+                <div class="panel">
+                    <div class="panel-title"><div class="pt-icon">📋</div>Recommendation Summary</div>
+                    <div id="recommendationContent" style="font-size:12px;line-height:1.8;color:rgba(255,255,255,0.75)"></div>
+                </div>
 
-            <div class="disclaimer">
-                <strong>Disclaimer:</strong> Illustrative only. BiK uses lowest quoted price at share assignment.
-                Excludes church tax, solidarity surcharge &amp; social security. Consult your tax advisor.
+                <div class="panel">
+                    <div class="panel-title"><div class="pt-icon">📊</div>ROI by Share Count</div>
+                    <div class="chart-container" style="min-height:260px"><canvas id="chartROI"></canvas></div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-title"><div class="pt-icon">⚖️</div>Risk vs. Reward Matrix</div>
+                    <div class="chart-container" style="min-height:260px"><canvas id="chartRiskReward"></canvas></div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-title"><div class="pt-icon">🎯</div>Allowance Utilisation</div>
+                    <div id="allowanceViz" style="padding:8px 0"></div>
+                    <div class="chart-container" style="min-height:200px"><canvas id="chartAllowance"></canvas></div>
+                </div>
+
             </div>
         </div>
 
     </div>
 
-    <!-- FOOTER CREDIT BAR -->
+    <!-- FOOTER -->
     <div class="footer-bar">
-        <span class="footer-credit" id="footerCredit">
-            ✦ Designed for Revenue Management ✦
-        </span>
+        <span class="footer-credit" id="footerCredit">✦ Designed for Revenue Management ✦</span>
     </div>
 
 </div>
 
-<!-- CUSTOM MODAL -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
     <div class="modal-box" onclick="event.stopPropagation()">
         <div class="modal-avatar">👨‍💻</div>
@@ -1287,216 +1212,1218 @@
 </div>
 
 <script>
-    /* ── EASTER EGG: double right-click on footer credit ── */
-    let rightClickCount = 0;
-    let rightClickTimer = null;
+/* ══════════════════════════════════════════════════════════════════
+   CONSTANTS
+══════════════════════════════════════════════════════════════════ */
+const REF   = 241.60;
+const P1    = 96.64;
+const P2    = 193.28;
+const P3    = 217.44;
+const ALLOW = 2000;
+const MAX   = 80;
 
-    const footerCredit  = document.getElementById('footerCredit');
-    const modalOverlay  = document.getElementById('modalOverlay');
+/* ══════════════════════════════════════════════════════════════════
+   CHART REGISTRY
+══════════════════════════════════════════════════════════════════ */
+const charts = {};
 
-    footerCredit.addEventListener('contextmenu', function (e) {
-        e.preventDefault(); // suppress browser context menu
+const CHART_DEFAULTS = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: {
+            labels: { color: 'rgba(255,255,255,0.6)', font: { size: 10 }, boxWidth: 12 }
+        },
+        tooltip: {
+            backgroundColor: 'rgba(0,20,50,0.95)',
+            titleColor: '#7dd3fc',
+            bodyColor: 'rgba(255,255,255,0.8)',
+            borderColor: 'rgba(0,120,212,0.4)',
+            borderWidth: 1,
+            padding: 10,
+            cornerRadius: 8
+        }
+    },
+    scales: {
+        x: {
+            grid:  { color: 'rgba(255,255,255,0.05)' },
+            ticks: { color: 'rgba(255,255,255,0.45)', font: { size: 10 } }
+        },
+        y: {
+            grid:  { color: 'rgba(255,255,255,0.05)' },
+            ticks: { color: 'rgba(255,255,255,0.45)', font: { size: 10 } }
+        }
+    }
+};
 
-        rightClickCount++;
+function destroyChart(id) {
+    if (charts[id]) { charts[id].destroy(); delete charts[id]; }
+}
 
-        if (rightClickCount === 1) {
-            // First right-click: highlight the label as a hint
-            footerCredit.classList.add('one-click');
+/* ══════════════════════════════════════════════════════════════════
+   HELPERS
+══════════════════════════════════════════════════════════════════ */
+function fmt(n)  { return '€' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+function fmtP(n) { return n.toFixed(1) + '%'; }
+function fmtN(n) { return n.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
 
-            // Reset if second click doesn't come within 1.5 s
-            rightClickTimer = setTimeout(() => {
-                rightClickCount = 0;
-                footerCredit.classList.remove('one-click');
-            }, 1500);
+function calcForShares(shares, bPrice, taxRate) {
+    const t1 = Math.min(shares, 20);
+    const t2 = Math.max(0, Math.min(shares - 20, 20));
+    const t3 = Math.max(0, shares - 40);
 
-        } else if (rightClickCount >= 2) {
-            // Second right-click: show modal
-            clearTimeout(rightClickTimer);
-            rightClickCount = 0;
-            footerCredit.classList.remove('one-click');
-            openModal();
+    const c1 = t1 * P1, c2 = t2 * P2, c3 = t3 * P3;
+    const totalCost     = c1 + c2 + c3;
+    const totalDiscount = (shares * REF) - totalCost;
+
+    const bik1     = t1 * Math.max(0, bPrice - P1);
+    const bik2     = t2 * Math.max(0, bPrice - P2);
+    const bik3     = t3 * Math.max(0, bPrice - P3);
+    const grossBik = bik1 + bik2 + bik3;
+
+    const allowUsed  = Math.min(grossBik, ALLOW);
+    const taxableBik = Math.max(0, grossBik - ALLOW);
+    const taxDue     = taxableBik * (taxRate / 100);
+    const portfolio  = shares * bPrice;
+    const netGain    = portfolio - totalCost - taxDue;
+    const effDisc    = portfolio > 0 ? (netGain / portfolio * 100) : 0;
+    const roi        = totalCost > 0 ? (netGain / totalCost * 100) : 0;
+
+    return { t1, t2, t3, c1, c2, c3, totalCost, totalDiscount,
+             bik1, bik2, bik3, grossBik, allowUsed, taxableBik,
+             taxDue, portfolio, netGain, effDisc, roi };
+}
+
+function getInputs() {
+    const shares   = Math.min(Math.max(parseInt(document.getElementById('numShares').value)  || 0, 0), MAX);
+    const bPrice   = parseFloat(document.getElementById('bookingPrice').value) || 0;
+    const taxRate  = parseFloat(document.getElementById('taxRate').value)      || 0;
+    return { shares, bPrice, taxRate };
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   SYNC SLIDER / INPUT
+══════════════════════════════════════════════════════════════════ */
+function syncSlider() {
+    const v = Math.min(Math.max(parseInt(document.getElementById('numShares').value) || 1, 1), MAX);
+    document.getElementById('sharesSlider').value = v;
+    updateBar(v);
+}
+
+function syncInput() {
+    const v = parseInt(document.getElementById('sharesSlider').value) || 1;
+    document.getElementById('numShares').value = v;
+    updateBar(v);
+}
+
+function updateBar(total) {
+    const t1 = Math.min(total, 20);
+    const t2 = Math.max(0, Math.min(total - 20, 20));
+    const t3 = Math.max(0, total - 40);
+
+    document.getElementById('bar1').style.width = (t1 / MAX * 100) + '%';
+    document.getElementById('bar2').style.width = (t2 / MAX * 100) + '%';
+    document.getElementById('bar3').style.width = (t3 / MAX * 100) + '%';
+
+    document.getElementById('bl1').textContent = 'T1: ' + t1;
+    document.getElementById('bl2').textContent = 'T2: ' + t2;
+    document.getElementById('bl3').textContent = 'T3: ' + t3;
+
+    document.getElementById('tp1fill').style.width = (t1 / 20 * 100) + '%';
+    document.getElementById('tp2fill').style.width = (t2 / 20 * 100) + '%';
+    document.getElementById('tp3fill').style.width = (t3 / 40 * 100) + '%';
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   GAUGE
+══════════════════════════════════════════════════════════════════ */
+function updateGauge(pct) {
+    const clamped  = Math.min(Math.max(pct, 0), 100);
+    const totalArc = 195;
+    const offset   = totalArc - (clamped / 100 * totalArc);
+    document.getElementById('gaugeFill').style.strokeDashoffset = offset;
+    document.getElementById('gaugeText').textContent = fmtP(clamped);
+
+    const angle = -180 + (clamped / 100 * 180);
+    const rad   = angle * Math.PI / 180;
+    const cx    = 80 + 62 * Math.cos(rad);
+    const cy    = 82 + 62 * Math.sin(rad);
+    document.getElementById('gaugeNeedle').setAttribute('cx', cx.toFixed(2));
+    document.getElementById('gaugeNeedle').setAttribute('cy', cy.toFixed(2));
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   MAIN CALCULATE
+══════════════════════════════════════════════════════════════════ */
+function animateValue(el, newText) {
+    el.textContent = newText;
+    el.classList.remove('updated');
+    void el.offsetWidth;
+    el.classList.add('updated');
+}
+
+function calculate() {
+    const { shares, bPrice, taxRate } = getInputs();
+    if (shares === 0 || bPrice === 0) return;
+
+    const d = calcForShares(shares, bPrice, taxRate);
+
+    animateValue(document.getElementById('r_totalCost'),     fmt(d.totalCost));
+    animateValue(document.getElementById('r_totalDiscount'), fmt(d.totalDiscount));
+    animateValue(document.getElementById('r_grossBik'),      fmt(d.grossBik));
+    animateValue(document.getElementById('r_taxableBik'),    fmt(d.taxableBik));
+
+    document.getElementById('n_portfolio').textContent   = fmt(d.portfolio);
+    document.getElementById('n_deductions').textContent  = '- ' + fmt(d.totalCost + d.taxDue);
+    document.getElementById('n_netGain').textContent     = fmt(d.netGain);
+    document.getElementById('n_effDiscount').textContent = fmtP(d.effDisc);
+    document.getElementById('n_taxDue').textContent      = fmt(d.taxDue);
+    document.getElementById('n_allowance').textContent   = fmt(d.allowUsed);
+
+    document.getElementById('t_grossBik').textContent   = fmt(d.grossBik);
+    document.getElementById('t_allowance').textContent  = '- ' + fmt(d.allowUsed);
+    document.getElementById('t_taxableBik').textContent = fmt(d.taxableBik);
+    document.getElementById('t_taxRate').textContent    = fmtP(taxRate);
+    document.getElementById('t_taxDue').textContent     = fmt(d.taxDue);
+
+    document.getElementById('s_t1').textContent    = d.t1 + ' shares';
+    document.getElementById('s_t2').textContent    = d.t2 + ' shares';
+    document.getElementById('s_t3').textContent    = d.t3 + ' shares';
+    document.getElementById('s_total').textContent = shares + ' shares';
+
+    updateGauge(d.effDisc);
+    updateBar(shares);
+
+    // Table
+    const tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '';
+
+    const rows = [
+        { label:'Tier 1 (60% off)', sh:d.t1, disc:'60%', price:P1, cost:d.c1, bikPS:d.t1>0?Math.max(0,bPrice-P1):0, bik:d.bik1 },
+        { label:'Tier 2 (20% off)', sh:d.t2, disc:'20%', price:P2, cost:d.c2, bikPS:d.t2>0?Math.max(0,bPrice-P2):0, bik:d.bik2 },
+        { label:'Tier 3 (10% off)', sh:d.t3, disc:'10%', price:P3, cost:d.c3, bikPS:d.t3>0?Math.max(0,bPrice-P3):0, bik:d.bik3 },
+    ];
+
+    rows.forEach(r => {
+        if (r.sh > 0) {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${r.label}</td>
+                <td><strong style="color:#7dd3fc">${r.sh}</strong></td>
+                <td><span style="color:#4ade80;font-weight:700">${r.disc}</span></td>
+                <td>${fmt(r.price)}</td>
+                <td>${fmt(r.cost)}</td>
+                <td>${fmt(r.bikPS)}</td>
+                <td><strong>${fmt(r.bik)}</strong></td>`;
+            tbody.appendChild(tr);
         }
     });
 
-    function openModal() {
+    const addRow = (cls, cols) => {
+        const tr = document.createElement('tr');
+        tr.className = cls;
+        tr.innerHTML = cols.map(c => `<td>${c}</td>`).join('');
+        tbody.appendChild(tr);
+    };
+
+    addRow('tr-total',    ['TOTAL', `<strong>${shares} shares</strong>`, '—', '—', fmt(d.totalCost), '—', fmt(d.grossBik)]);
+    addRow('tr-allowance',['§3 No.39 Allowance', '', '', '', '', '', '- ' + fmt(d.allowUsed)]);
+    addRow('tr-taxable',  ['Taxable Benefit in Kind', '', '', '', '', '', fmt(d.taxableBik)]);
+
+    // Update all other tabs if visible
+    updateAllCharts();
+    updateAnalytics();
+    updateScenarios();
+    updateDecision();
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   CHARTS TAB
+══════════════════════════════════════════════════════════════════ */
+function updateAllCharts() {
+    const { shares, bPrice, taxRate } = getInputs();
+    if (!shares || !bPrice) return;
+
+    const d = calcForShares(shares, bPrice, taxRate);
+
+    buildCostVsValue(d, shares, bPrice);
+    buildDiscountPie(d);
+    buildSensitivity(shares, taxRate);
+    buildWaterfall(d);
+    buildEffDiscount(bPrice, taxRate);
+}
+
+function buildCostVsValue(d, shares, bPrice) {
+    destroyChart('costVsValue');
+    const ctx = document.getElementById('chartCostVsValue');
+    if (!ctx) return;
+
+    const labels = [];
+    const costData = [], valueData = [], gainData = [];
+
+    if (d.t1 > 0) { labels.push('Tier 1\n(60% off)'); costData.push(d.c1); valueData.push(d.t1 * bPrice); gainData.push(d.t1 * bPrice - d.c1); }
+    if (d.t2 > 0) { labels.push('Tier 2\n(20% off)'); costData.push(d.c2); valueData.push(d.t2 * bPrice); gainData.push(d.t2 * bPrice - d.c2); }
+    if (d.t3 > 0) { labels.push('Tier 3\n(10% off)'); costData.push(d.c3); valueData.push(d.t3 * bPrice); gainData.push(d.t3 * bPrice - d.c3); }
+
+    charts['costVsValue'] = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels,
+            datasets: [
+                { label: 'Your Cost', data: costData, backgroundColor: 'rgba(0,120,212,0.7)', borderColor: '#0078d4', borderWidth: 1, borderRadius: 4 },
+                { label: 'Market Value', data: valueData, backgroundColor: 'rgba(74,222,128,0.5)', borderColor: '#4ade80', borderWidth: 1, borderRadius: 4 },
+                { label: 'Gross Gain', data: gainData, backgroundColor: 'rgba(251,191,36,0.5)', borderColor: '#fbbf24', borderWidth: 1, borderRadius: 4 }
+            ]
+        },
+        options: {
+            ...CHART_DEFAULTS,
+            plugins: {
+                ...CHART_DEFAULTS.plugins,
+                tooltip: {
+                    ...CHART_DEFAULTS.plugins.tooltip,
+                    callbacks: { label: ctx => ctx.dataset.label + ': ' + fmt(ctx.raw) }
+                }
+            },
+            scales: {
+                x: { ...CHART_DEFAULTS.scales.x },
+                y: { ...CHART_DEFAULTS.scales.y, ticks: { ...CHART_DEFAULTS.scales.y.ticks, callback: v => '€' + fmtN(v) } }
+            }
+        }
+    });
+}
+
+function buildDiscountPie(d) {
+    destroyChart('discount');
+    const ctx = document.getElementById('chartDiscount');
+    if (!ctx) return;
+
+    const labels = [], data = [], colors = [];
+    if (d.t1 > 0) { labels.push('Tier 1 (60%)'); data.push(d.t1 * (REF - P1)); colors.push('#1d4ed8'); }
+    if (d.t2 > 0) { labels.push('Tier 2 (20%)'); data.push(d.t2 * (REF - P2)); colors.push('#0ea5e9'); }
+    if (d.t3 > 0) { labels.push('Tier 3 (10%)'); data.push(d.t3 * (REF - P3)); colors.push('#38bdf8'); }
+    labels.push('Tax Due'); data.push(d.taxDue); colors.push('#f87171');
+
+    charts['discount'] = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels,
+            datasets: [{
+                data,
+                backgroundColor: colors,
+                borderColor: 'rgba(0,0,0,0.3)',
+                borderWidth: 2,
+                hoverOffset: 8
+            }]
+        },
+        options: {
+            ...CHART_DEFAULTS,
+            cutout: '60%',
+            plugins: {
+                ...CHART_DEFAULTS.plugins,
+                tooltip: {
+                    ...CHART_DEFAULTS.plugins.tooltip,
+                    callbacks: { label: ctx => ctx.label + ': ' + fmt(ctx.raw) }
+                }
+            },
+            scales: {}
+        }
+    });
+}
+
+function buildSensitivity(shares, taxRate) {
+    destroyChart('sensitivity');
+    const ctx = document.getElementById('chartSensitivity');
+    if (!ctx) return;
+
+    const prices = [];
+    for (let p = 150; p <= 450; p += 10) prices.push(p);
+
+    const netGains = prices.map(p => calcForShares(shares, p, taxRate).netGain);
+    const portfolios = prices.map(p => shares * p);
+    const costs = prices.map(p => calcForShares(shares, p, taxRate).totalCost);
+
+    // Find break-even
+    const d0 = calcForShares(shares, 150, taxRate);
+    let bePrice = null;
+    for (let i = 0; i < prices.length - 1; i++) {
+        const g1 = calcForShares(shares, prices[i], taxRate).netGain;
+        const g2 = calcForShares(shares, prices[i+1], taxRate).netGain;
+        if (g1 <= 0 && g2 >= 0) {
+            bePrice = prices[i] + (prices[i+1] - prices[i]) * (-g1 / (g2 - g1));
+            break;
+        }
+    }
+
+    charts['sensitivity'] = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: prices.map(p => '€' + p),
+            datasets: [
+                {
+                    label: 'Net Gain',
+                    data: netGains,
+                    borderColor: '#4ade80',
+                    backgroundColor: 'rgba(74,222,128,0.08)',
+                    borderWidth: 2.5,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0,
+                    pointHoverRadius: 5
+                },
+                {
+                    label: 'Portfolio Value',
+                    data: portfolios,
+                    borderColor: '#7dd3fc',
+                    backgroundColor: 'transparent',
+                    borderWidth: 1.5,
+                    borderDash: [5,3],
+                    tension: 0.4,
+                    pointRadius: 0
+                },
+                {
+                    label: 'Total Cost Paid',
+                    data: costs,
+                    borderColor: '#f87171',
+                    backgroundColor: 'transparent',
+                    borderWidth: 1.5,
+                    borderDash: [3,3],
+                    tension: 0,
+                    pointRadius: 0
+                }
+            ]
+        },
+        options: {
+            ...CHART_DEFAULTS,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                ...CHART_DEFAULTS.plugins,
+                annotation: bePrice ? {
+                    annotations: {
+                        breakeven: {
+                            type: 'line',
+                            xMin: '€' + Math.round(bePrice),
+                            xMax: '€' + Math.round(bePrice),
+                            borderColor: '#fbbf24',
+                            borderWidth: 2,
+                            borderDash: [6,3],
+                            label: {
+                                display: true,
+                                content: 'Break-Even ~€' + Math.round(bePrice),
+                                color: '#fbbf24',
+                                font: { size: 10 },
+                                position: 'start'
+                            }
+                        }
+                    }
+                } : {}
+            },
+            scales: {
+                x: { ...CHART_DEFAULTS.scales.x },
+                y: { ...CHART_DEFAULTS.scales.y, ticks: { ...CHART_DEFAULTS.scales.y.ticks, callback: v => '€' + fmtN(v) } }
+            }
+        }
+    });
+}
+
+function buildWaterfall(d) {
+    destroyChart('waterfall');
+    const ctx = document.getElementById('chartWaterfall');
+    if (!ctx) return;
+
+    const labels = ['Portfolio\nValue', 'Purchase\nCost', 'Tax\nDue', 'Net\nGain'];
+    const data   = [d.portfolio, -d.totalCost, -d.taxDue, d.netGain];
+    const colors = ['rgba(74,222,128,0.7)', 'rgba(248,113,113,0.7)', 'rgba(251,191,36,0.7)', 'rgba(0,180,216,0.8)'];
+    const borders = ['#4ade80', '#f87171', '#fbbf24', '#00b4d8'];
+
+    charts['waterfall'] = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels,
+            datasets: [{
+                data,
+                backgroundColor: colors,
+                borderColor: borders,
+                borderWidth: 1.5,
+                borderRadius: 5
+            }]
+        },
+        options: {
+            ...CHART_DEFAULTS,
+            plugins: {
+                ...CHART_DEFAULTS.plugins,
+                legend: { display: false },
+                tooltip: {
+                    ...CHART_DEFAULTS.plugins.tooltip,
+                    callbacks: { label: ctx => fmt(Math.abs(ctx.raw)) }
+                }
+            },
+            scales: {
+                x: { ...CHART_DEFAULTS.scales.x },
+                y: { ...CHART_DEFAULTS.scales.y, ticks: { ...CHART_DEFAULTS.scales.y.ticks, callback: v => '€' + fmtN(Math.abs(v)) } }
+            }
+        }
+    });
+}
+
+function buildEffDiscount(bPrice, taxRate) {
+    destroyChart('effDiscount');
+    const ctx = document.getElementById('chartEffDiscount');
+    if (!ctx) return;
+
+    const shareCounts = [5,10,15,20,25,30,35,40,50,60,70,80];
+    const effDiscounts = shareCounts.map(s => calcForShares(s, bPrice, taxRate).effDisc);
+    const rois = shareCounts.map(s => calcForShares(s, bPrice, taxRate).roi);
+
+    charts['effDiscount'] = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: shareCounts.map(s => s + ' sh'),
+            datasets: [
+                {
+                    label: 'Eff. Discount (post-tax)',
+                    data: effDiscounts,
+                    borderColor: '#7dd3fc',
+                    backgroundColor: 'rgba(125,211,252,0.1)',
+                    borderWidth: 2.5,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#7dd3fc'
+                },
+                {
+                    label: 'ROI on Cost',
+                    data: rois,
+                    borderColor: '#4ade80',
+                    backgroundColor: 'transparent',
+                    borderWidth: 2,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#4ade80'
+                }
+            ]
+        },
+        options: {
+            ...CHART_DEFAULTS,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                ...CHART_DEFAULTS.plugins,
+                tooltip: {
+                    ...CHART_DEFAULTS.plugins.tooltip,
+                    callbacks: { label: ctx => ctx.dataset.label + ': ' + fmtP(ctx.raw) }
+                }
+            },
+            scales: {
+                x: { ...CHART_DEFAULTS.scales.x },
+                y: { ...CHART_DEFAULTS.scales.y, ticks: { ...CHART_DEFAULTS.scales.y.ticks, callback: v => fmtP(v) } }
+            }
+        }
+    });
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   ANALYTICS TAB
+══════════════════════════════════════════════════════════════════ */
+function updateAnalytics() {
+    const { shares, bPrice, taxRate } = getInputs();
+    if (!shares || !bPrice) return;
+
+    const d = calcForShares(shares, bPrice, taxRate);
+
+    // KPIs
+    const roi = d.totalCost > 0 ? (d.netGain / d.totalCost * 100) : 0;
+    document.getElementById('kpi_roi').textContent = fmtP(roi);
+    document.getElementById('kpi_roi_trend').textContent = roi > 0 ? '↑ Positive ROI' : '↓ Negative ROI';
+    document.getElementById('kpi_roi_trend').className = 'kpi-trend ' + (roi > 0 ? 'up' : 'down');
+
+    // Downside protection: how much price can drop before net gain = 0
+    let bePrice = 0;
+    for (let p = bPrice; p >= 0; p -= 0.5) {
+        if (calcForShares(shares, p, taxRate).netGain <= 0) { bePrice = p; break; }
+    }
+    const downside = bPrice > 0 ? ((bPrice - bePrice) / bPrice * 100) : 0;
+    document.getElementById('kpi_downside').textContent = fmtP(downside);
+    document.getElementById('kpi_downside_trend').textContent = '↓ ' + fmt(bPrice - bePrice) + ' buffer';
+
+    // Break-even
+    document.getElementById('kpi_breakeven').textContent = fmt(bePrice);
+    const beTrend = document.getElementById('kpi_be_trend');
+    beTrend.textContent = bePrice < REF ? '✓ Below reference' : '↑ Above reference';
+    beTrend.className = 'kpi-trend ' + (bePrice < REF ? 'up' : 'down');
+
+    // Days to deadline
+    const deadline = new Date('2026-08-05');
+    const today    = new Date();
+    const days     = Math.max(0, Math.ceil((deadline - today) / 86400000));
+    document.getElementById('kpi_days').textContent = days;
+
+    buildBreakevenChart(shares, taxRate, bPrice);
+    buildTaxImpactChart(d);
+    buildCumulativeChart(bPrice, taxRate);
+    buildHeatmap(taxRate);
+}
+
+function buildBreakevenChart(shares, taxRate, currentPrice) {
+    destroyChart('breakeven');
+    const ctx = document.getElementById('chartBreakeven');
+    if (!ctx) return;
+
+    const prices = [];
+    for (let p = 80; p <= 350; p += 5) prices.push(p);
+
+    const netGains = prices.map(p => calcForShares(shares, p, taxRate).netGain);
+
+    charts['breakeven'] = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: prices.map(p => '€' + p),
+            datasets: [
+                {
+                    label: 'Net Gain',
+                    data: netGains,
+                    borderColor: ctx2 => {
+                        const g = ctx2.chart.ctx.createLinearGradient(0, 0, 0, 300);
+                        g.addColorStop(0, '#4ade80');
+                        g.addColorStop(1, '#f87171');
+                        return g;
+                    },
+                    segment: {
+                        borderColor: ctx2 => ctx2.p1.parsed.y >= 0 ? '#4ade80' : '#f87171'
+                    },
+                    backgroundColor: ctx2 => {
+                        const chart = ctx2.chart;
+                        const { ctx: c, chartArea } = chart;
+                        if (!chartArea) return 'transparent';
+                        const g = c.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+                        g.addColorStop(0, 'rgba(74,222,128,0.15)');
+                        g.addColorStop(1, 'rgba(248,113,113,0.05)');
+                        return g;
+                    },
+                    fill: true,
+                    borderWidth: 2.5,
+                    tension: 0.4,
+                    pointRadius: 0
+                }
+            ]
+        },
+        options: {
+            ...CHART_DEFAULTS,
+            plugins: {
+                ...CHART_DEFAULTS.plugins,
+                legend: { display: false },
+                tooltip: {
+                    ...CHART_DEFAULTS.plugins.tooltip,
+                    callbacks: { label: ctx => 'Net Gain: ' + fmt(ctx.raw) }
+                }
+            },
+            scales: {
+                x: { ...CHART_DEFAULTS.scales.x },
+                y: {
+                    ...CHART_DEFAULTS.scales.y,
+                    ticks: { ...CHART_DEFAULTS.scales.y.ticks, callback: v => '€' + fmtN(v) }
+                }
+            }
+        }
+    });
+}
+
+function buildTaxImpactChart(d) {
+    destroyChart('taxImpact');
+    const ctx = document.getElementById('chartTaxImpact');
+    if (!ctx) return;
+
+    charts['taxImpact'] = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Net Gain (kept)', 'Tax Due', 'Purchase Cost'],
+            datasets: [{
+                data: [d.netGain, d.taxDue, d.totalCost],
+                backgroundColor: ['rgba(74,222,128,0.75)', 'rgba(248,113,113,0.75)', 'rgba(0,120,212,0.75)'],
+                borderColor: ['#4ade80', '#f87171', '#0078d4'],
+                borderWidth: 2,
+                hoverOffset: 8
+            }]
+        },
+        options: {
+            ...CHART_DEFAULTS,
+            cutout: '55%',
+            plugins: {
+                ...CHART_DEFAULTS.plugins,
+                tooltip: {
+                    ...CHART_DEFAULTS.plugins.tooltip,
+                    callbacks: { label: ctx => ctx.label + ': ' + fmt(ctx.raw) }
+                }
+            },
+            scales: {}
+        }
+    });
+}
+
+function buildCumulativeChart(bPrice, taxRate) {
+    destroyChart('cumulative');
+    const ctx = document.getElementById('chartCumulative');
+    if (!ctx) return;
+
+    const counts = Array.from({length: 80}, (_, i) => i + 1);
+    const gains  = counts.map(s => calcForShares(s, bPrice, taxRate).netGain);
+    const costs  = counts.map(s => calcForShares(s, bPrice, taxRate).totalCost);
+
+    charts['cumulative'] = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: counts,
+            datasets: [
+                {
+                    label: 'Cumulative Net Gain',
+                    data: gains,
+                    borderColor: '#4ade80',
+                    backgroundColor: 'rgba(74,222,128,0.08)',
+                    fill: true,
+                    borderWidth: 2,
+                    tension: 0.3,
+                    pointRadius: 0
+                },
+                {
+                    label: 'Cumulative Cost',
+                    data: costs,
+                    borderColor: '#f87171',
+                    backgroundColor: 'transparent',
+                    borderWidth: 1.5,
+                    borderDash: [4,3],
+                    tension: 0.3,
+                    pointRadius: 0
+                }
+            ]
+        },
+        options: {
+            ...CHART_DEFAULTS,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                ...CHART_DEFAULTS.plugins,
+                tooltip: {
+                    ...CHART_DEFAULTS.plugins.tooltip,
+                    callbacks: { label: ctx => ctx.dataset.label + ': ' + fmt(ctx.raw) }
+                }
+            },
+            scales: {
+                x: { ...CHART_DEFAULTS.scales.x, title: { display: true, text: 'Number of Shares', color: 'rgba(255,255,255,0.4)', font: { size: 10 } } },
+                y: { ...CHART_DEFAULTS.scales.y, ticks: { ...CHART_DEFAULTS.scales.y.ticks, callback: v => '€' + fmtN(v) } }
+            }
+        }
+    });
+}
+
+function buildHeatmap(taxRate) {
+    const container = document.getElementById('heatmapContainer');
+    if (!container) return;
+
+    const shareCounts = [5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80];
+    const prices      = [180, 200, 220, 241.60, 260, 280, 300, 320, 350, 400];
+
+    let html = '<table style="border-collapse:collapse;font-size:10px;min-width:600px;width:100%">';
+    html += '<thead><tr><th style="padding:6px 8px;background:rgba(0,51,102,0.85);color:rgba(255,255,255,0.6);text-align:left;border-radius:6px 0 0 0">Shares \\ Price</th>';
+    prices.forEach(p => {
+        html += `<th style="padding:6px 8px;background:rgba(0,51,102,0.85);color:rgba(255,255,255,0.6);text-align:center">€${p}</th>`;
+    });
+    html += '</tr></thead><tbody>';
+
+    shareCounts.forEach(s => {
+        html += `<tr><td style="padding:6px 8px;font-weight:700;color:#7dd3fc;background:rgba(0,40,100,0.5)">${s} sh</td>`;
+        prices.forEach(p => {
+            const gain = calcForShares(s, p, taxRate).netGain;
+            const roi  = calcForShares(s, p, taxRate).roi;
+            const intensity = Math.min(Math.abs(roi) / 200, 1);
+            const bg = gain >= 0
+                ? `rgba(74,222,128,${0.1 + intensity * 0.55})`
+                : `rgba(248,113,113,${0.1 + intensity * 0.55})`;
+            const color = gain >= 0 ? '#4ade80' : '#f87171';
+            html += `<td style="padding:6px 8px;text-align:center;background:${bg};color:${color};font-weight:600;border:1px solid rgba(255,255,255,0.04)">${fmt(gain)}</td>`;
+        });
+        html += '</tr>';
+    });
+
+    html += '</tbody></table>';
+    container.innerHTML = html;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   SCENARIOS TAB
+══════════════════════════════════════════════════════════════════ */
+function updateScenarios() {
+    const { shares, bPrice, taxRate } = getInputs();
+    if (!shares || !bPrice) return;
+
+    const minP = parseFloat(document.getElementById('scen_min').value) || 150;
+    const maxP = parseFloat(document.getElementById('scen_max').value) || 400;
+
+    document.getElementById('scen_min_lbl').textContent = minP;
+    document.getElementById('scen_max_lbl').textContent = maxP;
+
+    const step = (maxP - minP) / 9;
+    const prices = Array.from({length: 10}, (_, i) => Math.round(minP + i * step));
+
+    const tbody = document.getElementById('scenarioBody');
+    tbody.innerHTML = '';
+
+    const netGains = [], portfolios = [];
+
+    prices.forEach(p => {
+        const d = calcForShares(shares, p, taxRate);
+        const roi = d.totalCost > 0 ? (d.netGain / d.totalCost * 100) : 0;
+        const isCurrent = Math.abs(p - bPrice) < step / 2;
+
+        netGains.push(d.netGain);
+        portfolios.push(d.portfolio);
+
+        const tr = document.createElement('tr');
+        if (isCurrent) tr.className = 'highlight';
+
+        const statusColor = d.netGain >= 0 ? '#4ade80' : '#f87171';
+        const statusText  = d.netGain >= 0 ? '✓ Profit' : '✗ Loss';
+
+        tr.innerHTML = `
+            <td>€${p}</td>
+            <td>${fmt(d.portfolio)}</td>
+            <td style="color:${statusColor};font-weight:700">${fmt(d.netGain)}</td>
+            <td style="color:${statusColor}">${fmtP(roi)}</td>
+            <td>${fmtP(d.effDisc)}</td>
+            <td style="color:${statusColor};font-weight:700">${statusText}</td>`;
+        tbody.appendChild(tr);
+    });
+
+    buildScenarioChart(prices, netGains, portfolios, bPrice);
+    buildShareCountChart(bPrice, taxRate);
+    buildTaxSensitivityChart(shares, bPrice);
+}
+
+function buildScenarioChart(prices, netGains, portfolios, currentPrice) {
+    destroyChart('scenario');
+    const ctx = document.getElementById('chartScenario');
+    if (!ctx) return;
+
+    charts['scenario'] = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: prices.map(p => '€' + p),
+            datasets: [
+                {
+                    label: 'Net Gain',
+                    data: netGains,
+                    backgroundColor: netGains.map(g => g >= 0 ? 'rgba(74,222,128,0.65)' : 'rgba(248,113,113,0.65)'),
+                    borderColor: netGains.map(g => g >= 0 ? '#4ade80' : '#f87171'),
+                    borderWidth: 1.5,
+                    borderRadius: 4,
+                    yAxisID: 'y'
+                },
+                {
+                    label: 'Portfolio Value',
+                    data: portfolios,
+                    type: 'line',
+                    borderColor: '#7dd3fc',
+                    backgroundColor: 'transparent',
+                    borderWidth: 2,
+                    tension: 0.4,
+                    pointRadius: 3,
+                    yAxisID: 'y'
+                }
+            ]
+        },
+        options: {
+            ...CHART_DEFAULTS,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                ...CHART_DEFAULTS.plugins,
+                tooltip: {
+                    ...CHART_DEFAULTS.plugins.tooltip,
+                    callbacks: { label: ctx => ctx.dataset.label + ': ' + fmt(ctx.raw) }
+                }
+            },
+            scales: {
+                x: { ...CHART_DEFAULTS.scales.x },
+                y: { ...CHART_DEFAULTS.scales.y, ticks: { ...CHART_DEFAULTS.scales.y.ticks, callback: v => '€' + fmtN(v) } }
+            }
+        }
+    });
+}
+
+function buildShareCountChart(bPrice, taxRate) {
+    destroyChart('shareCount');
+    const ctx = document.getElementById('chartShareCount');
+    if (!ctx) return;
+
+    const counts = [5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80];
+    const gains  = counts.map(s => calcForShares(s, bPrice, taxRate).netGain);
+    const costs  = counts.map(s => calcForShares(s, bPrice, taxRate).totalCost);
+
+    charts['shareCount'] = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: counts.map(s => s + ' sh'),
+            datasets: [
+                {
+                    label: 'Net Gain',
+                    data: gains,
+                    backgroundColor: 'rgba(74,222,128,0.6)',
+                    borderColor: '#4ade80',
+                    borderWidth: 1.5,
+                    borderRadius: 4,
+                    yAxisID: 'y'
+                },
+                {
+                    label: 'Cost Paid',
+                    data: costs,
+                    backgroundColor: 'rgba(248,113,113,0.4)',
+                    borderColor: '#f87171',
+                    borderWidth: 1.5,
+                    borderRadius: 4,
+                    yAxisID: 'y'
+                }
+            ]
+        },
+        options: {
+            ...CHART_DEFAULTS,
+            plugins: {
+                ...CHART_DEFAULTS.plugins,
+                tooltip: {
+                    ...CHART_DEFAULTS.plugins.tooltip,
+                    callbacks: { label: ctx => ctx.dataset.label + ': ' + fmt(ctx.raw) }
+                }
+            },
+            scales: {
+                x: { ...CHART_DEFAULTS.scales.x },
+                y: { ...CHART_DEFAULTS.scales.y, ticks: { ...CHART_DEFAULTS.scales.y.ticks, callback: v => '€' + fmtN(v) } }
+            }
+        }
+    });
+}
+
+function buildTaxSensitivityChart(shares, bPrice) {
+    destroyChart('taxSensitivity');
+    const ctx = document.getElementById('chartTaxSensitivity');
+    if (!ctx) return;
+
+    const rates = [0, 10, 20, 25, 30, 35, 40, 42, 45, 50];
+    const gains = rates.map(r => calcForShares(shares, bPrice, r).netGain);
+    const taxes = rates.map(r => calcForShares(shares, bPrice, r).taxDue);
+
+    charts['taxSensitivity'] = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: rates.map(r => r + '%'),
+            datasets: [
+                {
+                    label: 'Net Gain',
+                    data: gains,
+                    borderColor: '#4ade80',
+                    backgroundColor: 'rgba(74,222,128,0.08)',
+                    fill: true,
+                    borderWidth: 2.5,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#4ade80'
+                },
+                {
+                    label: 'Tax Due',
+                    data: taxes,
+                    borderColor: '#f87171',
+                    backgroundColor: 'transparent',
+                    borderWidth: 2,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#f87171'
+                }
+            ]
+        },
+        options: {
+            ...CHART_DEFAULTS,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                ...CHART_DEFAULTS.plugins,
+                tooltip: {
+                    ...CHART_DEFAULTS.plugins.tooltip,
+                    callbacks: { label: ctx => ctx.dataset.label + ': ' + fmt(ctx.raw) }
+                }
+            },
+            scales: {
+                x: { ...CHART_DEFAULTS.scales.x, title: { display: true, text: 'Tax Rate', color: 'rgba(255,255,255,0.4)', font: { size: 10 } } },
+                y: { ...CHART_DEFAULTS.scales.y, ticks: { ...CHART_DEFAULTS.scales.y.ticks, callback: v => '€' + fmtN(v) } }
+            }
+        }
+    });
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   DECISION HELPER TAB
+══════════════════════════════════════════════════════════════════ */
+function updateDecision() {
+    const { shares, bPrice, taxRate } = getInputs();
+    if (!shares || !bPrice) return;
+
+    const d = calcForShares(shares, bPrice, taxRate);
+
+    // Find optimal share count (max ROI)
+    let bestROI = -Infinity, bestShares = 1;
+    for (let s = 1; s <= MAX; s++) {
+        const r = calcForShares(s, bPrice, taxRate).roi;
+        if (r > bestROI) { bestROI = r; bestShares = s; }
+    }
+
+    document.getElementById('d_optimal').textContent = bestShares + ' shares';
+
+    // Allowance optimisation: shares to fully use €2000 allowance
+    let allowShares = 1;
+    for (let s = 1; s <= MAX; s++) {
+        if (calcForShares(s, bPrice, taxRate).allowUsed >= ALLOW) { allowShares = s; break; }
+    }
+
+    document.getElementById('d_allowance_shares').textContent = allowShares + ' shares';
+
+    // Day 1 gain (sell immediately at booking price)
+    const day1 = d.portfolio - d.totalCost - d.taxDue;
+    document.getElementById('d_day1').textContent = fmt(day1);
+
+    // Recommendation
+    const rec = document.getElementById('recommendationContent');
+    const roi = d.totalCost > 0 ? (d.netGain / d.totalCost * 100) : 0;
+
+    let html = '';
+
+    if (d.netGain > 0) {
+        html += `<div style="color:#4ade80;font-weight:700;margin-bottom:8px">✅ Your current selection is profitable</div>`;
+    } else {
+        html += `<div style="color:#f87171;font-weight:700;margin-bottom:8px">⚠️ Current selection may result in a loss</div>`;
+    }
+
+    html += `<div style="margin-bottom:6px">📌 <strong>You selected ${shares} shares</strong> at an estimated booking price of ${fmt(bPrice)}.</div>`;
+    html += `<div style="margin-bottom:6px">💰 <strong>Net Gain:</strong> ${fmt(d.netGain)} (ROI: ${fmtP(roi)})</div>`;
+    html += `<div style="margin-bottom:6px">🎯 <strong>Optimal count</strong> for highest ROI: <span style="color:#4ade80;font-weight:700">${bestShares} shares</span></div>`;
+    html += `<div style="margin-bottom:6px">🛡️ <strong>Allowance fully used</strong> at: <span style="color:#7dd3fc;font-weight:700">${allowShares} shares</span></div>`;
+
+    if (shares < allowShares) {
+        html += `<div style="color:#fbbf24;margin-bottom:6px">💡 Consider buying <strong>${allowShares - shares} more shares</strong> to fully utilise your €2,000 tax-free allowance.</div>`;
+    } else {
+        html += `<div style="color:#4ade80;margin-bottom:6px">✓ You are fully utilising the €2,000 tax-free allowance.</div>`;
+    }
+
+    if (shares < 20) {
+        html += `<div style="color:#7dd3fc;margin-bottom:6px">💡 You have <strong>${20 - shares} more shares</strong> available at the best 60% discount tier.</div>`;
+    }
+
+    rec.innerHTML = html;
+
+    buildROIChart(bPrice, taxRate, shares);
+    buildRiskRewardChart(bPrice, taxRate);
+    buildAllowanceChart(bPrice, taxRate);
+}
+
+function buildROIChart(bPrice, taxRate, currentShares) {
+    destroyChart('roi');
+    const ctx = document.getElementById('chartROI');
+    if (!ctx) return;
+
+    const counts = Array.from({length: 16}, (_, i) => (i + 1) * 5);
+    const rois   = counts.map(s => calcForShares(s, bPrice, taxRate).roi);
+
+    charts['roi'] = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: counts.map(s => s + ' sh'),
+            datasets: [{
+                label: 'ROI on Cost',
+                data: rois,
+                backgroundColor: counts.map(s => s === currentShares ? 'rgba(251,191,36,0.8)' : 'rgba(0,120,212,0.55)'),
+                borderColor: counts.map(s => s === currentShares ? '#fbbf24' : '#0078d4'),
+                borderWidth: 1.5,
+                borderRadius: 4
+            }]
+        },
+        options: {
+            ...CHART_DEFAULTS,
+            plugins: {
+                ...CHART_DEFAULTS.plugins,
+                legend: { display: false },
+                tooltip: {
+                    ...CHART_DEFAULTS.plugins.tooltip,
+                    callbacks: { label: ctx => 'ROI: ' + fmtP(ctx.raw) }
+                }
+            },
+            scales: {
+                x: { ...CHART_DEFAULTS.scales.x },
+                y: { ...CHART_DEFAULTS.scales.y, ticks: { ...CHART_DEFAULTS.scales.y.ticks, callback: v => fmtP(v) } }
+            }
+        }
+    });
+}
+
+function buildRiskRewardChart(bPrice, taxRate) {
+    destroyChart('riskReward');
+    const ctx = document.getElementById('chartRiskReward');
+    if (!ctx) return;
+
+    const counts = [5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80];
+    const data = counts.map(s => {
+        const d = calcForShares(s, bPrice, taxRate);
+        const risk   = d.totalCost; // cost at risk
+        const reward = d.netGain;
+        return { x: risk, y: reward, s };
+    });
+
+    charts['riskReward'] = new Chart(ctx, {
+        type: 'scatter',
+        data: {
+            datasets: [{
+                label: 'Risk vs Reward',
+                data,
+                backgroundColor: data.map(p => p.y >= 0 ? 'rgba(74,222,128,0.7)' : 'rgba(248,113,113,0.7)'),
+                borderColor: data.map(p => p.y >= 0 ? '#4ade80' : '#f87171'),
+                borderWidth: 1.5,
+                pointRadius: 7,
+                pointHoverRadius: 10
+            }]
+        },
+        options: {
+            ...CHART_DEFAULTS,
+            plugins: {
+                ...CHART_DEFAULTS.plugins,
+                legend: { display: false },
+                tooltip: {
+                    ...CHART_DEFAULTS.plugins.tooltip,
+                    callbacks: {
+                        label: ctx => [
+                            `${ctx.raw.s} shares`,
+                            `Cost: ${fmt(ctx.raw.x)}`,
+                            `Net Gain: ${fmt(ctx.raw.y)}`
+                        ]
+                    }
+                }
+            },
+            scales: {
+                x: { ...CHART_DEFAULTS.scales.x, title: { display: true, text: 'Cost at Risk (€)', color: 'rgba(255,255,255,0.4)', font: { size: 10 } }, ticks: { ...CHART_DEFAULTS.scales.x.ticks, callback: v => '€' + fmtN(v) } },
+                y: { ...CHART_DEFAULTS.scales.y, title: { display: true, text: 'Net Gain (€)', color: 'rgba(255,255,255,0.4)', font: { size: 10 } }, ticks: { ...CHART_DEFAULTS.scales.y.ticks, callback: v => '€' + fmtN(v) } }
+            }
+        }
+    });
+}
+
+function buildAllowanceChart(bPrice, taxRate) {
+    destroyChart('allowance');
+    const ctx = document.getElementById('chartAllowance');
+    if (!ctx) return;
+
+    const counts = Array.from({length: 40}, (_, i) => i + 1);
+    const used   = counts.map(s => calcForShares(s, bPrice, taxRate).allowUsed);
+    const taxable = counts.map(s => calcForShares(s, bPrice, taxRate).taxableBik);
+
+    charts['allowance'] = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: counts,
+            datasets: [
+                {
+                    label: 'Allowance Used',
+                    data: used,
+                    borderColor: '#4ade80',
+                    backgroundColor: 'rgba(74,222,128,0.1)',
+                    fill: true,
+                    borderWidth: 2,
+                    tension: 0.3,
+                    pointRadius: 0
+                },
+                {
+                    label: 'Taxable BiK',
+                    data: taxable,
+                    borderColor: '#f87171',
+                    backgroundColor: 'rgba(248,113,113,0.08)',
+                    fill: true,
+                    borderWidth: 2,
+                    tension: 0.3,
+                    pointRadius: 0
+                }
+            ]
+        },
+        options: {
+            ...CHART_DEFAULTS,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                ...CHART_DEFAULTS.plugins,
+                tooltip: {
+                    ...CHART_DEFAULTS.plugins.tooltip,
+                    callbacks: { label: ctx => ctx.dataset.label + ': ' + fmt(ctx.raw) }
+                }
+            },
+            scales: {
+                x: { ...CHART_DEFAULTS.scales.x, title: { display: true, text: 'Shares', color: 'rgba(255,255,255,0.4)', font: { size: 10 } } },
+                y: { ...CHART_DEFAULTS.scales.y, ticks: { ...CHART_DEFAULTS.scales.y.ticks, callback: v => '€' + fmtN(v) } }
+            }
+        }
+    });
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   TAB SWITCHING
+══════════════════════════════════════════════════════════════════ */
+function switchTab(id) {
+    document.querySelectorAll('.tab-btn').forEach((b, i) => {
+        b.classList.toggle('active', b.getAttribute('onclick').includes(id));
+    });
+    document.querySelectorAll('.tab-content').forEach(c => {
+        c.classList.toggle('active', c.id === 'tab-' + id);
+    });
+
+    // Rebuild charts when switching to chart tabs
+    setTimeout(() => {
+        if (id === 'charts')   updateAllCharts();
+        if (id === 'analytics') updateAnalytics();
+        if (id === 'scenarios') updateScenarios();
+        if (id === 'decision')  updateDecision();
+    }, 50);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   RESET
+══════════════════════════════════════════════════════════════════ */
+function resetForm() {
+    document.getElementById('numShares').value    = 20;
+    document.getElementById('sharesSlider').value = 20;
+    document.getElementById('bookingPrice').value = 285.00;
+    document.getElementById('taxRate').value      = 42;
+    calculate();
+    updateBar(20);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   EASTER EGG
+══════════════════════════════════════════════════════════════════ */
+let rightClickCount = 0, rightClickTimer = null;
+const footerCredit = document.getElementById('footerCredit');
+const modalOverlay = document.getElementById('modalOverlay');
+
+footerCredit.addEventListener('contextmenu', e => {
+    e.preventDefault();
+    rightClickCount++;
+    if (rightClickCount === 1) {
+        footerCredit.classList.add('one-click');
+        rightClickTimer = setTimeout(() => { rightClickCount = 0; footerCredit.classList.remove('one-click'); }, 1500);
+    } else if (rightClickCount >= 2) {
+        clearTimeout(rightClickTimer);
+        rightClickCount = 0;
+        footerCredit.classList.remove('one-click');
         modalOverlay.classList.add('show');
     }
+});
 
-    function closeModal(e) {
-        // Close when clicking overlay background or the close button
-        if (!e || e.target === modalOverlay) {
-            modalOverlay.classList.remove('show');
-        }
-    }
+function closeModal(e) {
+    if (!e || e.target === modalOverlay) modalOverlay.classList.remove('show');
+}
 
-    // Also close with Escape key
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') modalOverlay.classList.remove('show');
-    });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') modalOverlay.classList.remove('show'); });
 
-    /* ── CALCULATOR LOGIC ── */
-    const REF   = 241.60;
-    const P1    = 96.64;
-    const P2    = 193.28;
-    const P3    = 217.44;
-    const ALLOW = 2000;
-    const MAX   = 80;
-
-    function fmt(n)  { return '€' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
-    function fmtP(n) { return n.toFixed(1) + '%'; }
-
-    function animateValue(el, newText) {
-        el.textContent = newText;
-        el.classList.remove('updated');
-        void el.offsetWidth;
-        el.classList.add('updated');
-    }
-
-    function syncSlider() {
-        const v = Math.min(Math.max(parseInt(document.getElementById('numShares').value) || 1, 1), MAX);
-        document.getElementById('sharesSlider').value = v;
-        updateBar(v);
-    }
-
-    function syncInput() {
-        const v = parseInt(document.getElementById('sharesSlider').value) || 1;
-        document.getElementById('numShares').value = v;
-        updateBar(v);
-    }
-
-    function updateBar(total) {
-        const t1 = Math.min(total, 20);
-        const t2 = Math.max(0, Math.min(total - 20, 20));
-        const t3 = Math.max(0, total - 40);
-
-        document.getElementById('bar1').style.width = (t1 / MAX * 100) + '%';
-        document.getElementById('bar2').style.width = (t2 / MAX * 100) + '%';
-        document.getElementById('bar3').style.width = (t3 / MAX * 100) + '%';
-
-        document.getElementById('bl1').textContent = 'T1: ' + t1;
-        document.getElementById('bl2').textContent = 'T2: ' + t2;
-        document.getElementById('bl3').textContent = 'T3: ' + t3;
-
-        document.getElementById('tp1fill').style.width = (t1 / 20 * 100) + '%';
-        document.getElementById('tp2fill').style.width = (t2 / 20 * 100) + '%';
-        document.getElementById('tp3fill').style.width = (t3 / 40 * 100) + '%';
-    }
-
-    function updateGauge(pct) {
-        const clamped  = Math.min(Math.max(pct, 0), 100);
-        const totalArc = 195;
-        const offset   = totalArc - (clamped / 100 * totalArc);
-        document.getElementById('gaugeFill').style.strokeDashoffset = offset;
-        document.getElementById('gaugeText').textContent = fmtP(clamped);
-
-        const angle = -180 + (clamped / 100 * 180);
-        const rad   = angle * Math.PI / 180;
-        const cx    = 80 + 62 * Math.cos(rad);
-        const cy    = 82 + 62 * Math.sin(rad);
-        document.getElementById('gaugeNeedle').setAttribute('cx', cx.toFixed(2));
-        document.getElementById('gaugeNeedle').setAttribute('cy', cy.toFixed(2));
-    }
-
-    function calculate() {
-        const shares  = Math.min(Math.max(parseInt(document.getElementById('numShares').value)  || 0, 0), MAX);
-        const bPrice  = parseFloat(document.getElementById('bookingPrice').value) || 0;
-        const taxRate = parseFloat(document.getElementById('taxRate').value)      || 0;
-
-        if (shares === 0 || bPrice === 0) return;
-
-        const t1 = Math.min(shares, 20);
-        const t2 = Math.max(0, Math.min(shares - 20, 20));
-        const t3 = Math.max(0, shares - 40);
-
-        const c1 = t1 * P1, c2 = t2 * P2, c3 = t3 * P3;
-        const totalCost     = c1 + c2 + c3;
-        const totalDiscount = (shares * REF) - totalCost;
-
-        const bik1     = t1 * Math.max(0, bPrice - P1);
-        const bik2     = t2 * Math.max(0, bPrice - P2);
-        const bik3     = t3 * Math.max(0, bPrice - P3);
-        const grossBik = bik1 + bik2 + bik3;
-
-        const allowUsed  = Math.min(grossBik, ALLOW);
-        const taxableBik = Math.max(0, grossBik - ALLOW);
-        const taxDue     = taxableBik * (taxRate / 100);
-        const portfolio  = shares * bPrice;
-        const netGain    = portfolio - totalCost - taxDue;
-        const effDisc    = portfolio > 0 ? (netGain / portfolio * 100) : 0;
-
-        animateValue(document.getElementById('r_totalCost'),     fmt(totalCost));
-        animateValue(document.getElementById('r_totalDiscount'), fmt(totalDiscount));
-        animateValue(document.getElementById('r_grossBik'),      fmt(grossBik));
-        animateValue(document.getElementById('r_taxableBik'),    fmt(taxableBik));
-
-        document.getElementById('n_portfolio').textContent   = fmt(portfolio);
-        document.getElementById('n_deductions').textContent  = '- ' + fmt(totalCost + taxDue);
-        document.getElementById('n_netGain').textContent     = fmt(netGain);
-        document.getElementById('n_effDiscount').textContent = fmtP(effDisc);
-        document.getElementById('n_taxDue').textContent      = fmt(taxDue);
-        document.getElementById('n_allowance').textContent   = fmt(allowUsed);
-
-        document.getElementById('t_grossBik').textContent   = fmt(grossBik);
-        document.getElementById('t_allowance').textContent  = '- ' + fmt(allowUsed);
-        document.getElementById('t_taxableBik').textContent = fmt(taxableBik);
-        document.getElementById('t_taxRate').textContent    = fmtP(taxRate);
-        document.getElementById('t_taxDue').textContent     = fmt(taxDue);
-
-        document.getElementById('s_t1').textContent    = t1 + ' shares';
-        document.getElementById('s_t2').textContent    = t2 + ' shares';
-        document.getElementById('s_t3').textContent    = t3 + ' shares';
-        document.getElementById('s_total').textContent = shares + ' shares';
-
-        updateGauge(effDisc);
-
-        const tbody = document.getElementById('tableBody');
-        tbody.innerHTML = '';
-
-        const rows = [
-            { label:'Tier 1 (60% off)', sh:t1, disc:'60%', price:P1, cost:c1, bikPS:t1>0?Math.max(0,bPrice-P1):0, bik:bik1 },
-            { label:'Tier 2 (20% off)', sh:t2, disc:'20%', price:P2, cost:c2, bikPS:t2>0?Math.max(0,bPrice-P2):0, bik:bik2 },
-            { label:'Tier 3 (10% off)', sh:t3, disc:'10%', price:P3, cost:c3, bikPS:t3>0?Math.max(0,bPrice-P3):0, bik:bik3 },
-        ];
-
-        rows.forEach(r => {
-            if (r.sh > 0) {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${r.label}</td>
-                    <td><strong style="color:#7dd3fc">${r.sh}</strong></td>
-                    <td><span style="color:#4ade80;font-weight:700">${r.disc}</span></td>
-                    <td>${fmt(r.price)}</td>
-                    <td>${fmt(r.cost)}</td>
-                    <td>${fmt(r.bikPS)}</td>
-                    <td><strong>${fmt(r.bik)}</strong></td>`;
-                tbody.appendChild(tr);
-            }
-        });
-
-        const addRow = (cls, cols) => {
-            const tr = document.createElement('tr');
-            tr.className = cls;
-            tr.innerHTML = cols.map(c => `<td>${c}</td>`).join('');
-            tbody.appendChild(tr);
-        };
-
-        addRow('tr-total',    ['TOTAL', `<strong>${shares} shares</strong>`, '—', '—', fmt(totalCost), '—', fmt(grossBik)]);
-        addRow('tr-allowance',['§3 No.39 Allowance', '', '', '', '', '', '- ' + fmt(allowUsed)]);
-        addRow('tr-taxable',  ['Taxable Benefit in Kind', '', '', '', '', '', fmt(taxableBik)]);
-
-        updateBar(shares);
-    }
-
-    function resetForm() {
-        document.getElementById('numShares').value    = 20;
-        document.getElementById('sharesSlider').value = 20;
-        document.getElementById('bookingPrice').value = 285.00;
-        document.getElementById('taxRate').value      = 42;
-        calculate();
-        updateBar(20);
-    }
-
-    window.onload = () => { calculate(); updateBar(20); };
+/* ══════════════════════════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════════════════════════ */
+window.onload = () => {
+    calculate();
+    updateBar(20);
+};
 </script>
 </body>
 </html>
