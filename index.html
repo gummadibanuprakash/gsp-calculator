@@ -54,22 +54,14 @@
             flex-wrap: wrap; gap: 8px;
             box-shadow: 0 4px 24px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.1);
         }
-
         .header-left { display: flex; align-items: center; gap: 10px; }
-        .logo-icon {
-            width: 36px; height: 36px;
-            background: linear-gradient(135deg, #0078d4, #00b4d8);
-            border-radius: 9px; display: flex; align-items: center; justify-content: center;
-            font-size: 17px; box-shadow: 0 2px 12px rgba(0,120,212,0.55); flex-shrink: 0;
-        }
+        .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, #0078d4, #00b4d8); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 17px; box-shadow: 0 2px 12px rgba(0,120,212,0.55); flex-shrink: 0; }
         .header-left h1 { font-size: 13.5px; font-weight: 700; color: white; }
         .header-left p  { font-size: 10px; color: rgba(255,255,255,0.45); margin-top: 1px; }
-
         .header-stats { display: flex; gap: 5px; flex-wrap: wrap; }
         .hstat { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 7px; padding: 4px 10px; text-align: center; }
         .hstat-label { font-size: 8px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.5px; }
         .hstat-value { font-size: 12px; font-weight: 800; color: var(--accent); margin-top: 1px; }
-
         .header-badges { display: flex; gap: 5px; align-items: center; }
         .badge { padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; }
         .badge-blue { background: rgba(0,120,212,0.3); border: 1px solid rgba(0,120,212,0.5); color: var(--accent); }
@@ -78,34 +70,12 @@
         /* ── SECTION DIVIDER ── */
         .section-divider { display: flex; align-items: center; gap: 10px; margin: 4px 0; }
         .section-divider-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(0,120,212,0.4), transparent); }
-        .section-divider-label {
-            font-size: 9px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1.5px; color: var(--accent);
-            padding: 3px 12px; border-radius: 20px;
-            background: rgba(0,120,212,0.1); border: 1px solid rgba(0,120,212,0.2);
-        }
+        .section-divider-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); padding: 3px 12px; border-radius: 20px; background: rgba(0,120,212,0.1); border: 1px solid rgba(0,120,212,0.2); }
 
         /* ── PANEL ── */
-        .panel {
-            background: var(--panel); border: 1px solid var(--border);
-            border-radius: 11px; padding: 13px 15px;
-            backdrop-filter: blur(14px);
-            box-shadow: 0 6px 28px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
-        }
-
-        .panel-title {
-            font-size: 9.5px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1.1px; color: var(--accent);
-            padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.07);
-            margin-bottom: 11px; display: flex; align-items: center; gap: 6px;
-        }
-
-        .pt-icon {
-            width: 18px; height: 18px;
-            background: linear-gradient(135deg, #0078d4, #00b4d8);
-            border-radius: 4px; display: flex; align-items: center; justify-content: center;
-            font-size: 10px;
-        }
+        .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 11px; padding: 13px 15px; backdrop-filter: blur(14px); box-shadow: 0 6px 28px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05); }
+        .panel-title { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.1px; color: var(--accent); padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 11px; display: flex; align-items: center; gap: 6px; }
+        .pt-icon { width: 18px; height: 18px; background: linear-gradient(135deg, #0078d4, #00b4d8); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; }
 
         /* ── CALC GRID ── */
         .calc-grid { display: grid; grid-template-columns: 280px 1fr 220px; gap: 7px; }
@@ -119,13 +89,11 @@
         .tier-pill.t2 { background: linear-gradient(135deg, rgba(0,80,160,0.65), rgba(0,120,212,0.45)); border: 1px solid rgba(0,180,216,0.4); }
         .tier-pill.t3 { background: linear-gradient(135deg, rgba(0,120,212,0.45), rgba(0,180,216,0.3)); border: 1px solid rgba(125,211,252,0.3); }
         .tp-discount { font-size: 22px; font-weight: 900; line-height: 1; }
-        .t1 .tp-discount { color: #60a5fa; }
-        .t2 .tp-discount { color: #7dd3fc; }
-        .t3 .tp-discount { color: #bae6fd; }
+        .t1 .tp-discount { color: #60a5fa; } .t2 .tp-discount { color: #7dd3fc; } .t3 .tp-discount { color: #bae6fd; }
         .tp-range { font-size: 8.5px; color: rgba(255,255,255,0.45); margin: 2px 0; }
         .tp-price { font-size: 12px; font-weight: 700; color: white; }
-        .tp-bar   { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.1); overflow: hidden; margin-top: 5px; }
-        .tp-fill  { height: 100%; border-radius: 2px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
+        .tp-bar { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.1); overflow: hidden; margin-top: 5px; }
+        .tp-fill { height: 100%; border-radius: 2px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
         .t1 .tp-fill { background: linear-gradient(90deg,#1d4ed8,#60a5fa); }
         .t2 .tp-fill { background: linear-gradient(90deg,#0078d4,#7dd3fc); }
         .t3 .tp-fill { background: linear-gradient(90deg,#0ea5e9,#bae6fd); }
@@ -144,14 +112,13 @@
         input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(135deg, #0078d4, #00b4d8); cursor: pointer; border: 2px solid rgba(255,255,255,0.3); box-shadow: 0 2px 8px rgba(0,120,212,0.6); transition: transform 0.15s; }
         input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
         .slider-labels { display: flex; justify-content: space-between; font-size: 8.5px; color: rgba(255,255,255,0.28); margin-top: 3px; }
-
         .share-bar { display: flex; height: 7px; border-radius: 4px; overflow: hidden; background: rgba(255,255,255,0.06); margin: 7px 0 4px; }
         .sb1 { background: linear-gradient(90deg,#1d4ed8,#2563eb); transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
         .sb2 { background: linear-gradient(90deg,#0078d4,#0ea5e9); transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
         .sb3 { background: linear-gradient(90deg,#0ea5e9,#38bdf8); transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
         .bar-legend { display: flex; gap: 10px; }
         .bl-item { display: flex; align-items: center; gap: 3px; font-size: 9.5px; color: rgba(255,255,255,0.45); }
-        .bl-dot  { width: 7px; height: 7px; border-radius: 50%; }
+        .bl-dot { width: 7px; height: 7px; border-radius: 50%; }
 
         /* ── STAT BOXES ── */
         .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 9px; }
@@ -176,8 +143,7 @@
         .table-wrap { overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; font-size: 11.5px; min-width: 480px; }
         thead th { background: rgba(0,51,102,0.85); color: rgba(255,255,255,0.6); padding: 6px 9px; text-align: left; font-size: 9px; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 600; }
-        thead th:first-child { border-radius: 5px 0 0 0; }
-        thead th:last-child  { border-radius: 0 5px 0 0; }
+        thead th:first-child { border-radius: 5px 0 0 0; } thead th:last-child { border-radius: 0 5px 0 0; }
         tbody td { padding: 5px 9px; border-bottom: 1px solid rgba(255,255,255,0.04); color: rgba(255,255,255,0.78); transition: background 0.15s; }
         tbody tr:hover td { background: rgba(255,255,255,0.03); }
         .tr-total td     { background: rgba(0,80,160,0.28) !important; font-weight: 700; color: var(--accent); border-top: 1px solid rgba(0,120,212,0.35); }
@@ -190,25 +156,20 @@
         .net-item:hover { background: rgba(255,255,255,0.07); border-color: rgba(0,120,212,0.3); }
         .ni-label { font-size: 8.5px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 2px; }
         .ni-value { font-size: 13px; font-weight: 800; color: var(--text); }
-        .ni-value.green { color: var(--green); }
-        .ni-value.red   { color: var(--red); }
-        .ni-value.blue  { color: var(--accent); }
+        .ni-value.green { color: var(--green); } .ni-value.red { color: var(--red); } .ni-value.blue { color: var(--accent); }
 
         /* ── RIGHT PANEL ── */
         .tax-block { background: rgba(251,191,36,0.05); border: 1px solid rgba(251,191,36,0.14); border-left: 3px solid #f59e0b; border-radius: 7px; padding: 9px 11px; margin-bottom: 7px; }
         .tax-block h4 { font-size: 9px; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
         .tax-row { display: flex; justify-content: space-between; align-items: center; padding: 3px 0; border-bottom: 1px solid rgba(251,191,36,0.07); font-size: 11px; }
         .tax-row:last-child { border-bottom: none; }
-        .tax-row .tl { color: rgba(255,255,255,0.45); }
-        .tax-row .tv { font-weight: 700; color: var(--text); }
-        .tax-row .tv.red   { color: var(--red); }
-        .tax-row .tv.green { color: var(--green); }
+        .tax-row .tl { color: rgba(255,255,255,0.45); } .tax-row .tv { font-weight: 700; color: var(--text); }
+        .tax-row .tv.red { color: var(--red); } .tax-row .tv.green { color: var(--green); }
         .info-block { background: rgba(0,120,212,0.05); border: 1px solid rgba(0,120,212,0.14); border-left: 3px solid #0078d4; border-radius: 7px; padding: 9px 11px; margin-bottom: 7px; }
         .info-block h4 { font-size: 9px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
         .info-row { display: flex; justify-content: space-between; font-size: 11px; padding: 3px 0; border-bottom: 1px solid rgba(0,120,212,0.07); }
         .info-row:last-child { border-bottom: none; }
-        .info-row .il { color: rgba(255,255,255,0.42); }
-        .info-row .iv { font-weight: 700; color: var(--accent); }
+        .info-row .il { color: rgba(255,255,255,0.42); } .info-row .iv { font-weight: 700; color: var(--accent); }
 
         /* ── GAUGE ── */
         .gauge-wrap { text-align: center; margin-bottom: 7px; }
@@ -230,25 +191,80 @@
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 18px rgba(0,120,212,0.6); }
         .btn-secondary { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.65); border: 1px solid rgba(255,255,255,0.1); }
         .btn-secondary:hover { background: rgba(255,255,255,0.09); color: white; }
-
         .disclaimer { font-size: 8px; color: rgba(255,255,255,0.2); line-height: 1.5; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 6px; }
+
+        /* ══════════════════════════════════════════════════════════
+           CHART GUIDE BOX — the new addition
+        ══════════════════════════════════════════════════════════ */
+        .chart-guide {
+            background: rgba(0,30,70,0.6);
+            border: 1px solid rgba(125,211,252,0.12);
+            border-left: 3px solid rgba(125,211,252,0.35);
+            border-radius: 7px;
+            padding: 8px 11px;
+            margin-top: 10px;
+        }
+
+        .cg-header {
+            display: flex; align-items: center; gap: 5px;
+            margin-bottom: 5px;
+        }
+
+        .cg-icon {
+            font-size: 11px;
+            opacity: 0.7;
+        }
+
+        .cg-title {
+            font-size: 8.5px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.8px;
+            color: rgba(125,211,252,0.6);
+        }
+
+        .cg-body {
+            font-size: 9.5px;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.6;
+        }
+
+        .cg-body strong {
+            color: rgba(255,255,255,0.7);
+            font-weight: 600;
+        }
+
+        .cg-body .cg-good  { color: #4ade80; font-weight: 600; }
+        .cg-body .cg-warn  { color: #fbbf24; font-weight: 600; }
+        .cg-body .cg-bad   { color: #f87171; font-weight: 600; }
+        .cg-body .cg-blue  { color: #7dd3fc; font-weight: 600; }
+
+        .cg-legend {
+            display: flex; gap: 10px; flex-wrap: wrap;
+            margin-top: 5px; padding-top: 5px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .cg-legend-item {
+            display: flex; align-items: center; gap: 4px;
+            font-size: 9px; color: rgba(255,255,255,0.4);
+        }
+
+        .cg-dot {
+            width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+        }
+
+        .cg-line {
+            width: 16px; height: 2px; flex-shrink: 0; border-radius: 1px;
+        }
 
         /* ══════════════════════════════════════════════════════════
            SMART RECOMMENDATION BANNER
         ══════════════════════════════════════════════════════════ */
-        .smart-rec-banner {
-            background: linear-gradient(135deg, rgba(0,40,90,0.97), rgba(0,60,120,0.92));
-            border: 1px solid rgba(0,180,216,0.3); border-left: 4px solid #00b4d8;
-            border-radius: 11px; padding: 14px 18px;
-            display: flex; align-items: flex-start; gap: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
-        }
+        .smart-rec-banner { background: linear-gradient(135deg, rgba(0,40,90,0.97), rgba(0,60,120,0.92)); border: 1px solid rgba(0,180,216,0.3); border-left: 4px solid #00b4d8; border-radius: 11px; padding: 14px 18px; display: flex; align-items: flex-start; gap: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05); }
         .srb-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; filter: drop-shadow(0 0 8px rgba(0,180,216,0.6)); }
         .srb-body { flex: 1; }
         .srb-title { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 5px; }
         .srb-headline { font-size: 14px; font-weight: 800; color: white; margin-bottom: 8px; line-height: 1.4; }
-        .srb-headline .hl-green { color: var(--green); }
-        .srb-headline .hl-amber { color: var(--amber); }
+        .srb-headline .hl-green { color: var(--green); } .srb-headline .hl-amber { color: var(--amber); }
         .srb-reasoning { display: flex; flex-direction: column; gap: 5px; margin-bottom: 9px; }
         .srb-step { display: flex; align-items: flex-start; gap: 8px; background: rgba(255,255,255,0.04); border-radius: 7px; padding: 6px 10px; border: 1px solid rgba(255,255,255,0.06); }
         .srb-step-num { width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 800; margin-top: 1px; }
@@ -269,87 +285,33 @@
         .srb-apply-btn.optimal { background: linear-gradient(135deg,#166534,#16a34a); box-shadow: 0 3px 12px rgba(22,163,74,0.4); }
 
         /* ══════════════════════════════════════════════════════════
-           ECONOMIC FRAMEWORKS SECTION
+           ECONOMIC FRAMEWORKS
         ══════════════════════════════════════════════════════════ */
-        .frameworks-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 7px;
-        }
-
-        /* ── MARGINAL ANALYSIS PANEL ── */
-        .ma-panel {
-            background: var(--panel); border: 1px solid var(--border);
-            border-radius: 11px; padding: 15px;
-            backdrop-filter: blur(14px);
-            box-shadow: 0 6px 28px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
-        }
-
-        .framework-header {
-            display: flex; align-items: center; justify-content: space-between;
-            padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.07);
-            margin-bottom: 13px;
-        }
-
+        .frameworks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+        .ma-panel, .md-panel { background: var(--panel); border: 1px solid var(--border); border-radius: 11px; padding: 15px; backdrop-filter: blur(14px); box-shadow: 0 6px 28px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05); }
+        .framework-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 13px; }
         .framework-header-left { display: flex; align-items: center; gap: 8px; }
-
-        .framework-icon {
-            width: 32px; height: 32px; border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 16px; flex-shrink: 0;
-        }
-
+        .framework-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
         .fi-green  { background: linear-gradient(135deg, rgba(74,222,128,0.2), rgba(74,222,128,0.08)); border: 1px solid rgba(74,222,128,0.3); }
         .fi-purple { background: linear-gradient(135deg, rgba(192,132,252,0.2), rgba(192,132,252,0.08)); border: 1px solid rgba(192,132,252,0.3); }
-
         .framework-title { font-size: 11px; font-weight: 800; color: white; }
         .framework-subtitle { font-size: 9px; color: var(--muted); margin-top: 1px; }
-
-        .framework-verdict {
-            display: flex; align-items: center; gap: 6px;
-            background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.2);
-            border-radius: 8px; padding: 6px 12px;
-        }
-
+        .framework-verdict { display: flex; align-items: center; gap: 6px; background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.2); border-radius: 8px; padding: 6px 12px; }
         .fv-label { font-size: 8.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
         .fv-value { font-size: 18px; font-weight: 900; color: var(--green); }
         .fv-unit  { font-size: 10px; color: rgba(255,255,255,0.4); }
-
         .framework-verdict.purple { background: rgba(192,132,252,0.08); border-color: rgba(192,132,252,0.2); }
         .framework-verdict.purple .fv-value { color: var(--purple); }
-
-        /* Marginal waterfall */
         .ma-waterfall { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
-
-        .ma-row {
-            display: flex; align-items: center; gap: 8px;
-            padding: 7px 10px; border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.2s; cursor: default;
-            position: relative; overflow: hidden;
-        }
-
-        .ma-row::before {
-            content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-            width: 3px; border-radius: 8px 0 0 8px;
-        }
-
-        .ma-row.tier1-free  { background: rgba(74,222,128,0.08);  }
-        .ma-row.tier1-free::before  { background: var(--green); }
-        .ma-row.tier1-tax   { background: rgba(125,211,252,0.06); }
-        .ma-row.tier1-tax::before   { background: var(--accent); }
-        .ma-row.tier2-tax   { background: rgba(251,191,36,0.06);  }
-        .ma-row.tier2-tax::before   { background: var(--amber); }
-        .ma-row.tier3-tax   { background: rgba(248,113,113,0.06); }
-        .ma-row.tier3-tax::before   { background: var(--red); }
+        .ma-row { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.2s; cursor: default; position: relative; overflow: hidden; }
+        .ma-row::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; border-radius: 8px 0 0 8px; }
+        .ma-row.tier1-free  { background: rgba(74,222,128,0.08);  } .ma-row.tier1-free::before  { background: var(--green); }
+        .ma-row.tier1-tax   { background: rgba(125,211,252,0.06); } .ma-row.tier1-tax::before   { background: var(--accent); }
+        .ma-row.tier2-tax   { background: rgba(251,191,36,0.06);  } .ma-row.tier2-tax::before   { background: var(--amber); }
+        .ma-row.tier3-tax   { background: rgba(248,113,113,0.06); } .ma-row.tier3-tax::before   { background: var(--red); }
         .ma-row.cliff       { background: rgba(255,255,255,0.02); border-style: dashed; }
         .ma-row.cliff::before { background: rgba(255,255,255,0.2); }
-
-        .ma-row.highlight-row {
-            box-shadow: 0 0 0 1.5px rgba(251,191,36,0.5);
-            border-color: rgba(251,191,36,0.3) !important;
-        }
-
+        .ma-row.highlight-row { box-shadow: 0 0 0 1.5px rgba(251,191,36,0.5); border-color: rgba(251,191,36,0.3) !important; }
         .ma-shares { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.5); width: 60px; flex-shrink: 0; }
         .ma-desc   { flex: 1; font-size: 10.5px; color: rgba(255,255,255,0.7); }
         .ma-desc strong { color: white; }
@@ -357,105 +319,42 @@
         .ma-bar { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.08); overflow: hidden; }
         .ma-bar-fill { height: 100%; border-radius: 3px; transition: width 0.5s cubic-bezier(0.4,0,0.2,1); }
         .ma-gain { font-size: 11px; font-weight: 800; width: 70px; text-align: right; flex-shrink: 0; }
-
-        .ma-gain.green  { color: var(--green); }
-        .ma-gain.blue   { color: var(--accent); }
-        .ma-gain.amber  { color: var(--amber); }
-        .ma-gain.red    { color: var(--red); }
-        .ma-gain.muted  { color: rgba(255,255,255,0.25); }
-
+        .ma-gain.green { color: var(--green); } .ma-gain.blue { color: var(--accent); } .ma-gain.amber { color: var(--amber); } .ma-gain.red { color: var(--red); } .ma-gain.muted { color: rgba(255,255,255,0.25); }
         .ma-cliff-label { font-size: 9px; color: rgba(255,255,255,0.3); font-style: italic; text-align: center; width: 100%; }
-
-        /* Slope chart */
         .ma-slope-chart { margin-top: 10px; }
         .ma-slope-title { font-size: 9px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
-
         .slope-bars { display: flex; align-items: flex-end; gap: 3px; height: 60px; }
         .slope-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; }
         .slope-bar { width: 100%; border-radius: 3px 3px 0 0; transition: height 0.5s cubic-bezier(0.4,0,0.2,1); position: relative; }
         .slope-bar-label { font-size: 7.5px; color: rgba(255,255,255,0.35); text-align: center; }
         .slope-bar-val   { font-size: 8px; font-weight: 700; text-align: center; }
-
-        /* ── MECHANISM DESIGN PANEL ── */
-        .md-panel {
-            background: var(--panel); border: 1px solid var(--border);
-            border-radius: 11px; padding: 15px;
-            backdrop-filter: blur(14px);
-            box-shadow: 0 6px 28px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
-        }
-
-        /* Conviction selector */
         .conviction-selector { margin-bottom: 14px; }
         .conviction-label { font-size: 9.5px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
-
         .conviction-options { display: flex; flex-direction: column; gap: 6px; }
-
-        .conviction-btn {
-            display: flex; align-items: center; gap: 10px;
-            padding: 10px 13px; border-radius: 9px;
-            border: 1.5px solid rgba(255,255,255,0.08);
-            background: rgba(255,255,255,0.03);
-            cursor: pointer; transition: all 0.2s;
-            text-align: left;
-        }
-
+        .conviction-btn { display: flex; align-items: center; gap: 10px; padding: 10px 13px; border-radius: 9px; border: 1.5px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); cursor: pointer; transition: all 0.2s; text-align: left; }
         .conviction-btn:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.15); }
-
-        .conviction-btn.selected.neutral {
-            background: rgba(125,211,252,0.1); border-color: rgba(125,211,252,0.4);
-            box-shadow: 0 0 0 1px rgba(125,211,252,0.15);
-        }
-        .conviction-btn.selected.bullish {
-            background: rgba(74,222,128,0.1); border-color: rgba(74,222,128,0.4);
-            box-shadow: 0 0 0 1px rgba(74,222,128,0.15);
-        }
-        .conviction-btn.selected.very-bullish {
-            background: rgba(192,132,252,0.1); border-color: rgba(192,132,252,0.4);
-            box-shadow: 0 0 0 1px rgba(192,132,252,0.15);
-        }
-
-        .cb-radio {
-            width: 16px; height: 16px; border-radius: 50%;
-            border: 2px solid rgba(255,255,255,0.2);
-            flex-shrink: 0; display: flex; align-items: center; justify-content: center;
-            transition: all 0.2s;
-        }
-
+        .conviction-btn.selected.neutral    { background: rgba(125,211,252,0.1); border-color: rgba(125,211,252,0.4); box-shadow: 0 0 0 1px rgba(125,211,252,0.15); }
+        .conviction-btn.selected.bullish    { background: rgba(74,222,128,0.1); border-color: rgba(74,222,128,0.4); box-shadow: 0 0 0 1px rgba(74,222,128,0.15); }
+        .conviction-btn.selected.very-bullish { background: rgba(192,132,252,0.1); border-color: rgba(192,132,252,0.4); box-shadow: 0 0 0 1px rgba(192,132,252,0.15); }
+        .cb-radio { width: 16px; height: 16px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
         .conviction-btn.selected .cb-radio { border-color: currentColor; }
         .conviction-btn.selected.neutral    .cb-radio { color: var(--accent); background: rgba(125,211,252,0.2); }
         .conviction-btn.selected.bullish    .cb-radio { color: var(--green); background: rgba(74,222,128,0.2); }
         .conviction-btn.selected.very-bullish .cb-radio { color: var(--purple); background: rgba(192,132,252,0.2); }
-
         .cb-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0; transition: opacity 0.2s; }
         .conviction-btn.selected .cb-dot { opacity: 1; }
-
         .cb-content { flex: 1; }
         .cb-title { font-size: 11px; font-weight: 700; color: white; margin-bottom: 2px; }
         .cb-desc  { font-size: 9.5px; color: rgba(255,255,255,0.45); line-height: 1.4; }
-
-        .cb-tag {
-            font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 10px;
-            flex-shrink: 0;
-        }
+        .cb-tag { font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 10px; flex-shrink: 0; }
         .cb-tag.neutral    { background: rgba(125,211,252,0.15); color: var(--accent); }
         .cb-tag.bullish    { background: rgba(74,222,128,0.15); color: var(--green); }
         .cb-tag.very-bullish { background: rgba(192,132,252,0.15); color: var(--purple); }
-
-        /* MD Result */
         .md-result { display: flex; flex-direction: column; gap: 7px; }
-
-        .md-signal-row {
-            display: flex; align-items: center; gap: 10px;
-            padding: 9px 12px; border-radius: 9px;
-            border: 1px solid rgba(255,255,255,0.06);
-            background: rgba(255,255,255,0.03);
-            transition: all 0.3s;
-        }
-
+        .md-signal-row { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.03); transition: all 0.3s; }
         .md-signal-row.active-neutral    { background: rgba(125,211,252,0.07); border-color: rgba(125,211,252,0.25); }
         .md-signal-row.active-bullish    { background: rgba(74,222,128,0.07); border-color: rgba(74,222,128,0.25); }
         .md-signal-row.active-very-bullish { background: rgba(192,132,252,0.07); border-color: rgba(192,132,252,0.25); }
-
         .md-signal-icon { font-size: 20px; flex-shrink: 0; }
         .md-signal-body { flex: 1; }
         .md-signal-label { font-size: 8.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 2px; }
@@ -468,19 +367,12 @@
         .md-signal-shares.neutral    { color: var(--accent); }
         .md-signal-shares.bullish    { color: var(--green); }
         .md-signal-shares.very-bullish { color: var(--purple); }
-
-        /* MD screening table */
         .md-screen-table { width: 100%; border-collapse: collapse; font-size: 10.5px; margin-top: 8px; }
         .md-screen-table th { font-size: 8.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.4px; padding: 4px 8px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.07); }
         .md-screen-table td { padding: 5px 8px; border-bottom: 1px solid rgba(255,255,255,0.04); }
         .md-screen-table tr.active-row td { background: rgba(251,191,36,0.07); }
         .md-screen-table tr.active-row td:first-child { border-left: 2px solid var(--amber); }
-
-        .md-apply-btn {
-            width: 100%; padding: 10px; border: none; border-radius: 8px;
-            font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s;
-            margin-top: 8px;
-        }
+        .md-apply-btn { width: 100%; padding: 10px; border: none; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s; margin-top: 8px; }
         .md-apply-btn.neutral    { background: linear-gradient(135deg, #0078d4, #00b4d8); color: white; box-shadow: 0 3px 12px rgba(0,120,212,0.4); }
         .md-apply-btn.bullish    { background: linear-gradient(135deg, #166534, #16a34a); color: white; box-shadow: 0 3px 12px rgba(22,163,74,0.4); }
         .md-apply-btn.very-bullish { background: linear-gradient(135deg, #6b21a8, #9333ea); color: white; box-shadow: 0 3px 12px rgba(147,51,234,0.4); }
@@ -535,12 +427,10 @@
         .dec-scenario.optimal .ds-metric-value { color: var(--amber); }
         .dec-scenario.current .ds-metric-value { color: var(--accent); }
         .dec-scenario.max-val .ds-metric-value { color: var(--green); }
-
         .heatmap-wrap { overflow-x: auto; }
         .heatmap-table { border-collapse: collapse; font-size: 10px; width: 100%; }
         .heatmap-table th { padding: 5px 8px; background: rgba(0,51,102,0.8); color: rgba(255,255,255,0.55); font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.3px; text-align: center; }
-        .heatmap-table th:first-child { text-align: left; border-radius: 5px 0 0 0; }
-        .heatmap-table th:last-child  { border-radius: 0 5px 0 0; }
+        .heatmap-table th:first-child { text-align: left; border-radius: 5px 0 0 0; } .heatmap-table th:last-child { border-radius: 0 5px 0 0; }
         .heatmap-table td { padding: 5px 8px; text-align: center; font-weight: 600; font-size: 10px; border: 1px solid rgba(255,255,255,0.03); transition: opacity 0.2s; }
         .heatmap-table td:first-child { font-weight: 700; color: var(--accent); background: rgba(0,40,100,0.5) !important; text-align: left; }
         .heatmap-table tr:hover td { opacity: 0.85; }
@@ -608,10 +498,7 @@
             .pr-heatmap-table td { padding: 4px 6px; text-align: center; font-weight: 600; font-size: 8pt; border: 1px solid #dde; }
             .pr-heatmap-table td:first-child { font-weight: 700; color: #003366 !important; background: #e8f0fe !important; text-align: left; }
             .pr-footer { margin-top: 16px; padding-top: 8px; border-top: 1px solid #ccd; font-size: 7.5pt; color: #888 !important; display: flex !important; justify-content: space-between; }
-            .pr-green { color: #166534 !important; }
-            .pr-red   { color: #991b1b !important; }
-            .pr-blue  { color: #003366 !important; }
-            .pr-amber { color: #92400e !important; }
+            .pr-green { color: #166534 !important; } .pr-red { color: #991b1b !important; } .pr-blue { color: #003366 !important; } .pr-amber { color: #92400e !important; }
             @page { size: A4; margin: 12mm 14mm; }
         }
 
@@ -681,11 +568,7 @@
                     <input type="number" id="numShares" class="no-prefix" min="1" max="80" value="20" oninput="syncSlider();calculate()">
                     <input type="range" id="sharesSlider" min="1" max="80" value="20" oninput="syncInput();calculate()">
                     <div class="slider-labels"><span>1</span><span>20</span><span>40</span><span>60</span><span>80</span></div>
-                    <div class="share-bar">
-                        <div class="sb1" id="bar1" style="width:25%"></div>
-                        <div class="sb2" id="bar2" style="width:0%"></div>
-                        <div class="sb3" id="bar3" style="width:0%"></div>
-                    </div>
+                    <div class="share-bar"><div class="sb1" id="bar1" style="width:25%"></div><div class="sb2" id="bar2" style="width:0%"></div><div class="sb3" id="bar3" style="width:0%"></div></div>
                     <div class="bar-legend">
                         <div class="bl-item"><div class="bl-dot" style="background:#2563eb"></div><span id="bl1">T1: 20</span></div>
                         <div class="bl-item"><div class="bl-dot" style="background:#0ea5e9"></div><span id="bl2">T2: 0</span></div>
@@ -770,7 +653,7 @@
                     <div class="info-row"><span class="il">Processor</span><span class="iv">Commerzbank AG</span></div>
                     <div class="info-row"><span class="il">Subscription Period</span><span class="iv">Jul 23 – Aug 5</span></div>
                 </div>
-                <div class="disclaimer"><strong>Disclaimer:</strong> Illustrative only. BiK = Benefit in Kind — the taxable value of your discount. Excludes church tax, solidarity surcharge &amp; social security. Consult your tax advisor.</div>
+                <div class="disclaimer"><strong>Disclaimer:</strong> Illustrative only. BiK = the taxable value of your discount. Excludes church tax, solidarity surcharge &amp; social security. Consult your tax advisor.</div>
             </div>
         </div>
     </div>
@@ -803,8 +686,7 @@
     </div>
 
     <div class="frameworks-grid">
-
-        <!-- ── MARGINAL ANALYSIS ── -->
+        <!-- MARGINAL ANALYSIS -->
         <div class="ma-panel">
             <div class="framework-header">
                 <div class="framework-header-left">
@@ -824,18 +706,31 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Waterfall rows -->
             <div class="ma-waterfall" id="ma_waterfall"></div>
-
-            <!-- Slope chart -->
             <div class="ma-slope-chart">
                 <div class="ma-slope-title">Return per €1 invested — by segment</div>
                 <div class="slope-bars" id="ma_slope_bars"></div>
             </div>
+
+            <!-- GUIDE: Marginal Analysis -->
+            <div class="chart-guide">
+                <div class="cg-header">
+                    <span class="cg-icon">📖</span>
+                    <span class="cg-title">How to read this</span>
+                </div>
+                <div class="cg-body">
+                    Each row shows the <strong>net gain per share</strong> in that segment after tax. The bar length shows how much value you get relative to the best segment.
+                    <br><br>
+                    <span class="cg-good">■ Green rows</span> = tax-free gain (within €2,000 allowance) — highest value per share.<br>
+                    <span class="cg-blue">■ Blue rows</span> = Tier 1 shares but now taxable — still good, discount is large.<br>
+                    <span class="cg-warn">■ Amber rows</span> = Tier 2 shares, taxable — smaller discount, lower return.<br>
+                    <span class="cg-bad">■ Red rows</span> = Tier 3 shares, taxable — weakest return per euro spent.<br><br>
+                    <strong>The dashed lines are cliff points</strong> — where your return drops sharply. The recommendation stops at the biggest cliff. The bar chart below shows return per €1 invested: <span class="cg-good">taller = better</span>.
+                </div>
+            </div>
         </div>
 
-        <!-- ── MECHANISM DESIGN ── -->
+        <!-- MECHANISM DESIGN -->
         <div class="md-panel">
             <div class="framework-header">
                 <div class="framework-header-left">
@@ -855,42 +750,44 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Conviction selector -->
             <div class="conviction-selector">
                 <div class="conviction-label">What is your conviction about Deutsche Börse stock?</div>
                 <div class="conviction-options">
                     <div class="conviction-btn neutral selected" id="cb_neutral" onclick="setConviction('neutral')">
                         <div class="cb-radio neutral"><div class="cb-dot"></div></div>
-                        <div class="cb-content">
-                            <div class="cb-title">😐 Neutral — No strong view</div>
-                            <div class="cb-desc">I'm participating for the discount, not because I have a strong opinion on the stock price</div>
-                        </div>
+                        <div class="cb-content"><div class="cb-title">😐 Neutral — No strong view</div><div class="cb-desc">Participating for the discount, not a stock price opinion</div></div>
                         <div class="cb-tag neutral">Tier 1</div>
                     </div>
                     <div class="conviction-btn bullish" id="cb_bullish" onclick="setConviction('bullish')">
                         <div class="cb-radio bullish"><div class="cb-dot"></div></div>
-                        <div class="cb-content">
-                            <div class="cb-title">📈 Bullish — I believe the stock will rise</div>
-                            <div class="cb-desc">I expect DB stock to outperform over the next 1–2 years and want more exposure</div>
-                        </div>
+                        <div class="cb-content"><div class="cb-title">📈 Bullish — Stock will rise</div><div class="cb-desc">Expect DB stock to outperform over 1–2 years</div></div>
                         <div class="cb-tag bullish">Tier 1+2</div>
                     </div>
                     <div class="conviction-btn very-bullish" id="cb_very_bullish" onclick="setConviction('very-bullish')">
                         <div class="cb-radio very-bullish"><div class="cb-dot"></div></div>
-                        <div class="cb-content">
-                            <div class="cb-title">🚀 Very Bullish — High conviction long</div>
-                            <div class="cb-desc">I have strong conviction DB stock will significantly outperform — I want maximum exposure</div>
-                        </div>
+                        <div class="cb-content"><div class="cb-title">🚀 Very Bullish — High conviction</div><div class="cb-desc">Strong conviction DB will significantly outperform</div></div>
                         <div class="cb-tag very-bullish">Tier 1+2+3</div>
                     </div>
                 </div>
             </div>
-
-            <!-- MD Result -->
             <div class="md-result" id="md_result"></div>
-        </div>
 
+            <!-- GUIDE: Mechanism Design -->
+            <div class="chart-guide">
+                <div class="cg-header">
+                    <span class="cg-icon">📖</span>
+                    <span class="cg-title">How to read this</span>
+                </div>
+                <div class="cg-body">
+                    This framework asks: <strong>what does your belief about the stock reveal about how many shares you should buy?</strong>
+                    <br><br>
+                    <span class="cg-blue">■ Neutral</span> = You're here for the free money (60% discount). Tier 1 is a <em>dominant strategy</em> — rational regardless of price outlook. Stop at 20 shares.<br>
+                    <span class="cg-good">■ Bullish</span> = You believe the stock will rise. Tier 2 at 20% off becomes worthwhile because expected price gains add to the discount. Go to 40 shares.<br>
+                    <span class="cg-bad">■ Very Bullish</span> = High conviction long position. Tier 3 at 10% off only makes sense if you expect significant price appreciation. Go to 80 shares.<br><br>
+                    The <strong>table compares all three scenarios</strong> side by side. The <span class="cg-warn">highlighted row</span> is your current conviction. Use the Apply button to set your share count.
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- ANALYTICS -->
@@ -909,30 +806,144 @@
     </div>
 
     <div class="analytics-grid">
+
+        <!-- Net Gain vs Price -->
         <div class="chart-panel span2">
-            <div class="chart-title"><div class="chart-title-left"><div class="pt-icon">📈</div>Net Gain vs. Share Price</div><span class="chart-badge" id="cb_sensitivity">—</span></div>
-            <div class="chart-container" style="min-height:210px"><canvas id="chartSensitivity"></canvas></div>
+            <div class="chart-title">
+                <div class="chart-title-left"><div class="pt-icon">📈</div>Net Gain vs. Share Price</div>
+                <span class="chart-badge" id="cb_sensitivity">—</span>
+            </div>
+            <div class="chart-container" style="min-height:200px"><canvas id="chartSensitivity"></canvas></div>
+            <div class="chart-guide">
+                <div class="cg-header"><span class="cg-icon">📖</span><span class="cg-title">How to read this chart</span></div>
+                <div class="cg-body">
+                    Shows how your <strong>net gain changes as the booking price changes</strong> — your most important sensitivity check.
+                    <br><br>
+                    <strong>Where the line crosses zero</strong> is your break-even price — the stock must be above this on booking day for you to profit. <span class="cg-good">Above zero = profit</span>, <span class="cg-bad">below zero = loss</span>.
+                    The <span class="cg-warn">■ amber dashed line</span> shows the baseline recommendation for comparison. The <span class="cg-good">● green dot</span> marks your current estimated booking price.
+                    <br><br>
+                    <strong>Key insight:</strong> If the two lines are close together, your share count and the recommendation perform similarly. A large gap means you could gain significantly by adjusting.
+                </div>
+                <div class="cg-legend">
+                    <div class="cg-legend-item"><div class="cg-line" style="background:#7dd3fc"></div>Your selection</div>
+                    <div class="cg-legend-item"><div class="cg-line" style="background:#fbbf24;border-top:2px dashed #fbbf24;height:0"></div>Baseline recommendation</div>
+                    <div class="cg-legend-item"><div class="cg-dot" style="background:#4ade80"></div>Current estimated price</div>
+                </div>
+            </div>
         </div>
+
+        <!-- Scenario Comparison -->
         <div class="chart-panel">
-            <div class="chart-title"><div class="chart-title-left"><div class="pt-icon">💡</div>Scenario Comparison</div><span class="chart-badge">3 scenarios</span></div>
+            <div class="chart-title">
+                <div class="chart-title-left"><div class="pt-icon">💡</div>Scenario Comparison</div>
+                <span class="chart-badge">3 scenarios</span>
+            </div>
             <div class="decision-panel" id="decisionPanel"></div>
+            <div class="chart-guide">
+                <div class="cg-header"><span class="cg-icon">📖</span><span class="cg-title">How to read this</span></div>
+                <div class="cg-body">
+                    Compares three specific share counts side by side at your current inputs.
+                    <br><br>
+                    <span class="cg-warn">■ Amber (Baseline)</span> = the algorithmically recommended count — full allowance, best tier.<br>
+                    <span class="cg-blue">■ Blue (Your Selection)</span> = what you currently have selected.<br>
+                    <span class="cg-good">■ Green (Full Tier 1)</span> = all 20 Tier 1 shares — best discount tier reference point.<br><br>
+                    <strong>Net Gain</strong> = euros in your pocket after cost and tax. <strong>ROI</strong> = return on cash invested. <strong>Allowance</strong> = how much of the €2,000 tax-free shield is used.
+                </div>
+            </div>
         </div>
+
+        <!-- Net Gain by Share Count -->
         <div class="chart-panel">
-            <div class="chart-title"><div class="chart-title-left"><div class="pt-icon">🎯</div>Net Gain by Share Count</div><span class="chart-badge" id="cb_roi">—</span></div>
-            <div class="chart-container" style="min-height:190px"><canvas id="chartROI"></canvas></div>
+            <div class="chart-title">
+                <div class="chart-title-left"><div class="pt-icon">🎯</div>Net Gain by Share Count</div>
+                <span class="chart-badge" id="cb_roi">—</span>
+            </div>
+            <div class="chart-container" style="min-height:180px"><canvas id="chartROI"></canvas></div>
+            <div class="chart-guide">
+                <div class="cg-header"><span class="cg-icon">📖</span><span class="cg-title">How to read this chart</span></div>
+                <div class="cg-body">
+                    Each bar shows the <strong>total net gain</strong> if you bought that many shares at your current booking price and tax rate.
+                    <br><br>
+                    <span class="cg-warn">■ Amber bar</span> = baseline recommendation. <span class="cg-blue">■ Blue bar</span> = your current selection. <span class="cg-good">■ Green bars</span> = profitable. <span class="cg-bad">■ Red bars</span> = loss-making at this price.
+                    <br><br>
+                    <strong>Notice the slope flattens</strong> as you move right — each additional share in Tier 2/3 adds less net gain per euro spent than Tier 1. This is the marginal analysis in visual form.
+                </div>
+            </div>
         </div>
+
+        <!-- Tax Rate Impact -->
         <div class="chart-panel">
-            <div class="chart-title"><div class="chart-title-left"><div class="pt-icon">🔢</div>Tax Rate Impact</div><span class="chart-badge" id="cb_tax">—</span></div>
-            <div class="chart-container" style="min-height:190px"><canvas id="chartTax"></canvas></div>
+            <div class="chart-title">
+                <div class="chart-title-left"><div class="pt-icon">🔢</div>Tax Rate Impact</div>
+                <span class="chart-badge" id="cb_tax">—</span>
+            </div>
+            <div class="chart-container" style="min-height:180px"><canvas id="chartTax"></canvas></div>
+            <div class="chart-guide">
+                <div class="cg-header"><span class="cg-icon">📖</span><span class="cg-title">How to read this chart</span></div>
+                <div class="cg-body">
+                    Shows how your outcome changes across <strong>different income tax rates</strong> — useful if you're unsure of your exact rate or want to stress-test.
+                    <br><br>
+                    <span class="cg-good">■ Green line</span> = net gain. <span class="cg-bad">■ Red line</span> = tax due. As tax rate rises, the lines converge — higher earners pay more but still profit because the discount is large.
+                    <br><br>
+                    <strong>Key insight:</strong> If the green line stays well above zero across all tax rates shown, your selection is robust. If it dips toward zero at higher rates, you may want to reduce shares.
+                </div>
+                <div class="cg-legend">
+                    <div class="cg-legend-item"><div class="cg-line" style="background:#4ade80"></div>Net Gain</div>
+                    <div class="cg-legend-item"><div class="cg-line" style="background:#f87171"></div>Tax Due</div>
+                </div>
+            </div>
         </div>
+
+        <!-- Allowance Utilisation -->
         <div class="chart-panel">
-            <div class="chart-title"><div class="chart-title-left"><div class="pt-icon">🛡️</div>Allowance Utilisation</div><span class="chart-badge" id="cb_allow">—</span></div>
-            <div class="chart-container" style="min-height:190px"><canvas id="chartAllowance"></canvas></div>
+            <div class="chart-title">
+                <div class="chart-title-left"><div class="pt-icon">🛡️</div>Allowance Utilisation</div>
+                <span class="chart-badge" id="cb_allow">—</span>
+            </div>
+            <div class="chart-container" style="min-height:180px"><canvas id="chartAllowance"></canvas></div>
+            <div class="chart-guide">
+                <div class="cg-header"><span class="cg-icon">📖</span><span class="cg-title">How to read this chart</span></div>
+                <div class="cg-body">
+                    Shows how the <strong>€2,000 tax-free allowance fills up</strong> as you buy more shares, and when taxable BiK starts accumulating.
+                    <br><br>
+                    <span class="cg-good">■ Green area</span> = allowance used (tax-free BiK). <span class="cg-bad">■ Red area</span> = taxable BiK above the allowance. The point where the green line flattens at €2,000 and the red line starts rising is the <strong>optimal stopping point</strong> for a tax-minimising strategy.
+                    <br><br>
+                    <strong>Key insight:</strong> Buy enough shares to push the green line to €2,000. Every share beyond that point generates taxable BiK — only worth it if you're bullish on the stock.
+                </div>
+                <div class="cg-legend">
+                    <div class="cg-legend-item"><div class="cg-line" style="background:#4ade80"></div>Allowance Used (tax-free)</div>
+                    <div class="cg-legend-item"><div class="cg-line" style="background:#f87171"></div>Taxable BiK (above allowance)</div>
+                </div>
+            </div>
         </div>
+
+        <!-- Heatmap -->
         <div class="chart-panel span3">
-            <div class="chart-title"><div class="chart-title-left"><div class="pt-icon">🌡️</div>Net Gain Heatmap — Shares × Booking Price</div><span style="font-size:9px;color:var(--muted)">Green = profit · Red = loss · ⭐ = baseline · ◀ = your selection</span></div>
+            <div class="chart-title">
+                <div class="chart-title-left"><div class="pt-icon">🌡️</div>Net Gain Heatmap — Shares × Booking Price</div>
+                <span style="font-size:9px;color:var(--muted)">Green = profit · Red = loss · ⭐ = baseline · ◀ = your selection</span>
+            </div>
             <div class="heatmap-wrap"><div id="heatmapContainer"></div></div>
+            <div class="chart-guide">
+                <div class="cg-header"><span class="cg-icon">📖</span><span class="cg-title">How to read this heatmap</span></div>
+                <div class="cg-body">
+                    A <strong>two-dimensional view</strong> of net gain across every combination of share count (rows) and booking price (columns). This is your complete scenario map.
+                    <br><br>
+                    <span class="cg-good">■ Darker green</span> = higher profit. <span class="cg-bad">■ Darker red</span> = larger loss. <strong>Read across a row</strong> to see how your chosen share count performs at different prices. <strong>Read down a column</strong> to see which share count is best at a given price.
+                    <br><br>
+                    <strong>Your selection</strong> is outlined in <span class="cg-blue">blue</span>. The <strong>baseline recommendation</strong> is outlined in <span class="cg-warn">amber ⭐</span>. The <strong>break-even boundary</strong> is where cells transition from red to green — any price to the right of that boundary is profitable for that row.
+                    <br><br>
+                    <strong>Key insight:</strong> If your row stays green across most price columns, your selection is resilient. If it turns red quickly as price falls, you have limited downside protection.
+                </div>
+                <div class="cg-legend">
+                    <div class="cg-legend-item"><div class="cg-dot" style="background:rgba(74,222,128,0.7)"></div>Profitable cell</div>
+                    <div class="cg-legend-item"><div class="cg-dot" style="background:rgba(248,113,113,0.7)"></div>Loss-making cell</div>
+                    <div class="cg-legend-item"><div class="cg-dot" style="background:transparent;border:2px solid #fbbf24;width:10px;height:10px;border-radius:2px"></div>Baseline ⭐</div>
+                    <div class="cg-legend-item"><div class="cg-dot" style="background:transparent;border:2px solid #7dd3fc;width:10px;height:10px;border-radius:2px"></div>Your selection ◀</div>
+                </div>
+            </div>
         </div>
+
     </div>
 
     <div class="footer-bar">
@@ -958,362 +969,200 @@
 /* ══════════════════════════════════════════════════════════════
    CONSTANTS
 ══════════════════════════════════════════════════════════════ */
-const REF   = 241.60;
-const P1    = 96.64;
-const P2    = 193.28;
-const P3    = 217.44;
-const ALLOW = 2000;
-const MAX   = 80;
+const REF=241.60, P1=96.64, P2=193.28, P3=217.44, ALLOW=2000, MAX=80;
+const charts={};
+let _optimalShares=20, _conviction='neutral';
 
-const charts = {};
-let _optimalShares = 20;
-let _conviction    = 'neutral';
+const fmt  = n=>'€'+n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+const fmtP = n=>n.toFixed(1)+'%';
+const fmtN = n=>n.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');
 
-/* ══════════════════════════════════════════════════════════════
-   HELPERS
-══════════════════════════════════════════════════════════════ */
-const fmt  = n => '€' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-const fmtP = n => n.toFixed(1) + '%';
-const fmtN = n => n.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-function calc(shares, bPrice, taxRate) {
-    const t1 = Math.min(shares, 20);
-    const t2 = Math.max(0, Math.min(shares - 20, 20));
-    const t3 = Math.max(0, shares - 40);
-    const c1 = t1 * P1, c2 = t2 * P2, c3 = t3 * P3;
-    const totalCost     = c1 + c2 + c3;
-    const totalDiscount = shares * REF - totalCost;
-    const bik1 = t1 * Math.max(0, bPrice - P1);
-    const bik2 = t2 * Math.max(0, bPrice - P2);
-    const bik3 = t3 * Math.max(0, bPrice - P3);
-    const grossBik   = bik1 + bik2 + bik3;
-    const allowUsed  = Math.min(grossBik, ALLOW);
-    const taxableBik = Math.max(0, grossBik - ALLOW);
-    const taxDue     = taxableBik * (taxRate / 100);
-    const portfolio  = shares * bPrice;
-    const netGain    = portfolio - totalCost - taxDue;
-    const effDisc    = portfolio > 0 ? netGain / portfolio * 100 : 0;
-    const roi        = totalCost > 0 ? netGain / totalCost * 100 : 0;
-    return { t1, t2, t3, c1, c2, c3, totalCost, totalDiscount,
-             bik1, bik2, bik3, grossBik, allowUsed, taxableBik,
-             taxDue, portfolio, netGain, effDisc, roi };
+function calc(shares,bPrice,taxRate){
+    const t1=Math.min(shares,20),t2=Math.max(0,Math.min(shares-20,20)),t3=Math.max(0,shares-40);
+    const c1=t1*P1,c2=t2*P2,c3=t3*P3,totalCost=c1+c2+c3,totalDiscount=shares*REF-totalCost;
+    const bik1=t1*Math.max(0,bPrice-P1),bik2=t2*Math.max(0,bPrice-P2),bik3=t3*Math.max(0,bPrice-P3);
+    const grossBik=bik1+bik2+bik3,allowUsed=Math.min(grossBik,ALLOW),taxableBik=Math.max(0,grossBik-ALLOW);
+    const taxDue=taxableBik*(taxRate/100),portfolio=shares*bPrice,netGain=portfolio-totalCost-taxDue;
+    const effDisc=portfolio>0?netGain/portfolio*100:0,roi=totalCost>0?netGain/totalCost*100:0;
+    return{t1,t2,t3,c1,c2,c3,totalCost,totalDiscount,bik1,bik2,bik3,grossBik,allowUsed,taxableBik,taxDue,portfolio,netGain,effDisc,roi};
 }
 
-function getInputs() {
-    return {
-        shares:  Math.min(Math.max(parseInt(document.getElementById('numShares').value)  || 0, 0), MAX),
-        bPrice:  parseFloat(document.getElementById('bookingPrice').value) || 0,
-        taxRate: parseFloat(document.getElementById('taxRate').value)      || 0
+function getInputs(){
+    return{
+        shares:Math.min(Math.max(parseInt(document.getElementById('numShares').value)||0,0),MAX),
+        bPrice:parseFloat(document.getElementById('bookingPrice').value)||0,
+        taxRate:parseFloat(document.getElementById('taxRate').value)||0
     };
 }
 
-function destroyChart(id) {
-    if (charts[id]) { charts[id].destroy(); delete charts[id]; }
-}
+function destroyChart(id){if(charts[id]){charts[id].destroy();delete charts[id];}}
 
-const CHART_BASE = {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-        legend: { labels: { color: 'rgba(255,255,255,0.55)', font: { size: 10 }, boxWidth: 11 } },
-        tooltip: { backgroundColor: 'rgba(0,15,40,0.95)', titleColor: '#7dd3fc', bodyColor: 'rgba(255,255,255,0.78)', borderColor: 'rgba(0,120,212,0.35)', borderWidth: 1, padding: 9, cornerRadius: 7 }
+const CHART_BASE={
+    responsive:true,maintainAspectRatio:false,
+    plugins:{
+        legend:{labels:{color:'rgba(255,255,255,0.55)',font:{size:10},boxWidth:11}},
+        tooltip:{backgroundColor:'rgba(0,15,40,0.95)',titleColor:'#7dd3fc',bodyColor:'rgba(255,255,255,0.78)',borderColor:'rgba(0,120,212,0.35)',borderWidth:1,padding:9,cornerRadius:7}
     },
-    scales: {
-        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: 'rgba(255,255,255,0.4)', font: { size: 9.5 } } },
-        y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: 'rgba(255,255,255,0.4)', font: { size: 9.5 } } }
+    scales:{
+        x:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'rgba(255,255,255,0.4)',font:{size:9.5}}},
+        y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'rgba(255,255,255,0.4)',font:{size:9.5}}}
     }
 };
 
-/* ══════════════════════════════════════════════════════════════
-   OPTIMAL FINDER (baseline)
-══════════════════════════════════════════════════════════════ */
-function findOptimalShares(bPrice, taxRate) {
-    if (bPrice <= P1) return { shares: 20, allowanceShares: null, data: calc(20, bPrice, taxRate), reason: 'no_bik', reasonText: 'No BiK generated — booking price ≤ purchase price. All gain is pure tax-free discount.' };
-    let allowanceShares = null;
-    for (let s = 1; s <= MAX; s++) {
-        if (calc(s, bPrice, taxRate).allowUsed >= ALLOW) { allowanceShares = s; break; }
-    }
-    if (allowanceShares === null) return { shares: 20, allowanceShares: null, data: calc(20, bPrice, taxRate), reason: 'allowance_unreachable', reasonText: 'Allowance cannot be fully used at this price — 20 shares (full Tier 1) maximises tax-free gain.' };
-    if (allowanceShares <= 20) return { shares: allowanceShares, allowanceShares, data: calc(allowanceShares, bPrice, taxRate), reason: 'tier1_allowance', reasonText: `${allowanceShares} shares exhausts the full €2,000 allowance within Tier 1 (60% off) — optimal.` };
-    if (allowanceShares <= 40) return { shares: allowanceShares, allowanceShares, data: calc(allowanceShares, bPrice, taxRate), reason: 'tier2_allowance', reasonText: `${allowanceShares} shares needed to exhaust the €2,000 allowance (enters Tier 2 at 20% off).` };
-    return { shares: 20, allowanceShares, data: calc(20, bPrice, taxRate), reason: 'tier3_not_recommended', reasonText: `Full allowance would need ${allowanceShares} shares (Tier 3 at 10% off) — not cost-effective. 20 Tier 1 shares at 60% off is better value.` };
+/* ── OPTIMAL FINDER ── */
+function findOptimalShares(bPrice,taxRate){
+    if(bPrice<=P1)return{shares:20,allowanceShares:null,data:calc(20,bPrice,taxRate),reason:'no_bik',reasonText:'No BiK generated — booking price ≤ purchase price. All gain is pure tax-free discount.'};
+    let allowanceShares=null;
+    for(let s=1;s<=MAX;s++){if(calc(s,bPrice,taxRate).allowUsed>=ALLOW){allowanceShares=s;break;}}
+    if(allowanceShares===null)return{shares:20,allowanceShares:null,data:calc(20,bPrice,taxRate),reason:'allowance_unreachable',reasonText:'Allowance cannot be fully used at this price — 20 shares (full Tier 1) maximises tax-free gain.'};
+    if(allowanceShares<=20)return{shares:allowanceShares,allowanceShares,data:calc(allowanceShares,bPrice,taxRate),reason:'tier1_allowance',reasonText:`${allowanceShares} shares exhausts the full €2,000 allowance within Tier 1 (60% off) — optimal.`};
+    if(allowanceShares<=40)return{shares:allowanceShares,allowanceShares,data:calc(allowanceShares,bPrice,taxRate),reason:'tier2_allowance',reasonText:`${allowanceShares} shares needed to exhaust the €2,000 allowance (enters Tier 2 at 20% off).`};
+    return{shares:20,allowanceShares,data:calc(20,bPrice,taxRate),reason:'tier3_not_recommended',reasonText:`Full allowance would need ${allowanceShares} shares (Tier 3 at 10% off) — not cost-effective. 20 Tier 1 shares at 60% off is better value.`};
 }
 
-/* ══════════════════════════════════════════════════════════════
-   MARGINAL ANALYSIS
-══════════════════════════════════════════════════════════════ */
-function buildMarginalAnalysis(bPrice, taxRate) {
-    const waterfall = document.getElementById('ma_waterfall');
-    const slopeBars = document.getElementById('ma_slope_bars');
-
-    // Find allowance cliff share
-    let cliffShare = null;
-    for (let s = 1; s <= 20; s++) {
-        if (calc(s, bPrice, taxRate).allowUsed >= ALLOW) { cliffShare = s; break; }
-    }
-
-    // Marginal gain per share in each segment
-    const mg_t1_free = bPrice > P1 ? (bPrice - P1) : 0;                          // Tier 1, within allowance
-    const mg_t1_tax  = bPrice > P1 ? (bPrice - P1) * (1 - taxRate/100) : 0;      // Tier 1, above allowance
-    const mg_t2_tax  = bPrice > P2 ? (bPrice - P2) * (1 - taxRate/100) : 0;      // Tier 2, taxable
-    const mg_t3_tax  = bPrice > P3 ? (bPrice - P3) * (1 - taxRate/100) : 0;      // Tier 3, taxable
-
-    // Return per €1 invested
-    const roi_t1_free = P1 > 0 ? mg_t1_free / P1 : 0;
-    const roi_t1_tax  = P1 > 0 ? mg_t1_tax  / P1 : 0;
-    const roi_t2_tax  = P2 > 0 ? mg_t2_tax  / P2 : 0;
-    const roi_t3_tax  = P3 > 0 ? mg_t3_tax  / P3 : 0;
-
-    // Recommendation: stop where ROI per euro drops below a meaningful threshold
-    // The cliff between Tier 1 (tax-free) and Tier 1 (taxable) is the key break
-    // Marginal analysis says: stop at the biggest slope drop
-    const slopeDrop_t1 = roi_t1_free - roi_t1_tax;   // drop when allowance exhausted
-    const slopeDrop_t2 = roi_t1_tax  - roi_t2_tax;   // drop entering Tier 2
-    const slopeDrop_t3 = roi_t2_tax  - roi_t3_tax;   // drop entering Tier 3
-
-    // The biggest drop determines the natural stopping point
-    let maShares = 20; // default
-    if (cliffShare !== null && slopeDrop_t1 > slopeDrop_t2 && slopeDrop_t1 > slopeDrop_t3) {
-        // Biggest drop is at allowance cliff — stop there
-        maShares = cliffShare;
-    } else {
-        // Biggest drop is at Tier 1/2 boundary — stop at 20
-        maShares = 20;
-    }
-
-    document.getElementById('ma_rec_shares').textContent = maShares;
-
-    // Build waterfall rows
-    const rows = [];
-
-    if (cliffShare !== null && cliffShare <= 20) {
-        rows.push({ cls: 'tier1-free', shares: `Shares 1–${cliffShare}`, desc: `<strong>Tier 1, tax-free</strong> — within €2,000 allowance`, gain: mg_t1_free, gainCls: 'green', roi: roi_t1_free, highlight: true });
-        if (cliffShare < 20) {
-            rows.push({ cls: 'cliff', shares: '', desc: `<span class="ma-cliff-label">⚡ Allowance exhausted at share ${cliffShare} — tax kicks in from here</span>`, gain: null, gainCls: 'muted', roi: 0, highlight: false });
-            rows.push({ cls: 'tier1-tax', shares: `Shares ${cliffShare+1}–20`, desc: `<strong>Tier 1, now taxable</strong> — same price, but BiK is taxed`, gain: mg_t1_tax, gainCls: 'blue', roi: roi_t1_tax, highlight: false });
+/* ── MARGINAL ANALYSIS ── */
+function buildMarginalAnalysis(bPrice,taxRate){
+    const waterfall=document.getElementById('ma_waterfall');
+    const slopeBars=document.getElementById('ma_slope_bars');
+    let cliffShare=null;
+    for(let s=1;s<=20;s++){if(calc(s,bPrice,taxRate).allowUsed>=ALLOW){cliffShare=s;break;}}
+    const mg_t1_free=bPrice>P1?(bPrice-P1):0;
+    const mg_t1_tax =bPrice>P1?(bPrice-P1)*(1-taxRate/100):0;
+    const mg_t2_tax =bPrice>P2?(bPrice-P2)*(1-taxRate/100):0;
+    const mg_t3_tax =bPrice>P3?(bPrice-P3)*(1-taxRate/100):0;
+    const roi_t1_free=P1>0?mg_t1_free/P1:0;
+    const roi_t1_tax =P1>0?mg_t1_tax/P1:0;
+    const roi_t2_tax =P2>0?mg_t2_tax/P2:0;
+    const roi_t3_tax =P3>0?mg_t3_tax/P3:0;
+    const slopeDrop_t1=roi_t1_free-roi_t1_tax;
+    const slopeDrop_t2=roi_t1_tax-roi_t2_tax;
+    let maShares=20;
+    if(cliffShare!==null&&slopeDrop_t1>slopeDrop_t2)maShares=cliffShare;
+    else maShares=20;
+    document.getElementById('ma_rec_shares').textContent=maShares;
+    const rows=[];
+    if(cliffShare!==null&&cliffShare<=20){
+        rows.push({cls:'tier1-free',shares:`Shares 1–${cliffShare}`,desc:`<strong>Tier 1, tax-free</strong> — within €2,000 allowance`,gain:mg_t1_free,gainCls:'green',highlight:true});
+        if(cliffShare<20){
+            rows.push({cls:'cliff',shares:'',desc:`<span class="ma-cliff-label">⚡ Allowance exhausted at share ${cliffShare} — tax kicks in from here</span>`,gain:null,gainCls:'muted',highlight:false});
+            rows.push({cls:'tier1-tax',shares:`Shares ${cliffShare+1}–20`,desc:`<strong>Tier 1, now taxable</strong> — same price, BiK is taxed`,gain:mg_t1_tax,gainCls:'blue',highlight:false});
         }
-    } else {
-        rows.push({ cls: 'tier1-free', shares: 'Shares 1–20', desc: `<strong>Tier 1, tax-free</strong> — all within €2,000 allowance`, gain: mg_t1_free, gainCls: 'green', roi: roi_t1_free, highlight: true });
+    }else{
+        rows.push({cls:'tier1-free',shares:'Shares 1–20',desc:`<strong>Tier 1, tax-free</strong> — all within €2,000 allowance`,gain:mg_t1_free,gainCls:'green',highlight:true});
     }
-
-    rows.push({ cls: 'cliff', shares: '', desc: `<span class="ma-cliff-label">📉 Tier boundary — discount drops from 60% to 20%</span>`, gain: null, gainCls: 'muted', roi: 0, highlight: false });
-    rows.push({ cls: 'tier2-tax', shares: 'Shares 21–40', desc: `<strong>Tier 2, taxable</strong> — 20% off, BiK fully taxed`, gain: mg_t2_tax, gainCls: 'amber', roi: roi_t2_tax, highlight: false });
-    rows.push({ cls: 'cliff', shares: '', desc: `<span class="ma-cliff-label">📉 Tier boundary — discount drops from 20% to 10%</span>`, gain: null, gainCls: 'muted', roi: 0, highlight: false });
-    rows.push({ cls: 'tier3-tax', shares: 'Shares 41–80', desc: `<strong>Tier 3, taxable</strong> — 10% off, BiK fully taxed`, gain: mg_t3_tax, gainCls: 'red', roi: roi_t3_tax, highlight: false });
-
-    const maxGain = Math.max(mg_t1_free, mg_t1_tax, mg_t2_tax, mg_t3_tax, 0.01);
-
-    waterfall.innerHTML = rows.map(r => {
-        if (r.gain === null) {
-            return `<div class="ma-row cliff"><div style="width:100%">${r.desc}</div></div>`;
-        }
-        const barPct = (r.gain / maxGain * 100).toFixed(1);
-        const barColor = r.gainCls === 'green' ? '#4ade80' : r.gainCls === 'blue' ? '#7dd3fc' : r.gainCls === 'amber' ? '#fbbf24' : '#f87171';
-        return `
-        <div class="ma-row ${r.cls}${r.highlight ? ' highlight-row' : ''}">
-            <div class="ma-shares">${r.shares}</div>
-            <div class="ma-desc">${r.desc}</div>
-            <div class="ma-bar-wrap">
-                <div class="ma-bar"><div class="ma-bar-fill" style="width:${barPct}%;background:${barColor}"></div></div>
-            </div>
-            <div class="ma-gain ${r.gainCls}">${fmt(r.gain)}/sh</div>
-        </div>`;
+    rows.push({cls:'cliff',shares:'',desc:`<span class="ma-cliff-label">📉 Tier boundary — discount drops from 60% to 20%</span>`,gain:null,gainCls:'muted',highlight:false});
+    rows.push({cls:'tier2-tax',shares:'Shares 21–40',desc:`<strong>Tier 2, taxable</strong> — 20% off, BiK fully taxed`,gain:mg_t2_tax,gainCls:'amber',highlight:false});
+    rows.push({cls:'cliff',shares:'',desc:`<span class="ma-cliff-label">📉 Tier boundary — discount drops from 20% to 10%</span>`,gain:null,gainCls:'muted',highlight:false});
+    rows.push({cls:'tier3-tax',shares:'Shares 41–80',desc:`<strong>Tier 3, taxable</strong> — 10% off, BiK fully taxed`,gain:mg_t3_tax,gainCls:'red',highlight:false});
+    const maxGain=Math.max(mg_t1_free,mg_t1_tax,mg_t2_tax,mg_t3_tax,0.01);
+    waterfall.innerHTML=rows.map(r=>{
+        if(r.gain===null)return`<div class="ma-row cliff"><div style="width:100%">${r.desc}</div></div>`;
+        const barPct=(r.gain/maxGain*100).toFixed(1);
+        const barColor=r.gainCls==='green'?'#4ade80':r.gainCls==='blue'?'#7dd3fc':r.gainCls==='amber'?'#fbbf24':'#f87171';
+        return`<div class="ma-row ${r.cls}${r.highlight?' highlight-row':''}"><div class="ma-shares">${r.shares}</div><div class="ma-desc">${r.desc}</div><div class="ma-bar-wrap"><div class="ma-bar"><div class="ma-bar-fill" style="width:${barPct}%;background:${barColor}"></div></div></div><div class="ma-gain ${r.gainCls}">${fmt(r.gain)}/sh</div></div>`;
     }).join('');
-
-    // Slope bars
-    const segments = [
-        { label: 'T1 Free', val: roi_t1_free, color: '#4ade80' },
-        { label: 'T1 Tax',  val: roi_t1_tax,  color: '#7dd3fc' },
-        { label: 'T2 Tax',  val: roi_t2_tax,  color: '#fbbf24' },
-        { label: 'T3 Tax',  val: roi_t3_tax,  color: '#f87171' }
+    const segments=[
+        {label:'T1 Free',val:roi_t1_free,color:'#4ade80'},
+        {label:'T1 Tax', val:roi_t1_tax, color:'#7dd3fc'},
+        {label:'T2 Tax', val:roi_t2_tax, color:'#fbbf24'},
+        {label:'T3 Tax', val:roi_t3_tax, color:'#f87171'}
     ];
-    const maxROI = Math.max(...segments.map(s => s.val), 0.01);
-
-    slopeBars.innerHTML = segments.map(s => {
-        const h = Math.max((s.val / maxROI * 52), 4).toFixed(0);
-        return `
-        <div class="slope-bar-wrap">
-            <div class="slope-bar-val" style="color:${s.color}">${(s.val * 100).toFixed(0)}%</div>
-            <div class="slope-bar" style="height:${h}px;background:${s.color};opacity:0.8"></div>
-            <div class="slope-bar-label">${s.label}</div>
-        </div>`;
+    const maxROI=Math.max(...segments.map(s=>s.val),0.01);
+    slopeBars.innerHTML=segments.map(s=>{
+        const h=Math.max((s.val/maxROI*52),4).toFixed(0);
+        return`<div class="slope-bar-wrap"><div class="slope-bar-val" style="color:${s.color}">${(s.val*100).toFixed(0)}%</div><div class="slope-bar" style="height:${h}px;background:${s.color};opacity:0.8"></div><div class="slope-bar-label">${s.label}</div></div>`;
     }).join('');
 }
 
-/* ══════════════════════════════════════════════════════════════
-   MECHANISM DESIGN
-══════════════════════════════════════════════════════════════ */
-function setConviction(c) {
-    _conviction = c;
-    ['neutral','bullish','very-bullish'].forEach(x => {
-        const el = document.getElementById('cb_' + x.replace('-','_'));
-        if (el) { el.className = 'conviction-btn ' + x + (x === c ? ' selected' : ''); }
+/* ── MECHANISM DESIGN ── */
+function setConviction(c){
+    _conviction=c;
+    ['neutral','bullish','very-bullish'].forEach(x=>{
+        const el=document.getElementById('cb_'+x.replace('-','_'));
+        if(el)el.className='conviction-btn '+x+(x===c?' selected':'');
     });
-    const { bPrice, taxRate } = getInputs();
-    buildMechanismDesign(bPrice, taxRate);
+    const{bPrice,taxRate}=getInputs();
+    buildMechanismDesign(bPrice,taxRate);
 }
 
-function buildMechanismDesign(bPrice, taxRate) {
-    const result = document.getElementById('md_result');
-
-    // Mechanism Design maps conviction → tier → shares
-    const scenarios = {
-        'neutral':     { shares: 20, tier: 'Tier 1 only',     color: 'neutral',     icon: '😐', label: 'Neutral',     reason: 'No strong view on the stock — participate purely for the 60% discount. Tier 1 is a dominant strategy regardless of price outlook. Tier 2/3 require positive conviction to justify.' },
-        'bullish':     { shares: 40, tier: 'Tier 1 + Tier 2', color: 'bullish',     icon: '📈', label: 'Bullish',     reason: 'You believe the stock will rise — Tier 2 at 20% off is worth taking. Even after tax, the combination of discount + expected price appreciation makes 40 shares rational.' },
-        'very-bullish':{ shares: 80, tier: 'All tiers',       color: 'very-bullish', icon: '🚀', label: 'Very Bullish', reason: 'High conviction long position — all 80 shares maximise your exposure. Tier 3 at 10% off is only rational if you genuinely expect significant price appreciation to compensate for the lower discount and full tax on BiK.' }
+function buildMechanismDesign(bPrice,taxRate){
+    const result=document.getElementById('md_result');
+    const scenarios={
+        'neutral':     {shares:20,tier:'Tier 1 only',    color:'neutral',    icon:'😐',label:'Neutral',    reason:'No strong view on the stock — participate purely for the 60% discount. Tier 1 is a dominant strategy regardless of price outlook.'},
+        'bullish':     {shares:40,tier:'Tier 1 + Tier 2',color:'bullish',    icon:'📈',label:'Bullish',    reason:'You believe the stock will rise — Tier 2 at 20% off is worth taking. Expected price appreciation adds to the discount return.'},
+        'very-bullish':{shares:80,tier:'All tiers',      color:'very-bullish',icon:'🚀',label:'Very Bullish',reason:'High conviction long position — all 80 shares maximise exposure. Tier 3 at 10% off only rational with significant expected price appreciation.'}
     };
-
-    const s = scenarios[_conviction];
-    const d = calc(s.shares, bPrice, taxRate);
-
-    document.getElementById('md_rec_shares').textContent = s.shares;
-    document.getElementById('md_rec_shares').style.color = s.color === 'neutral' ? 'var(--accent)' : s.color === 'bullish' ? 'var(--green)' : 'var(--purple)';
-
-    // Signal row
-    let html = `
-    <div class="md-signal-row active-${s.color}">
-        <div class="md-signal-icon">${s.icon}</div>
-        <div class="md-signal-body">
-            <div class="md-signal-label">Your conviction signal → ${s.tier}</div>
-            <div class="md-signal-value ${s.color}">${s.label} — ${s.shares} shares recommended</div>
-            <div class="md-signal-sub">${s.reason}</div>
-        </div>
-        <div class="md-signal-shares ${s.color}">${s.shares}</div>
-    </div>`;
-
-    // Screening table — all three scenarios side by side
-    html += `
-    <table class="md-screen-table">
-        <thead>
-            <tr>
-                <th>Conviction</th>
-                <th>Shares</th>
-                <th>Net Gain</th>
-                <th>ROI</th>
-                <th>Allowance</th>
-                <th>Tax Due</th>
-            </tr>
-        </thead>
-        <tbody>`;
-
-    Object.entries(scenarios).forEach(([key, sc]) => {
-        const dd = calc(sc.shares, bPrice, taxRate);
-        const isActive = key === _conviction;
-        html += `
-        <tr class="${isActive ? 'active-row' : ''}">
-            <td style="font-weight:${isActive?'800':'500'};color:${isActive?'var(--amber)':'rgba(255,255,255,0.6)'}">${sc.icon} ${sc.label}</td>
-            <td style="font-weight:700;color:var(--accent)">${sc.shares}</td>
-            <td style="color:var(--green);font-weight:${isActive?'800':'600'}">${fmt(dd.netGain)}</td>
-            <td style="color:var(--accent)">${fmtP(dd.roi)}</td>
-            <td style="color:${dd.allowUsed>=ALLOW?'var(--green)':'var(--amber)'}">${fmt(dd.allowUsed)}</td>
-            <td style="color:var(--red)">${fmt(dd.taxDue)}</td>
-        </tr>`;
+    const s=scenarios[_conviction];
+    const d=calc(s.shares,bPrice,taxRate);
+    document.getElementById('md_rec_shares').textContent=s.shares;
+    document.getElementById('md_rec_shares').style.color=s.color==='neutral'?'var(--accent)':s.color==='bullish'?'var(--green)':'var(--purple)';
+    let html=`<div class="md-signal-row active-${s.color}"><div class="md-signal-icon">${s.icon}</div><div class="md-signal-body"><div class="md-signal-label">Your conviction signal → ${s.tier}</div><div class="md-signal-value ${s.color}">${s.label} — ${s.shares} shares recommended</div><div class="md-signal-sub">${s.reason}</div></div><div class="md-signal-shares ${s.color}">${s.shares}</div></div>`;
+    html+=`<table class="md-screen-table"><thead><tr><th>Conviction</th><th>Shares</th><th>Net Gain</th><th>ROI</th><th>Allowance</th><th>Tax Due</th></tr></thead><tbody>`;
+    Object.entries(scenarios).forEach(([key,sc])=>{
+        const dd=calc(sc.shares,bPrice,taxRate);
+        const isActive=key===_conviction;
+        html+=`<tr class="${isActive?'active-row':''}"><td style="font-weight:${isActive?'800':'500'};color:${isActive?'var(--amber)':'rgba(255,255,255,0.6)'}">${sc.icon} ${sc.label}</td><td style="font-weight:700;color:var(--accent)">${sc.shares}</td><td style="color:var(--green);font-weight:${isActive?'800':'600'}">${fmt(dd.netGain)}</td><td style="color:var(--accent)">${fmtP(dd.roi)}</td><td style="color:${dd.allowUsed>=ALLOW?'var(--green)':'var(--amber)'}">${fmt(dd.allowUsed)}</td><td style="color:var(--red)">${fmt(dd.taxDue)}</td></tr>`;
     });
-
-    html += `</tbody></table>`;
-
-    // Apply button
-    html += `<button class="md-apply-btn ${s.color}" onclick="applyMD(${s.shares})">
-        ${s.icon} Apply ${s.shares} Shares (${s.label} Strategy)
-    </button>`;
-
-    result.innerHTML = html;
+    html+=`</tbody></table><button class="md-apply-btn ${s.color}" onclick="applyMD(${s.shares})">${s.icon} Apply ${s.shares} Shares (${s.label} Strategy)</button>`;
+    result.innerHTML=html;
 }
 
-function applyMD(shares) {
-    document.getElementById('numShares').value    = shares;
-    document.getElementById('sharesSlider').value = shares;
-    syncSlider();
-    calculate();
+function applyMD(shares){
+    document.getElementById('numShares').value=shares;
+    document.getElementById('sharesSlider').value=shares;
+    syncSlider();calculate();
 }
 
-/* ══════════════════════════════════════════════════════════════
-   SMART BANNER
-══════════════════════════════════════════════════════════════ */
-function updateSmartBanner(bPrice, taxRate, currentShares) {
-    const opt = findOptimalShares(bPrice, taxRate);
-    _optimalShares = opt.shares;
-    const d   = opt.data;
-    const isCurrentOptimal = currentShares === opt.shares;
-
-    const headlineEl = document.getElementById('srb_headline');
-    if (isCurrentOptimal) {
-        headlineEl.innerHTML = `✅ Your <span class="hl-green">${opt.shares} shares</span> is the optimal baseline — <span class="hl-green">${fmt(d.netGain)}</span> net gain.`;
-    } else {
-        headlineEl.innerHTML = `Baseline: <span class="hl-amber">${opt.shares} shares</span> → net gain <span class="hl-green">${fmt(d.netGain)}</span>`;
-    }
-
-    const reasoningEl = document.getElementById('srb_reasoning');
-    const steps = buildReasoningSteps(opt, bPrice, taxRate, currentShares);
-    reasoningEl.innerHTML = steps.map(s => `
-        <div class="srb-step">
-            <div class="srb-step-num ${s.cls}">${s.num}</div>
-            <div class="srb-step-text">${s.text}</div>
-        </div>`).join('');
-
-    document.getElementById('srb_pills').innerHTML = `
-        <span class="srb-pill green">💰 Net Gain: ${fmt(d.netGain)}</span>
-        <span class="srb-pill blue">📊 ROI: ${fmtP(d.roi)}</span>
-        <span class="srb-pill green">🛡️ Allowance: ${fmt(d.allowUsed)} used</span>
-        <span class="srb-pill ${d.taxableBik > 0 ? 'amber' : 'green'}">⚖️ Taxable BiK: ${fmt(d.taxableBik)}</span>
-        <span class="srb-pill blue">💸 Cost: ${fmt(d.totalCost)}</span>`;
-
-    const applyBtn = document.getElementById('srb_applyBtn');
-    if (isCurrentOptimal) { applyBtn.textContent = '✅ Already Optimal'; applyBtn.className = 'srb-apply-btn optimal'; }
-    else { applyBtn.textContent = `✨ Apply ${opt.shares} Shares`; applyBtn.className = 'srb-apply-btn'; }
-
-    document.getElementById('k_optimal').textContent = opt.shares + ' sh';
-    document.getElementById('k_optimal_sub').textContent = 'Full allowance utilised';
-    const ob = document.getElementById('k_optimal_badge');
-    ob.textContent = fmt(d.netGain) + ' gain'; ob.className = 'kpi-badge star';
+/* ── SMART BANNER ── */
+function updateSmartBanner(bPrice,taxRate,currentShares){
+    const opt=findOptimalShares(bPrice,taxRate);
+    _optimalShares=opt.shares;
+    const d=opt.data,isCurrentOptimal=currentShares===opt.shares;
+    const headlineEl=document.getElementById('srb_headline');
+    if(isCurrentOptimal)headlineEl.innerHTML=`✅ Your <span class="hl-green">${opt.shares} shares</span> is the optimal baseline — <span class="hl-green">${fmt(d.netGain)}</span> net gain.`;
+    else headlineEl.innerHTML=`Baseline: <span class="hl-amber">${opt.shares} shares</span> → net gain <span class="hl-green">${fmt(d.netGain)}</span>`;
+    const steps=buildReasoningSteps(opt,bPrice,taxRate,currentShares);
+    document.getElementById('srb_reasoning').innerHTML=steps.map(s=>`<div class="srb-step"><div class="srb-step-num ${s.cls}">${s.num}</div><div class="srb-step-text">${s.text}</div></div>`).join('');
+    document.getElementById('srb_pills').innerHTML=`<span class="srb-pill green">💰 Net Gain: ${fmt(d.netGain)}</span><span class="srb-pill blue">📊 ROI: ${fmtP(d.roi)}</span><span class="srb-pill green">🛡️ Allowance: ${fmt(d.allowUsed)} used</span><span class="srb-pill ${d.taxableBik>0?'amber':'green'}">⚖️ Taxable BiK: ${fmt(d.taxableBik)}</span><span class="srb-pill blue">💸 Cost: ${fmt(d.totalCost)}</span>`;
+    const applyBtn=document.getElementById('srb_applyBtn');
+    if(isCurrentOptimal){applyBtn.textContent='✅ Already Optimal';applyBtn.className='srb-apply-btn optimal';}
+    else{applyBtn.textContent=`✨ Apply ${opt.shares} Shares`;applyBtn.className='srb-apply-btn';}
+    document.getElementById('k_optimal').textContent=opt.shares+' sh';
+    document.getElementById('k_optimal_sub').textContent='Full allowance utilised';
+    const ob=document.getElementById('k_optimal_badge');
+    ob.textContent=fmt(d.netGain)+' gain';ob.className='kpi-badge star';
 }
 
-function buildReasoningSteps(opt, bPrice, taxRate, currentShares) {
-    const steps = [];
-    const d = opt.data;
-    const t1 = Math.min(opt.shares, 20), t2 = Math.max(0, Math.min(opt.shares-20,20)), t3 = Math.max(0, opt.shares-40);
-    const tierParts = [];
-    if (t1>0) tierParts.push(`<strong>${t1} × 60% off</strong> = ${fmt(t1*P1)}`);
-    if (t2>0) tierParts.push(`<strong>${t2} × 20% off</strong> = ${fmt(t2*P2)}`);
-    if (t3>0) tierParts.push(`<strong>${t3} × 10% off</strong> = ${fmt(t3*P3)}`);
-    steps.push({ num:'1', cls:'info', text:`<strong>Tier allocation:</strong> ${tierParts.join(' + ')} → total cost <strong>${fmt(d.totalCost)}</strong>` });
-    if (opt.reason === 'no_bik') steps.push({ num:'2', cls:'done', text:`Booking price ≤ purchase price — <strong>zero BiK</strong>. All gain is pure tax-free discount.` });
-    else if (opt.reason === 'allowance_unreachable') steps.push({ num:'2', cls:'warn', text:`Even 80 shares only generates <strong>${fmt(calc(80,bPrice,taxRate).grossBik)}</strong> BiK — below €2,000. All BiK is tax-free regardless.` });
-    else if (opt.reason === 'tier3_not_recommended') steps.push({ num:'2', cls:'warn', text:`Full allowance needs <strong>${opt.allowanceShares} shares</strong> (Tier 3 at 10% off). Tier 3 discount too small — <strong>20 Tier 1 shares</strong> gives better value per euro.` });
-    else steps.push({ num:'2', cls:'done', text:`<strong>${opt.shares} shares</strong> generates <strong>${fmt(d.grossBik)}</strong> BiK — fully covered by the <strong>€2,000 tax-free allowance</strong>. Zero tax on this gain.` });
-    if (opt.shares < MAX && opt.reason !== 'tier3_not_recommended') {
-        const next = calc(opt.shares+1, bPrice, taxRate);
-        steps.push({ num:'3', cls:'warn', text:`Share #${opt.shares+1} generates <strong>${fmt(next.grossBik-d.grossBik)}</strong> extra BiK — now <strong>taxable</strong>. Extra tax: <strong>${fmt(next.taxDue-d.taxDue)}</strong>.` });
-    } else if (opt.reason === 'tier3_not_recommended') {
-        steps.push({ num:'3', cls:'warn', text:`Tier 3 costs <strong>€217.44</strong>/share (only 10% off). Taxable BiK + low discount = poor marginal value.` });
-    }
-    if (currentShares !== opt.shares) {
-        const gainDiff = d.netGain - calc(currentShares, bPrice, taxRate).netGain;
-        steps.push({ num:'4', cls: gainDiff>=0?'done':'warn', text:`Switching from <strong>${currentShares}</strong> to <strong>${opt.shares} shares</strong> ${gainDiff>=0?'increases':'changes'} net gain by <strong>${gainDiff>=0?'+':''}${fmt(gainDiff)}</strong>.` });
-    } else {
-        steps.push({ num:'4', cls:'done', text:`Your <strong>${currentShares} shares</strong> is already the optimal baseline. ✅` });
-    }
+function buildReasoningSteps(opt,bPrice,taxRate,currentShares){
+    const steps=[],d=opt.data;
+    const t1=Math.min(opt.shares,20),t2=Math.max(0,Math.min(opt.shares-20,20)),t3=Math.max(0,opt.shares-40);
+    const tierParts=[];
+    if(t1>0)tierParts.push(`<strong>${t1} × 60% off</strong> = ${fmt(t1*P1)}`);
+    if(t2>0)tierParts.push(`<strong>${t2} × 20% off</strong> = ${fmt(t2*P2)}`);
+    if(t3>0)tierParts.push(`<strong>${t3} × 10% off</strong> = ${fmt(t3*P3)}`);
+    steps.push({num:'1',cls:'info',text:`<strong>Tier allocation:</strong> ${tierParts.join(' + ')} → total cost <strong>${fmt(d.totalCost)}</strong>`});
+    if(opt.reason==='no_bik')steps.push({num:'2',cls:'done',text:`Booking price ≤ purchase price — <strong>zero BiK</strong>. All gain is pure tax-free discount.`});
+    else if(opt.reason==='allowance_unreachable')steps.push({num:'2',cls:'warn',text:`Even 80 shares only generates <strong>${fmt(calc(80,bPrice,taxRate).grossBik)}</strong> BiK — below €2,000. All BiK is tax-free regardless.`});
+    else if(opt.reason==='tier3_not_recommended')steps.push({num:'2',cls:'warn',text:`Full allowance needs <strong>${opt.allowanceShares} shares</strong> (Tier 3 at 10% off). Tier 3 discount too small — <strong>20 Tier 1 shares</strong> gives better value per euro.`});
+    else steps.push({num:'2',cls:'done',text:`<strong>${opt.shares} shares</strong> generates <strong>${fmt(d.grossBik)}</strong> BiK — fully covered by the <strong>€2,000 tax-free allowance</strong>. Zero tax on this gain.`});
+    if(opt.shares<MAX&&opt.reason!=='tier3_not_recommended'){const next=calc(opt.shares+1,bPrice,taxRate);steps.push({num:'3',cls:'warn',text:`Share #${opt.shares+1} generates <strong>${fmt(next.grossBik-d.grossBik)}</strong> extra BiK — now <strong>taxable</strong>. Extra tax: <strong>${fmt(next.taxDue-d.taxDue)}</strong>.`});}
+    else if(opt.reason==='tier3_not_recommended')steps.push({num:'3',cls:'warn',text:`Tier 3 costs <strong>€217.44</strong>/share (only 10% off). Taxable BiK + low discount = poor marginal value.`});
+    if(currentShares!==opt.shares){const gainDiff=d.netGain-calc(currentShares,bPrice,taxRate).netGain;steps.push({num:'4',cls:gainDiff>=0?'done':'warn',text:`Switching from <strong>${currentShares}</strong> to <strong>${opt.shares} shares</strong> ${gainDiff>=0?'increases':'changes'} net gain by <strong>${gainDiff>=0?'+':''}${fmt(gainDiff)}</strong>.`});}
+    else steps.push({num:'4',cls:'done',text:`Your <strong>${currentShares} shares</strong> is already the optimal baseline. ✅`});
     return steps;
 }
 
-function applyOptimal() {
-    document.getElementById('numShares').value    = _optimalShares;
-    document.getElementById('sharesSlider').value = _optimalShares;
-    syncSlider(); calculate();
+function applyOptimal(){
+    document.getElementById('numShares').value=_optimalShares;
+    document.getElementById('sharesSlider').value=_optimalShares;
+    syncSlider();calculate();
 }
 
-/* ══════════════════════════════════════════════════════════════
-   SYNC / BAR / GAUGE
-══════════════════════════════════════════════════════════════ */
-function syncSlider() {
-    const v = Math.min(Math.max(parseInt(document.getElementById('numShares').value)||1,1),MAX);
-    document.getElementById('sharesSlider').value = v; updateBar(v);
-}
-function syncInput() {
-    const v = parseInt(document.getElementById('sharesSlider').value)||1;
-    document.getElementById('numShares').value = v; updateBar(v);
-}
-function updateBar(total) {
-    const t1=Math.min(total,20), t2=Math.max(0,Math.min(total-20,20)), t3=Math.max(0,total-40);
+/* ── SYNC / BAR / GAUGE ── */
+function syncSlider(){const v=Math.min(Math.max(parseInt(document.getElementById('numShares').value)||1,1),MAX);document.getElementById('sharesSlider').value=v;updateBar(v);}
+function syncInput(){const v=parseInt(document.getElementById('sharesSlider').value)||1;document.getElementById('numShares').value=v;updateBar(v);}
+function updateBar(total){
+    const t1=Math.min(total,20),t2=Math.max(0,Math.min(total-20,20)),t3=Math.max(0,total-40);
     document.getElementById('bar1').style.width=(t1/MAX*100)+'%';
     document.getElementById('bar2').style.width=(t2/MAX*100)+'%';
     document.getElementById('bar3').style.width=(t3/MAX*100)+'%';
@@ -1324,7 +1173,7 @@ function updateBar(total) {
     document.getElementById('tp2fill').style.width=(t2/20*100)+'%';
     document.getElementById('tp3fill').style.width=(t3/40*100)+'%';
 }
-function updateGauge(pct) {
+function updateGauge(pct){
     const c=Math.min(Math.max(pct,0),100);
     document.getElementById('gaugeFill').style.strokeDashoffset=195-(c/100*195);
     document.getElementById('gaugeText').textContent=fmtP(c);
@@ -1333,103 +1182,81 @@ function updateGauge(pct) {
     document.getElementById('gaugeNeedle').setAttribute('cy',(82+62*Math.sin(rad)).toFixed(2));
 }
 
-/* ══════════════════════════════════════════════════════════════
-   MAIN CALCULATE
-══════════════════════════════════════════════════════════════ */
+/* ── MAIN CALCULATE ── */
 function animVal(el,txt){el.textContent=txt;el.classList.remove('updated');void el.offsetWidth;el.classList.add('updated');}
 
-function calculate() {
-    const { shares, bPrice, taxRate } = getInputs();
-    if (!shares || !bPrice) return;
-    const d = calc(shares, bPrice, taxRate);
-
-    animVal(document.getElementById('r_totalCost'),     fmt(d.totalCost));
-    animVal(document.getElementById('r_totalDiscount'), fmt(d.totalDiscount));
-    animVal(document.getElementById('r_grossBik'),      fmt(d.grossBik));
-    animVal(document.getElementById('r_taxableBik'),    fmt(d.taxableBik));
-
-    document.getElementById('n_portfolio').textContent   = fmt(d.portfolio);
-    document.getElementById('n_deductions').textContent  = '- '+fmt(d.totalCost+d.taxDue);
-    document.getElementById('n_netGain').textContent     = fmt(d.netGain);
-    document.getElementById('n_effDiscount').textContent = fmtP(d.effDisc);
-    document.getElementById('n_taxDue').textContent      = fmt(d.taxDue);
-    document.getElementById('n_allowance').textContent   = fmt(d.allowUsed);
-
-    document.getElementById('t_grossBik').textContent   = fmt(d.grossBik);
-    document.getElementById('t_allowance').textContent  = '- '+fmt(d.allowUsed);
-    document.getElementById('t_taxableBik').textContent = fmt(d.taxableBik);
-    document.getElementById('t_taxRate').textContent    = fmtP(taxRate);
-    document.getElementById('t_taxDue').textContent     = fmt(d.taxDue);
-
-    document.getElementById('s_t1').textContent    = d.t1+' shares';
-    document.getElementById('s_t2').textContent    = d.t2+' shares';
-    document.getElementById('s_t3').textContent    = d.t3+' shares';
-    document.getElementById('s_total').textContent = shares+' shares';
-
+function calculate(){
+    const{shares,bPrice,taxRate}=getInputs();
+    if(!shares||!bPrice)return;
+    const d=calc(shares,bPrice,taxRate);
+    animVal(document.getElementById('r_totalCost'),fmt(d.totalCost));
+    animVal(document.getElementById('r_totalDiscount'),fmt(d.totalDiscount));
+    animVal(document.getElementById('r_grossBik'),fmt(d.grossBik));
+    animVal(document.getElementById('r_taxableBik'),fmt(d.taxableBik));
+    document.getElementById('n_portfolio').textContent=fmt(d.portfolio);
+    document.getElementById('n_deductions').textContent='- '+fmt(d.totalCost+d.taxDue);
+    document.getElementById('n_netGain').textContent=fmt(d.netGain);
+    document.getElementById('n_effDiscount').textContent=fmtP(d.effDisc);
+    document.getElementById('n_taxDue').textContent=fmt(d.taxDue);
+    document.getElementById('n_allowance').textContent=fmt(d.allowUsed);
+    document.getElementById('t_grossBik').textContent=fmt(d.grossBik);
+    document.getElementById('t_allowance').textContent='- '+fmt(d.allowUsed);
+    document.getElementById('t_taxableBik').textContent=fmt(d.taxableBik);
+    document.getElementById('t_taxRate').textContent=fmtP(taxRate);
+    document.getElementById('t_taxDue').textContent=fmt(d.taxDue);
+    document.getElementById('s_t1').textContent=d.t1+' shares';
+    document.getElementById('s_t2').textContent=d.t2+' shares';
+    document.getElementById('s_t3').textContent=d.t3+' shares';
+    document.getElementById('s_total').textContent=shares+' shares';
     updateGauge(d.effDisc);
     updateBar(shares);
-
-    const tbody = document.getElementById('tableBody');
-    tbody.innerHTML = '';
-    [
-        {label:'Tier 1 (60% off)',sh:d.t1,disc:'60%',price:P1,cost:d.c1,bikPS:d.t1>0?Math.max(0,bPrice-P1):0,bik:d.bik1},
-        {label:'Tier 2 (20% off)',sh:d.t2,disc:'20%',price:P2,cost:d.c2,bikPS:d.t2>0?Math.max(0,bPrice-P2):0,bik:d.bik2},
-        {label:'Tier 3 (10% off)',sh:d.t3,disc:'10%',price:P3,cost:d.c3,bikPS:d.t3>0?Math.max(0,bPrice-P3):0,bik:d.bik3},
-    ].forEach(r => {
-        if (r.sh>0) {
-            const tr=document.createElement('tr');
-            tr.innerHTML=`<td>${r.label}</td><td><strong style="color:#7dd3fc">${r.sh}</strong></td><td><span style="color:#4ade80;font-weight:700">${r.disc}</span></td><td>${fmt(r.price)}</td><td>${fmt(r.cost)}</td><td>${fmt(r.bikPS)}</td><td><strong>${fmt(r.bik)}</strong></td>`;
-            tbody.appendChild(tr);
-        }
+    const tbody=document.getElementById('tableBody');
+    tbody.innerHTML='';
+    [{label:'Tier 1 (60% off)',sh:d.t1,disc:'60%',price:P1,cost:d.c1,bikPS:d.t1>0?Math.max(0,bPrice-P1):0,bik:d.bik1},
+     {label:'Tier 2 (20% off)',sh:d.t2,disc:'20%',price:P2,cost:d.c2,bikPS:d.t2>0?Math.max(0,bPrice-P2):0,bik:d.bik2},
+     {label:'Tier 3 (10% off)',sh:d.t3,disc:'10%',price:P3,cost:d.c3,bikPS:d.t3>0?Math.max(0,bPrice-P3):0,bik:d.bik3}
+    ].forEach(r=>{
+        if(r.sh>0){const tr=document.createElement('tr');tr.innerHTML=`<td>${r.label}</td><td><strong style="color:#7dd3fc">${r.sh}</strong></td><td><span style="color:#4ade80;font-weight:700">${r.disc}</span></td><td>${fmt(r.price)}</td><td>${fmt(r.cost)}</td><td>${fmt(r.bikPS)}</td><td><strong>${fmt(r.bik)}</strong></td>`;tbody.appendChild(tr);}
     });
     const addRow=(cls,cols)=>{const tr=document.createElement('tr');tr.className=cls;tr.innerHTML=cols.map(c=>`<td>${c}</td>`).join('');tbody.appendChild(tr);};
     addRow('tr-total',['TOTAL',`<strong>${shares} shares</strong>`,'—','—',fmt(d.totalCost),'—',fmt(d.grossBik)]);
     addRow('tr-allowance',['§3 No.39 Allowance','','','','','','- '+fmt(d.allowUsed)]);
     addRow('tr-taxable',['Taxable Benefit in Kind','','','','','',fmt(d.taxableBik)]);
-
-    updateSmartBanner(bPrice, taxRate, shares);
-    buildMarginalAnalysis(bPrice, taxRate);
-    buildMechanismDesign(bPrice, taxRate);
+    updateSmartBanner(bPrice,taxRate,shares);
+    buildMarginalAnalysis(bPrice,taxRate);
+    buildMechanismDesign(bPrice,taxRate);
     updateAnalytics();
 }
 
-/* ══════════════════════════════════════════════════════════════
-   ANALYTICS
-══════════════════════════════════════════════════════════════ */
-function updateAnalytics() {
-    const { shares, bPrice, taxRate } = getInputs();
-    if (!shares || !bPrice) return;
-    const d   = calc(shares, bPrice, taxRate);
-    const opt = findOptimalShares(bPrice, taxRate);
-
-    let bePrice = 0;
-    for (let p=bPrice; p>=0; p-=0.5) { if (calc(shares,p,taxRate).netGain<=0){bePrice=p+0.5;break;} }
-    const downside = bPrice>0 ? ((bPrice-bePrice)/bPrice*100) : 0;
-
+/* ── ANALYTICS ── */
+function updateAnalytics(){
+    const{shares,bPrice,taxRate}=getInputs();
+    if(!shares||!bPrice)return;
+    const d=calc(shares,bPrice,taxRate),opt=findOptimalShares(bPrice,taxRate);
+    let bePrice=0;
+    for(let p=bPrice;p>=0;p-=0.5){if(calc(shares,p,taxRate).netGain<=0){bePrice=p+0.5;break;}}
+    const downside=bPrice>0?((bPrice-bePrice)/bPrice*100):0;
     const setKPI=(id,val,bid,bt,bc)=>{document.getElementById(id).textContent=val;const b=document.getElementById(bid);b.textContent=bt;b.className='kpi-badge '+bc;};
     setKPI('k_netGain',fmt(d.netGain),'k_netGain_badge',d.netGain>=0?'↑ Profit':'↓ Loss',d.netGain>=0?'up':'down');
     setKPI('k_roi',fmtP(d.roi),'k_roi_badge',d.roi>=0?'↑ Positive':'↓ Negative',d.roi>=0?'up':'down');
     setKPI('k_breakeven',fmt(bePrice),'k_be_badge',bePrice<REF?'✓ Below ref.':'↑ Above ref.',bePrice<REF?'up':'warn');
     setKPI('k_downside',fmtP(downside),'k_downside_badge',fmt(bPrice-bePrice)+' buffer','info');
-
     document.getElementById('cb_sensitivity').textContent='Break-even ~'+fmt(bePrice);
     document.getElementById('cb_roi').textContent='⭐ Baseline: '+opt.shares+' sh';
     document.getElementById('cb_tax').textContent='Current: '+fmtP(taxRate);
     document.getElementById('cb_allow').textContent=opt.allowanceShares?'Full at: '+opt.allowanceShares+' sh':'Unreachable';
-
-    buildDecisionScenarios(bPrice, taxRate, shares, opt);
-    buildSensitivity(shares, taxRate, bePrice, bPrice, opt.shares);
-    buildROIChart(bPrice, taxRate, shares, opt.shares);
-    buildTaxChart(shares, bPrice);
-    buildAllowanceChart(bPrice, taxRate, opt.allowanceShares, shares);
-    buildHeatmap(taxRate, shares, bPrice, opt.shares);
-
-    window._printData = { d, shares, bPrice, taxRate, bePrice, opt, downside };
+    buildDecisionScenarios(bPrice,taxRate,shares,opt);
+    buildSensitivity(shares,taxRate,bePrice,bPrice,opt.shares);
+    buildROIChart(bPrice,taxRate,shares,opt.shares);
+    buildTaxChart(shares,bPrice);
+    buildAllowanceChart(bPrice,taxRate,opt.allowanceShares,shares);
+    buildHeatmap(taxRate,shares,bPrice,opt.shares);
+    window._printData={d,shares,bPrice,taxRate,bePrice,opt,downside};
 }
 
-function buildDecisionScenarios(bPrice, taxRate, currentShares, opt) {
-    const el = document.getElementById('decisionPanel');
-    const scenarios = [
+function buildDecisionScenarios(bPrice,taxRate,currentShares,opt){
+    const el=document.getElementById('decisionPanel');
+    const scenarios=[
         {cls:'optimal',label:'⭐ Baseline',shares:opt.shares,note:'Full allowance + best tier'},
         {cls:'current',label:'📍 Your Selection',shares:currentShares,note:'Current input'},
         {cls:'max-val',label:'🚀 Full Tier 1 (20 sh)',shares:20,note:'Best discount tier'}
@@ -1438,13 +1265,13 @@ function buildDecisionScenarios(bPrice, taxRate, currentShares, opt) {
     const unique=scenarios.filter(s=>{if(seen.has(s.shares))return false;seen.add(s.shares);return true;});
     el.innerHTML=unique.map(s=>{
         const d=calc(s.shares,bPrice,taxRate);
-        return `<div class="dec-scenario ${s.cls}"><div class="ds-header"><span class="ds-label">${s.label}</span><span class="ds-tag">${s.shares} sh · ${s.note}</span></div><div class="ds-metrics"><div class="ds-metric"><div class="ds-metric-label">Net Gain</div><div class="ds-metric-value">${fmt(d.netGain)}</div></div><div class="ds-metric"><div class="ds-metric-label">ROI</div><div class="ds-metric-value">${fmtP(d.roi)}</div></div><div class="ds-metric"><div class="ds-metric-label">Allowance</div><div class="ds-metric-value">${fmt(d.allowUsed)}</div></div></div></div>`;
+        return`<div class="dec-scenario ${s.cls}"><div class="ds-header"><span class="ds-label">${s.label}</span><span class="ds-tag">${s.shares} sh · ${s.note}</span></div><div class="ds-metrics"><div class="ds-metric"><div class="ds-metric-label">Net Gain</div><div class="ds-metric-value">${fmt(d.netGain)}</div></div><div class="ds-metric"><div class="ds-metric-label">ROI</div><div class="ds-metric-value">${fmtP(d.roi)}</div></div><div class="ds-metric"><div class="ds-metric-label">Allowance</div><div class="ds-metric-value">${fmt(d.allowUsed)}</div></div></div></div>`;
     }).join('');
 }
 
-function buildSensitivity(shares, taxRate, bePrice, currentPrice, optShares) {
+function buildSensitivity(shares,taxRate,bePrice,currentPrice,optShares){
     destroyChart('sensitivity');
-    const ctx=document.getElementById('chartSensitivity'); if(!ctx)return;
+    const ctx=document.getElementById('chartSensitivity');if(!ctx)return;
     const prices=[],step=5;
     for(let p=100;p<=450;p+=step)prices.push(p);
     const gains=prices.map(p=>calc(shares,p,taxRate).netGain);
@@ -1456,34 +1283,34 @@ function buildSensitivity(shares, taxRate, bePrice, currentPrice, optShares) {
     ]},options:{...CHART_BASE,interaction:{mode:'index',intersect:false},plugins:{...CHART_BASE.plugins,tooltip:{...CHART_BASE.plugins.tooltip,callbacks:{label:c=>c.dataset.label+': '+fmt(c.raw??0)}}},scales:{x:{...CHART_BASE.scales.x},y:{...CHART_BASE.scales.y,ticks:{...CHART_BASE.scales.y.ticks,callback:v=>'€'+fmtN(v)}}}}});
 }
 
-function buildROIChart(bPrice, taxRate, currentShares, optShares) {
+function buildROIChart(bPrice,taxRate,currentShares,optShares){
     destroyChart('roi');
-    const ctx=document.getElementById('chartROI'); if(!ctx)return;
+    const ctx=document.getElementById('chartROI');if(!ctx)return;
     const counts=[5,10,15,20,25,30,40,50,60,70,80];
     const gains=counts.map(s=>calc(s,bPrice,taxRate).netGain);
     charts['roi']=new Chart(ctx,{type:'bar',data:{labels:counts.map(s=>s+' sh'),datasets:[{label:'Net Gain',data:gains,backgroundColor:counts.map(s=>s===optShares?'rgba(251,191,36,0.85)':s===currentShares?'rgba(125,211,252,0.7)':gains[counts.indexOf(s)]>=0?'rgba(74,222,128,0.35)':'rgba(248,113,113,0.35)'),borderColor:counts.map(s=>s===optShares?'#fbbf24':s===currentShares?'#7dd3fc':gains[counts.indexOf(s)]>=0?'#4ade80':'#f87171'),borderWidth:1.5,borderRadius:4}]},options:{...CHART_BASE,plugins:{...CHART_BASE.plugins,legend:{display:false},tooltip:{...CHART_BASE.plugins.tooltip,callbacks:{title:c=>c[0].label+' shares',label:c=>{const s=counts[c.dataIndex];let l='Net Gain: '+fmt(c.raw);if(s===optShares)l+=' ⭐';if(s===currentShares&&s!==optShares)l+=' ← You';return l;}}}},scales:{x:{...CHART_BASE.scales.x},y:{...CHART_BASE.scales.y,ticks:{...CHART_BASE.scales.y.ticks,callback:v=>'€'+fmtN(v)}}}}});
 }
 
-function buildTaxChart(shares, bPrice) {
+function buildTaxChart(shares,bPrice){
     destroyChart('tax');
-    const ctx=document.getElementById('chartTax'); if(!ctx)return;
+    const ctx=document.getElementById('chartTax');if(!ctx)return;
     const rates=[0,15,20,25,30,35,40,42,45,50];
     const gains=rates.map(r=>calc(shares,bPrice,r).netGain);
     const taxes=rates.map(r=>calc(shares,bPrice,r).taxDue);
     charts['tax']=new Chart(ctx,{type:'line',data:{labels:rates.map(r=>r+'%'),datasets:[{label:'Net Gain',data:gains,borderColor:'#4ade80',backgroundColor:'rgba(74,222,128,0.08)',fill:true,borderWidth:2.5,tension:0.4,pointRadius:3,pointBackgroundColor:'#4ade80'},{label:'Tax Due',data:taxes,borderColor:'#f87171',backgroundColor:'transparent',borderWidth:2,tension:0.4,pointRadius:3,pointBackgroundColor:'#f87171'}]},options:{...CHART_BASE,interaction:{mode:'index',intersect:false},plugins:{...CHART_BASE.plugins,tooltip:{...CHART_BASE.plugins.tooltip,callbacks:{label:c=>c.dataset.label+': '+fmt(c.raw)}}},scales:{x:{...CHART_BASE.scales.x},y:{...CHART_BASE.scales.y,ticks:{...CHART_BASE.scales.y.ticks,callback:v=>'€'+fmtN(v)}}}}});
 }
 
-function buildAllowanceChart(bPrice, taxRate, allowShares, currentShares) {
+function buildAllowanceChart(bPrice,taxRate,allowShares,currentShares){
     destroyChart('allowance');
-    const ctx=document.getElementById('chartAllowance'); if(!ctx)return;
+    const ctx=document.getElementById('chartAllowance');if(!ctx)return;
     const counts=Array.from({length:40},(_,i)=>i+1);
     const used=counts.map(s=>calc(s,bPrice,taxRate).allowUsed);
     const taxable=counts.map(s=>calc(s,bPrice,taxRate).taxableBik);
     charts['allowance']=new Chart(ctx,{type:'line',data:{labels:counts,datasets:[{label:'Allowance Used',data:used,borderColor:'#4ade80',backgroundColor:'rgba(74,222,128,0.1)',fill:true,borderWidth:2,tension:0.3,pointRadius:0},{label:'Taxable BiK',data:taxable,borderColor:'#f87171',backgroundColor:'rgba(248,113,113,0.07)',fill:true,borderWidth:2,tension:0.3,pointRadius:0}]},options:{...CHART_BASE,interaction:{mode:'index',intersect:false},plugins:{...CHART_BASE.plugins,tooltip:{...CHART_BASE.plugins.tooltip,callbacks:{label:c=>c.dataset.label+': '+fmt(c.raw)}}},scales:{x:{...CHART_BASE.scales.x,title:{display:true,text:'Number of Shares',color:'rgba(255,255,255,0.35)',font:{size:9}}},y:{...CHART_BASE.scales.y,ticks:{...CHART_BASE.scales.y.ticks,callback:v=>'€'+fmtN(v)}}}}});
 }
 
-function buildHeatmap(taxRate, currentShares, currentPrice, optShares) {
-    const container=document.getElementById('heatmapContainer'); if(!container)return;
+function buildHeatmap(taxRate,currentShares,currentPrice,optShares){
+    const container=document.getElementById('heatmapContainer');if(!container)return;
     const shareCounts=[5,10,15,20,25,30,40,50,60,70,80];
     const prices=[180,200,220,241.60,260,280,300,320,350,400];
     let html='<table class="heatmap-table"><thead><tr><th>Shares \\ Price</th>';
@@ -1508,20 +1335,18 @@ function buildHeatmap(taxRate, currentShares, currentPrice, optShares) {
     container.innerHTML=html;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   PRINT
-══════════════════════════════════════════════════════════════ */
-function printReport() {
-    const {shares,bPrice,taxRate}=getInputs();
+/* ── PRINT ── */
+function printReport(){
+    const{shares,bPrice,taxRate}=getInputs();
     const pd=window._printData;
     if(!pd){window.print();return;}
-    const {d,bePrice,opt,downside}=pd;
+    const{d,bePrice,opt,downside}=pd;
     const now=new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
     const optD=opt.data;
     const tierRows=[
         {label:'Tier 1 (60% off)',sh:d.t1,disc:'60%',price:P1,cost:d.c1,bikPS:d.t1>0?Math.max(0,bPrice-P1):0,bik:d.bik1},
         {label:'Tier 2 (20% off)',sh:d.t2,disc:'20%',price:P2,cost:d.c2,bikPS:d.t2>0?Math.max(0,bPrice-P2):0,bik:d.bik2},
-        {label:'Tier 3 (10% off)',sh:d.t3,disc:'10%',price:P3,cost:d.c3,bikPS:d.t3>0?Math.max(0,bPrice-P3):0,bik:d.bik3},
+        {label:'Tier 3 (10% off)',sh:d.t3,disc:'10%',price:P3,cost:d.c3,bikPS:d.t3>0?Math.max(0,bPrice-P3):0,bik:d.bik3}
     ].filter(r=>r.sh>0);
     const hmShares=[5,10,15,20,25,30,40,50,60,70,80];
     const hmPrices=[180,200,220,241.60,260,280,300,320,350,400];
@@ -1545,90 +1370,31 @@ function printReport() {
     });
     hmHtml+='</tbody></table>';
     const isCurrentOptimal=shares===opt.shares;
-
-    // Conviction label for print
     const convictionLabels={'neutral':'Neutral (no strong view)','bullish':'Bullish (stock will rise)','very-bullish':'Very Bullish (high conviction long)'};
     const convictionShares={'neutral':20,'bullish':40,'very-bullish':80};
     const mdShares=convictionShares[_conviction];
     const mdD=calc(mdShares,bPrice,taxRate);
-
     document.getElementById('printReport').innerHTML=`
-        <div class="pr-header">
-            <div><h1>Deutsche Börse Group — Group Share Plan 2026</h1><p>Investment Calculator Report · Generated ${now}</p></div>
-            <div class="pr-header-right"><div><strong style="color:white">${shares} Shares</strong> selected</div><div>Booking Price: ${fmt(bPrice)}</div><div>Tax Rate: ${fmtP(taxRate)}</div></div>
-        </div>
-
-        <div class="pr-optimal-banner">
-            <h3>⭐ Baseline Recommendation: ${opt.shares} Shares${isCurrentOptimal?' ✅ (Your Current Selection)':''}</h3>
-            <p>${opt.reasonText} Net gain: <strong>${fmt(optD.netGain)}</strong> · ROI: ${fmtP(optD.roi)} · Allowance used: ${fmt(optD.allowUsed)} · Tax due: ${fmt(optD.taxDue)}.${!isCurrentOptimal?` Your ${shares} shares delivers ${fmt(d.netGain)} — difference: ${fmt(optD.netGain-d.netGain)}.`:''}</p>
-            <div class="pr-opt-pills">
-                <span class="pr-opt-pill">Net Gain: ${fmt(optD.netGain)}</span>
-                <span class="pr-opt-pill">ROI: ${fmtP(optD.roi)}</span>
-                <span class="pr-opt-pill">Allowance: ${fmt(optD.allowUsed)}</span>
-                <span class="pr-opt-pill">Cost: ${fmt(optD.totalCost)}</span>
-                <span class="pr-opt-pill">Tax Due: ${fmt(optD.taxDue)}</span>
-            </div>
-        </div>
-
+        <div class="pr-header"><div><h1>Deutsche Börse Group — Group Share Plan 2026</h1><p>Investment Calculator Report · Generated ${now}</p></div><div class="pr-header-right"><div><strong style="color:white">${shares} Shares</strong> selected</div><div>Booking Price: ${fmt(bPrice)}</div><div>Tax Rate: ${fmtP(taxRate)}</div></div></div>
+        <div class="pr-optimal-banner"><h3>⭐ Baseline Recommendation: ${opt.shares} Shares${isCurrentOptimal?' ✅ (Your Current Selection)':''}</h3><p>${opt.reasonText} Net gain: <strong>${fmt(optD.netGain)}</strong> · ROI: ${fmtP(optD.roi)} · Allowance used: ${fmt(optD.allowUsed)} · Tax due: ${fmt(optD.taxDue)}.${!isCurrentOptimal?` Your ${shares} shares delivers ${fmt(d.netGain)} — difference: ${fmt(optD.netGain-d.netGain)}.`:''}</p><div class="pr-opt-pills"><span class="pr-opt-pill">Net Gain: ${fmt(optD.netGain)}</span><span class="pr-opt-pill">ROI: ${fmtP(optD.roi)}</span><span class="pr-opt-pill">Allowance: ${fmt(optD.allowUsed)}</span><span class="pr-opt-pill">Cost: ${fmt(optD.totalCost)}</span><span class="pr-opt-pill">Tax Due: ${fmt(optD.taxDue)}</span></div></div>
         <div class="pr-section-title">Your Selection — Key Metrics (${shares} Shares)</div>
-        <div class="pr-kpi-row">
-            <div class="pr-kpi"><div class="pr-kpi-label">Total Purchase Cost</div><div class="pr-kpi-value pr-blue">${fmt(d.totalCost)}</div><div class="pr-kpi-sub">What you pay</div></div>
-            <div class="pr-kpi"><div class="pr-kpi-label">Est. Net Gain</div><div class="pr-kpi-value ${d.netGain>=0?'pr-green':'pr-red'}">${fmt(d.netGain)}</div><div class="pr-kpi-sub">After cost & tax</div></div>
-            <div class="pr-kpi"><div class="pr-kpi-label">ROI on Cost</div><div class="pr-kpi-value ${d.roi>=0?'pr-green':'pr-red'}">${fmtP(d.roi)}</div><div class="pr-kpi-sub">Net gain / cost paid</div></div>
-            <div class="pr-kpi"><div class="pr-kpi-label">Break-Even Price</div><div class="pr-kpi-value pr-amber">${fmt(bePrice)}</div><div class="pr-kpi-sub">Min price for profit</div></div>
-        </div>
-
+        <div class="pr-kpi-row"><div class="pr-kpi"><div class="pr-kpi-label">Total Purchase Cost</div><div class="pr-kpi-value pr-blue">${fmt(d.totalCost)}</div><div class="pr-kpi-sub">What you pay</div></div><div class="pr-kpi"><div class="pr-kpi-label">Est. Net Gain</div><div class="pr-kpi-value ${d.netGain>=0?'pr-green':'pr-red'}">${fmt(d.netGain)}</div><div class="pr-kpi-sub">After cost & tax</div></div><div class="pr-kpi"><div class="pr-kpi-label">ROI on Cost</div><div class="pr-kpi-value ${d.roi>=0?'pr-green':'pr-red'}">${fmtP(d.roi)}</div><div class="pr-kpi-sub">Net gain / cost paid</div></div><div class="pr-kpi"><div class="pr-kpi-label">Break-Even Price</div><div class="pr-kpi-value pr-amber">${fmt(bePrice)}</div><div class="pr-kpi-sub">Min price for profit</div></div></div>
         <div class="pr-section-title">Economic Framework Analysis</div>
-        <div class="pr-two-col">
-            <div class="pr-box">
-                <div class="pr-box-title">📉 Marginal Analysis → ${document.getElementById('ma_rec_shares').textContent} Shares</div>
-                <div class="pr-info-row"><span class="pr-il">T1 free (within allowance)</span><span class="pr-iv pr-green">${fmt(Math.max(0,bPrice-P1))}/share</span></div>
-                <div class="pr-info-row"><span class="pr-il">T1 taxable (above allowance)</span><span class="pr-iv pr-blue">${fmt(Math.max(0,bPrice-P1)*(1-taxRate/100))}/share</span></div>
-                <div class="pr-info-row"><span class="pr-il">T2 taxable</span><span class="pr-iv pr-amber">${fmt(Math.max(0,bPrice-P2)*(1-taxRate/100))}/share</span></div>
-                <div class="pr-info-row"><span class="pr-il">T3 taxable</span><span class="pr-iv pr-red">${fmt(Math.max(0,bPrice-P3)*(1-taxRate/100))}/share</span></div>
-                <div class="pr-info-row"><span class="pr-il">Biggest slope drop at</span><span class="pr-iv">Allowance cliff / Tier boundary</span></div>
-            </div>
-            <div class="pr-box">
-                <div class="pr-box-title">🎭 Mechanism Design → ${mdShares} Shares</div>
-                <div class="pr-info-row"><span class="pr-il">Your conviction</span><span class="pr-iv">${convictionLabels[_conviction]}</span></div>
-                <div class="pr-info-row"><span class="pr-il">Recommended shares</span><span class="pr-iv pr-blue">${mdShares}</span></div>
-                <div class="pr-info-row"><span class="pr-il">Net gain at this level</span><span class="pr-iv pr-green">${fmt(mdD.netGain)}</span></div>
-                <div class="pr-info-row"><span class="pr-il">ROI</span><span class="pr-iv">${fmtP(mdD.roi)}</span></div>
-                <div class="pr-info-row"><span class="pr-il">Tax due</span><span class="pr-iv pr-red">${fmt(mdD.taxDue)}</span></div>
-            </div>
-        </div>
-
+        <div class="pr-two-col"><div class="pr-box"><div class="pr-box-title">📉 Marginal Analysis → ${document.getElementById('ma_rec_shares').textContent} Shares</div><div class="pr-info-row"><span class="pr-il">T1 free (within allowance)</span><span class="pr-iv pr-green">${fmt(Math.max(0,bPrice-P1))}/share</span></div><div class="pr-info-row"><span class="pr-il">T1 taxable (above allowance)</span><span class="pr-iv pr-blue">${fmt(Math.max(0,bPrice-P1)*(1-taxRate/100))}/share</span></div><div class="pr-info-row"><span class="pr-il">T2 taxable</span><span class="pr-iv pr-amber">${fmt(Math.max(0,bPrice-P2)*(1-taxRate/100))}/share</span></div><div class="pr-info-row"><span class="pr-il">T3 taxable</span><span class="pr-iv pr-red">${fmt(Math.max(0,bPrice-P3)*(1-taxRate/100))}/share</span></div></div><div class="pr-box"><div class="pr-box-title">🎭 Mechanism Design → ${mdShares} Shares</div><div class="pr-info-row"><span class="pr-il">Your conviction</span><span class="pr-iv">${convictionLabels[_conviction]}</span></div><div class="pr-info-row"><span class="pr-il">Recommended shares</span><span class="pr-iv pr-blue">${mdShares}</span></div><div class="pr-info-row"><span class="pr-il">Net gain at this level</span><span class="pr-iv pr-green">${fmt(mdD.netGain)}</span></div><div class="pr-info-row"><span class="pr-il">ROI</span><span class="pr-iv">${fmtP(mdD.roi)}</span></div><div class="pr-info-row"><span class="pr-il">Tax due</span><span class="pr-iv pr-red">${fmt(mdD.taxDue)}</span></div></div></div>
         <div class="pr-section-title">Tier Breakdown (${shares} Shares Selected)</div>
-        <table class="pr-table">
-            <thead><tr><th>Tier</th><th>Shares</th><th>Discount</th><th>Price/Share</th><th>Total Cost</th><th>BiK/Share</th><th>Total BiK</th></tr></thead>
-            <tbody>
-                ${tierRows.map(r=>`<tr><td>${r.label}</td><td><strong>${r.sh}</strong></td><td class="pr-green"><strong>${r.disc}</strong></td><td>${fmt(r.price)}</td><td>${fmt(r.cost)}</td><td>${fmt(r.bikPS)}</td><td><strong>${fmt(r.bik)}</strong></td></tr>`).join('')}
-                <tr class="tr-highlight"><td><strong>TOTAL</strong></td><td><strong>${shares} shares</strong></td><td>—</td><td>—</td><td><strong>${fmt(d.totalCost)}</strong></td><td>—</td><td><strong>${fmt(d.grossBik)}</strong></td></tr>
-                <tr class="tr-warn"><td>§3 No.39 Allowance</td><td colspan="6" style="text-align:right">- ${fmt(d.allowUsed)}</td></tr>
-                <tr class="tr-danger"><td><strong>Taxable BiK</strong></td><td colspan="6" style="text-align:right"><strong>${fmt(d.taxableBik)}</strong></td></tr>
-            </tbody>
-        </table>
-
-        <div class="pr-section-title">Net Gain Heatmap (⭐ = baseline · ◀ = your selection)</div>
-        ${hmHtml}
-
-        <div class="pr-footer">
-            <span>Deutsche Börse Group Share Plan 2026 · Illustrative only · Consult your tax advisor</span>
-            <span>Generated ${now} · Excludes church tax, solidarity surcharge & social security</span>
-        </div>`;
-
+        <table class="pr-table"><thead><tr><th>Tier</th><th>Shares</th><th>Discount</th><th>Price/Share</th><th>Total Cost</th><th>BiK/Share</th><th>Total BiK</th></tr></thead><tbody>${tierRows.map(r=>`<tr><td>${r.label}</td><td><strong>${r.sh}</strong></td><td class="pr-green"><strong>${r.disc}</strong></td><td>${fmt(r.price)}</td><td>${fmt(r.cost)}</td><td>${fmt(r.bikPS)}</td><td><strong>${fmt(r.bik)}</strong></td></tr>`).join('')}<tr class="tr-highlight"><td><strong>TOTAL</strong></td><td><strong>${shares} shares</strong></td><td>—</td><td>—</td><td><strong>${fmt(d.totalCost)}</strong></td><td>—</td><td><strong>${fmt(d.grossBik)}</strong></td></tr><tr class="tr-warn"><td>§3 No.39 Allowance</td><td colspan="6" style="text-align:right">- ${fmt(d.allowUsed)}</td></tr><tr class="tr-danger"><td><strong>Taxable BiK</strong></td><td colspan="6" style="text-align:right"><strong>${fmt(d.taxableBik)}</strong></td></tr></tbody></table>
+        <div class="pr-section-title">Net Gain Heatmap (⭐ = baseline · ◀ = your selection)</div>${hmHtml}
+        <div class="pr-footer"><span>Deutsche Börse Group Share Plan 2026 · Illustrative only · Consult your tax advisor</span><span>Generated ${now} · Excludes church tax, solidarity surcharge & social security</span></div>`;
     window.print();
 }
 
-/* ══════════════════════════════════════════════════════════════
-   RESET / EASTER EGG / INIT
-══════════════════════════════════════════════════════════════ */
-function resetForm() {
+/* ── RESET / EASTER EGG / INIT ── */
+function resetForm(){
     document.getElementById('numShares').value=20;
     document.getElementById('sharesSlider').value=20;
     document.getElementById('bookingPrice').value=285.00;
     document.getElementById('taxRate').value=42;
-    calculate(); updateBar(20);
+    calculate();updateBar(20);
 }
 
 let rcCount=0,rcTimer=null;
