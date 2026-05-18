@@ -49,7 +49,6 @@
             padding: 8px; gap: 7px;
         }
 
-        /* ── HEADER ── */
         .header {
             background: linear-gradient(135deg, rgba(0,51,102,0.97), rgba(0,90,158,0.97));
             border: 1px solid rgba(255,255,255,0.1);
@@ -58,7 +57,6 @@
             display: flex; align-items: center; justify-content: space-between;
             flex-wrap: wrap; gap: 8px;
             box-shadow: 0 4px 24px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.1);
-            flex-shrink: 0;
         }
 
         .header-left { display: flex; align-items: center; gap: 10px; }
@@ -89,34 +87,24 @@
 
         .header-badges { display: flex; gap: 5px; align-items: center; }
 
-        .badge {
-            padding: 4px 10px; border-radius: 20px;
-            font-size: 10px; font-weight: 700;
-        }
-
+        .badge { padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; }
         .badge-blue { background: rgba(0,120,212,0.3); border: 1px solid rgba(0,120,212,0.5); color: var(--accent); }
         .badge-gold { background: rgba(251,191,36,0.2); border: 1px solid rgba(251,191,36,0.4); color: var(--amber); }
 
-        /* ── SECTION DIVIDER ── */
         .section-divider {
-            display: flex; align-items: center; gap: 10px;
-            margin: 4px 0;
+            display: flex; align-items: center; gap: 10px; margin: 4px 0;
         }
-
         .section-divider-line {
             flex: 1; height: 1px;
             background: linear-gradient(90deg, transparent, rgba(0,120,212,0.4), transparent);
         }
-
         .section-divider-label {
             font-size: 9px; font-weight: 700; text-transform: uppercase;
             letter-spacing: 1.5px; color: var(--accent);
             padding: 3px 12px; border-radius: 20px;
-            background: rgba(0,120,212,0.1);
-            border: 1px solid rgba(0,120,212,0.2);
+            background: rgba(0,120,212,0.1); border: 1px solid rgba(0,120,212,0.2);
         }
 
-        /* ── PANEL ── */
         .panel {
             background: var(--panel);
             border: 1px solid var(--border);
@@ -142,7 +130,6 @@
             font-size: 10px;
         }
 
-        /* ── CALCULATOR LAYOUT ── */
         .calc-grid {
             display: grid;
             grid-template-columns: 280px 1fr 220px;
@@ -151,17 +138,13 @@
 
         .col { display: flex; flex-direction: column; gap: 7px; }
 
-        /* ── TIER PILLS ── */
         .tier-strip { display: flex; gap: 5px; }
 
         .tier-pill {
             flex: 1; border-radius: 9px; padding: 9px 5px 7px;
-            text-align: center; cursor: default;
-            transition: transform 0.2s;
+            text-align: center; cursor: default; transition: transform 0.2s;
         }
-
         .tier-pill:hover { transform: translateY(-2px); }
-
         .tier-pill.t1 { background: linear-gradient(135deg, rgba(0,51,102,0.85), rgba(0,80,160,0.65)); border: 1px solid rgba(0,120,212,0.5); }
         .tier-pill.t2 { background: linear-gradient(135deg, rgba(0,80,160,0.65), rgba(0,120,212,0.45)); border: 1px solid rgba(0,180,216,0.4); }
         .tier-pill.t3 { background: linear-gradient(135deg, rgba(0,120,212,0.45), rgba(0,180,216,0.3)); border: 1px solid rgba(125,211,252,0.3); }
@@ -178,24 +161,19 @@
         .t2 .tp-fill { background: linear-gradient(90deg,#0078d4,#7dd3fc); }
         .t3 .tp-fill { background: linear-gradient(90deg,#0ea5e9,#bae6fd); }
 
-        /* ── INPUTS ── */
         .input-group { margin-bottom: 9px; }
         .input-group:last-child { margin-bottom: 0; }
-
         .input-group label {
             display: block; font-size: 9.5px; font-weight: 600;
             color: rgba(255,255,255,0.45); text-transform: uppercase;
             letter-spacing: 0.5px; margin-bottom: 4px;
         }
-
         .input-wrapper { position: relative; }
-
         .input-prefix {
             position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
             color: var(--accent); font-weight: 700; font-size: 13px;
             pointer-events: none; z-index: 1;
         }
-
         input[type="number"] {
             width: 100%; padding: 8px 10px 8px 24px;
             background: rgba(255,255,255,0.05);
@@ -204,23 +182,19 @@
             color: var(--text); transition: all 0.2s;
             -moz-appearance: textfield;
         }
-
         input[type="number"]::-webkit-inner-spin-button,
         input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
         input[type="number"].no-prefix { padding-left: 10px; }
-
         input[type="number"]:focus {
             outline: none; border-color: var(--blue1);
             background: rgba(0,120,212,0.09);
             box-shadow: 0 0 0 3px rgba(0,120,212,0.15);
         }
-
         input[type="range"] {
             width: 100%; height: 4px; border-radius: 2px;
             background: rgba(255,255,255,0.1); outline: none;
             cursor: pointer; -webkit-appearance: none; margin-top: 6px;
         }
-
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none; width: 18px; height: 18px;
             border-radius: 50%;
@@ -229,48 +203,37 @@
             box-shadow: 0 2px 8px rgba(0,120,212,0.6);
             transition: transform 0.15s;
         }
-
         input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
-
         .slider-labels {
             display: flex; justify-content: space-between;
             font-size: 8.5px; color: rgba(255,255,255,0.28); margin-top: 3px;
         }
 
-        /* ── SHARE BAR ── */
         .share-bar {
             display: flex; height: 7px; border-radius: 4px;
             overflow: hidden; background: rgba(255,255,255,0.06); margin: 7px 0 4px;
         }
-
         .sb1 { background: linear-gradient(90deg,#1d4ed8,#2563eb); transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
         .sb2 { background: linear-gradient(90deg,#0078d4,#0ea5e9); transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
         .sb3 { background: linear-gradient(90deg,#0ea5e9,#38bdf8); transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
-
         .bar-legend { display: flex; gap: 10px; }
         .bl-item { display: flex; align-items: center; gap: 3px; font-size: 9.5px; color: rgba(255,255,255,0.45); }
         .bl-dot  { width: 7px; height: 7px; border-radius: 50%; }
 
-        /* ── STAT BOXES ── */
         .stat-row {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            display: grid; grid-template-columns: repeat(4, 1fr);
             gap: 6px; margin-bottom: 9px;
         }
-
         .stat-box {
             border-radius: 9px; padding: 10px 8px; text-align: center;
             position: relative; overflow: hidden;
             transition: transform 0.2s; cursor: default;
         }
-
         .stat-box:hover { transform: translateY(-2px); }
-
         .stat-box::before {
             content: ''; position: absolute; top: 0; left: 0; right: 0;
             height: 2.5px; border-radius: 9px 9px 0 0;
         }
-
         .stat-box.blue   { background: linear-gradient(135deg, rgba(0,51,102,0.85), rgba(0,80,160,0.6)); border: 1px solid rgba(0,120,212,0.28); }
         .stat-box.blue::before { background: linear-gradient(90deg,#1d4ed8,#0078d4); }
         .stat-box.green  { background: linear-gradient(135deg, rgba(5,46,22,0.85), rgba(22,101,52,0.6)); border: 1px solid rgba(22,163,74,0.28); }
@@ -279,74 +242,52 @@
         .stat-box.indigo::before { background: linear-gradient(90deg,#4338ca,#6366f1); }
         .stat-box.amber  { background: linear-gradient(135deg, rgba(120,53,15,0.85), rgba(180,83,9,0.6)); border: 1px solid rgba(217,119,6,0.28); }
         .stat-box.amber::before { background: linear-gradient(90deg,#b45309,#d97706); }
-
         .sb-label { font-size: 8.5px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 4px; }
         .sb-value { font-size: 17px; font-weight: 800; color: white; line-height: 1; }
         .sb-sub   { font-size: 8.5px; color: rgba(255,255,255,0.35); margin-top: 2px; }
-
         @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
         .sb-value.updated { animation: pulse 0.35s ease; }
 
-        /* ── TABLE ── */
         .table-wrap { overflow-x: auto; }
-
         table { width: 100%; border-collapse: collapse; font-size: 11.5px; min-width: 480px; }
-
         thead th {
             background: rgba(0,51,102,0.85); color: rgba(255,255,255,0.6);
             padding: 6px 9px; text-align: left; font-size: 9px;
             text-transform: uppercase; letter-spacing: 0.4px; font-weight: 600;
         }
-
         thead th:first-child { border-radius: 5px 0 0 0; }
         thead th:last-child  { border-radius: 0 5px 0 0; }
-
         tbody td {
             padding: 5px 9px; border-bottom: 1px solid rgba(255,255,255,0.04);
             color: rgba(255,255,255,0.78); transition: background 0.15s;
         }
-
         tbody tr:hover td { background: rgba(255,255,255,0.03); }
-
         .tr-total td     { background: rgba(0,80,160,0.28) !important; font-weight: 700; color: var(--accent); border-top: 1px solid rgba(0,120,212,0.35); }
         .tr-allowance td { background: rgba(251,191,36,0.08) !important; color: var(--amber); font-weight: 600; }
         .tr-taxable td   { background: rgba(239,68,68,0.1) !important; color: var(--red); font-weight: 700; }
 
-        /* ── NET GRID ── */
-        .net-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;
-        }
-
+        .net-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
         .net-item {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.07);
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
             border-radius: 7px; padding: 7px 9px; text-align: center;
             transition: all 0.2s; cursor: default;
         }
-
         .net-item:hover { background: rgba(255,255,255,0.07); border-color: rgba(0,120,212,0.3); }
-
         .ni-label { font-size: 8.5px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 2px; }
         .ni-value { font-size: 13px; font-weight: 800; color: var(--text); }
         .ni-value.green { color: var(--green); }
         .ni-value.red   { color: var(--red); }
         .ni-value.blue  { color: var(--accent); }
 
-        /* ── RIGHT PANEL BLOCKS ── */
         .tax-block {
-            background: rgba(251,191,36,0.05);
-            border: 1px solid rgba(251,191,36,0.14);
-            border-left: 3px solid #f59e0b;
-            border-radius: 7px; padding: 9px 11px; margin-bottom: 7px;
+            background: rgba(251,191,36,0.05); border: 1px solid rgba(251,191,36,0.14);
+            border-left: 3px solid #f59e0b; border-radius: 7px; padding: 9px 11px; margin-bottom: 7px;
         }
-
         .tax-block h4 { font-size: 9px; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
-
         .tax-row {
             display: flex; justify-content: space-between; align-items: center;
             padding: 3px 0; border-bottom: 1px solid rgba(251,191,36,0.07); font-size: 11px;
         }
-
         .tax-row:last-child { border-bottom: none; }
         .tax-row .tl { color: rgba(255,255,255,0.45); }
         .tax-row .tv { font-weight: 700; color: var(--text); }
@@ -354,62 +295,41 @@
         .tax-row .tv.green { color: var(--green); }
 
         .info-block {
-            background: rgba(0,120,212,0.05);
-            border: 1px solid rgba(0,120,212,0.14);
-            border-left: 3px solid #0078d4;
-            border-radius: 7px; padding: 9px 11px; margin-bottom: 7px;
+            background: rgba(0,120,212,0.05); border: 1px solid rgba(0,120,212,0.14);
+            border-left: 3px solid #0078d4; border-radius: 7px; padding: 9px 11px; margin-bottom: 7px;
         }
-
         .info-block h4 { font-size: 9px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
-
         .info-row {
             display: flex; justify-content: space-between;
-            font-size: 11px; padding: 3px 0;
-            border-bottom: 1px solid rgba(0,120,212,0.07);
+            font-size: 11px; padding: 3px 0; border-bottom: 1px solid rgba(0,120,212,0.07);
         }
-
         .info-row:last-child { border-bottom: none; }
         .info-row .il { color: rgba(255,255,255,0.42); }
         .info-row .iv { font-weight: 700; color: var(--accent); }
 
-        /* ── GAUGE ── */
         .gauge-wrap { text-align: center; margin-bottom: 7px; }
         .gauge-label { font-size: 8.5px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
         .gauge-svg { width: 100%; max-width: 140px; }
         .gauge-value-text { font-size: 11px; font-weight: 800; fill: var(--green); }
         .gauge-sub-text   { font-size: 6px; fill: rgba(255,255,255,0.3); }
 
-        /* ── DATES ── */
         .dates-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
-
         .date-chip {
             background: rgba(0,120,212,0.08); border: 1px solid rgba(0,120,212,0.18);
             border-radius: 6px; padding: 5px 7px; cursor: default; transition: background 0.2s;
         }
-
         .date-chip:hover { background: rgba(0,120,212,0.18); }
         .dc-label { font-size: 8px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.3px; }
         .dc-value { font-size: 10.5px; font-weight: 700; color: var(--accent); margin-top: 1px; }
 
-        /* ── BUTTONS ── */
         .btn {
             padding: 9px 16px; border: none; border-radius: 7px;
             font-size: 11.5px; font-weight: 600; cursor: pointer;
             transition: all 0.2s; text-align: center;
         }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #0078d4, #0ea5e9);
-            color: white; box-shadow: 0 3px 10px rgba(0,120,212,0.4);
-        }
-
+        .btn-primary { background: linear-gradient(135deg, #0078d4, #0ea5e9); color: white; box-shadow: 0 3px 10px rgba(0,120,212,0.4); }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 18px rgba(0,120,212,0.6); }
-
-        .btn-secondary {
-            background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.65);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
+        .btn-secondary { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.65); border: 1px solid rgba(255,255,255,0.1); }
         .btn-secondary:hover { background: rgba(255,255,255,0.09); color: white; }
 
         .disclaimer {
@@ -417,140 +337,103 @@
             padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 6px;
         }
 
-        /* ══════════════════════════════════════════════════════════
-           SMART RECOMMENDATION BANNER
-        ══════════════════════════════════════════════════════════ */
+        /* ══ SMART RECOMMENDATION BANNER ══ */
         .smart-rec-banner {
-            background: linear-gradient(135deg, rgba(0,40,90,0.95), rgba(0,60,120,0.9));
+            background: linear-gradient(135deg, rgba(0,40,90,0.97), rgba(0,60,120,0.92));
             border: 1px solid rgba(0,180,216,0.3);
             border-left: 4px solid #00b4d8;
-            border-radius: 11px;
-            padding: 12px 16px;
-            display: flex; align-items: flex-start; gap: 14px;
+            border-radius: 11px; padding: 14px 18px;
+            display: flex; align-items: flex-start; gap: 16px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
         }
-
-        .srb-icon {
-            font-size: 26px; flex-shrink: 0; margin-top: 2px;
-            filter: drop-shadow(0 0 8px rgba(0,180,216,0.6));
-        }
-
+        .srb-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; filter: drop-shadow(0 0 8px rgba(0,180,216,0.6)); }
         .srb-body { flex: 1; }
+        .srb-title { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 5px; }
+        .srb-headline { font-size: 14px; font-weight: 800; color: white; margin-bottom: 8px; line-height: 1.4; }
+        .srb-headline .hl-green { color: var(--green); }
+        .srb-headline .hl-amber { color: var(--amber); }
 
-        .srb-title {
-            font-size: 10px; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 1px; color: var(--accent); margin-bottom: 5px;
+        /* Reasoning steps */
+        .srb-reasoning {
+            display: flex; flex-direction: column; gap: 5px; margin-bottom: 9px;
         }
-
-        .srb-headline {
-            font-size: 13.5px; font-weight: 800; color: white; margin-bottom: 6px; line-height: 1.4;
+        .srb-step {
+            display: flex; align-items: flex-start; gap: 8px;
+            background: rgba(255,255,255,0.04); border-radius: 7px;
+            padding: 6px 10px; border: 1px solid rgba(255,255,255,0.06);
         }
+        .srb-step-num {
+            width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 9px; font-weight: 800; margin-top: 1px;
+        }
+        .srb-step-num.done { background: rgba(74,222,128,0.2); color: var(--green); border: 1px solid rgba(74,222,128,0.35); }
+        .srb-step-num.warn { background: rgba(251,191,36,0.2); color: var(--amber); border: 1px solid rgba(251,191,36,0.35); }
+        .srb-step-num.info { background: rgba(125,211,252,0.15); color: var(--accent); border: 1px solid rgba(125,211,252,0.25); }
+        .srb-step-text { font-size: 10.5px; color: rgba(255,255,255,0.7); line-height: 1.5; }
+        .srb-step-text strong { color: white; }
 
-        .srb-headline span.highlight-green { color: var(--green); }
-        .srb-headline span.highlight-amber { color: var(--amber); }
-
-        .srb-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 7px; }
-
+        .srb-pills { display: flex; gap: 6px; flex-wrap: wrap; }
         .srb-pill {
             padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 700;
             display: flex; align-items: center; gap: 4px;
         }
-
         .srb-pill.green { background: rgba(74,222,128,0.15); border: 1px solid rgba(74,222,128,0.3); color: var(--green); }
         .srb-pill.blue  { background: rgba(125,211,252,0.12); border: 1px solid rgba(125,211,252,0.25); color: var(--accent); }
         .srb-pill.amber { background: rgba(251,191,36,0.12); border: 1px solid rgba(251,191,36,0.25); color: var(--amber); }
         .srb-pill.red   { background: rgba(248,113,113,0.12); border: 1px solid rgba(248,113,113,0.25); color: var(--red); }
 
-        .srb-rationale {
-            font-size: 10.5px; color: rgba(255,255,255,0.55); line-height: 1.6;
-        }
-
-        .srb-rationale strong { color: rgba(255,255,255,0.85); }
-
+        .srb-right { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; flex-shrink: 0; }
         .srb-apply-btn {
-            flex-shrink: 0; align-self: center;
             background: linear-gradient(135deg, #0078d4, #00b4d8);
             color: white; border: none; border-radius: 8px;
-            padding: 10px 16px; font-size: 11px; font-weight: 700;
+            padding: 11px 20px; font-size: 12px; font-weight: 700;
             cursor: pointer; transition: all 0.2s; white-space: nowrap;
             box-shadow: 0 3px 12px rgba(0,120,212,0.45);
         }
-
         .srb-apply-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 18px rgba(0,120,212,0.65); }
+        .srb-apply-btn.optimal { background: linear-gradient(135deg,#166534,#16a34a); box-shadow: 0 3px 12px rgba(22,163,74,0.4); }
 
-        /* ══════════════════════════════════════════════════════════
-           ANALYTICS SECTION
-        ══════════════════════════════════════════════════════════ */
-
-        .kpi-strip {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 6px; margin-bottom: 7px;
-        }
-
+        /* ══ KPI STRIP ══ */
+        .kpi-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-bottom: 7px; }
         .kpi-card {
-            background: var(--panel);
-            border: 1px solid var(--border);
+            background: var(--panel); border: 1px solid var(--border);
             border-radius: 10px; padding: 11px 10px;
             text-align: center; cursor: default;
             transition: transform 0.2s, border-color 0.2s;
             position: relative; overflow: hidden;
         }
-
-        .kpi-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0;
-            height: 2.5px; border-radius: 10px 10px 0 0;
-        }
-
+        .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2.5px; border-radius: 10px 10px 0 0; }
         .kpi-card.kc-blue::before   { background: linear-gradient(90deg,#1d4ed8,#0078d4); }
         .kpi-card.kc-green::before  { background: linear-gradient(90deg,#166534,#4ade80); }
         .kpi-card.kc-amber::before  { background: linear-gradient(90deg,#b45309,#fbbf24); }
         .kpi-card.kc-red::before    { background: linear-gradient(90deg,#991b1b,#f87171); }
         .kpi-card.kc-indigo::before { background: linear-gradient(90deg,#4338ca,#818cf8); }
-        .kpi-card.kc-teal::before   { background: linear-gradient(90deg,#0e7490,#22d3ee); }
-
         .kpi-card:hover { transform: translateY(-2px); border-color: rgba(0,120,212,0.3); }
-
+        .kpi-card.optimal-highlight { border-color: rgba(251,191,36,0.5) !important; box-shadow: 0 0 0 1px rgba(251,191,36,0.2), 0 4px 16px rgba(251,191,36,0.15); }
         .kpi-icon  { font-size: 18px; margin-bottom: 5px; }
         .kpi-label { font-size: 8.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
         .kpi-value { font-size: 19px; font-weight: 900; color: white; line-height: 1; }
         .kpi-sub   { font-size: 8.5px; color: var(--muted); margin-top: 3px; }
-        .kpi-badge {
-            display: inline-block; margin-top: 4px;
-            padding: 2px 7px; border-radius: 10px;
-            font-size: 9px; font-weight: 700;
-        }
-
+        .kpi-badge { display: inline-block; margin-top: 4px; padding: 2px 7px; border-radius: 10px; font-size: 9px; font-weight: 700; }
         .kpi-badge.up   { background: rgba(74,222,128,0.15); color: var(--green); }
         .kpi-badge.down { background: rgba(248,113,113,0.15); color: var(--red); }
         .kpi-badge.warn { background: rgba(251,191,36,0.15); color: var(--amber); }
         .kpi-badge.info { background: rgba(125,211,252,0.15); color: var(--accent); }
         .kpi-badge.star { background: rgba(251,191,36,0.2); color: var(--amber); border: 1px solid rgba(251,191,36,0.35); }
 
-        /* Optimal KPI card highlight */
-        .kpi-card.optimal-highlight {
-            border-color: rgba(251,191,36,0.45) !important;
-            box-shadow: 0 0 0 1px rgba(251,191,36,0.2), 0 4px 16px rgba(251,191,36,0.15);
-        }
-
-        .analytics-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 7px;
-        }
-
+        /* ══ ANALYTICS GRID ══ */
+        .analytics-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; }
         .analytics-grid .span2 { grid-column: span 2; }
         .analytics-grid .span3 { grid-column: span 3; }
 
         .chart-panel {
-            background: var(--panel);
-            border: 1px solid var(--border);
+            background: var(--panel); border: 1px solid var(--border);
             border-radius: 11px; padding: 13px 15px;
             backdrop-filter: blur(14px);
             box-shadow: 0 6px 28px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
             display: flex; flex-direction: column;
         }
-
         .chart-title {
             font-size: 9.5px; font-weight: 700; text-transform: uppercase;
             letter-spacing: 1px; color: var(--accent);
@@ -558,123 +441,72 @@
             margin-bottom: 10px;
             display: flex; align-items: center; justify-content: space-between;
         }
-
         .chart-title-left { display: flex; align-items: center; gap: 6px; }
-
         .chart-badge {
-            font-size: 9px; font-weight: 700;
-            padding: 2px 8px; border-radius: 10px;
-            background: rgba(0,120,212,0.2); color: var(--accent);
-            border: 1px solid rgba(0,120,212,0.25);
+            font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 10px;
+            background: rgba(0,120,212,0.2); color: var(--accent); border: 1px solid rgba(0,120,212,0.25);
         }
-
         .chart-container { position: relative; flex: 1; }
 
-        /* ── Decision panel ── */
-        .decision-panel {
-            display: flex; flex-direction: column; gap: 7px;
-        }
-
+        /* Scenario cards */
+        .decision-panel { display: flex; flex-direction: column; gap: 7px; }
         .dec-scenario {
-            border-radius: 8px; padding: 9px 11px;
+            border-radius: 8px; padding: 10px 12px;
             border: 1px solid rgba(255,255,255,0.07);
             transition: all 0.2s; cursor: default;
         }
-
         .dec-scenario:hover { transform: translateX(2px); }
-
-        .dec-scenario.optimal {
-            background: linear-gradient(135deg, rgba(251,191,36,0.08), rgba(251,191,36,0.04));
-            border-color: rgba(251,191,36,0.3);
-            border-left: 3px solid var(--amber);
-        }
-
-        .dec-scenario.current {
-            background: linear-gradient(135deg, rgba(0,120,212,0.08), rgba(0,120,212,0.04));
-            border-color: rgba(0,120,212,0.25);
-            border-left: 3px solid var(--blue1);
-        }
-
-        .dec-scenario.max-val {
-            background: linear-gradient(135deg, rgba(74,222,128,0.07), rgba(74,222,128,0.03));
-            border-color: rgba(74,222,128,0.22);
-            border-left: 3px solid var(--green);
-        }
-
-        .ds-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .dec-scenario.optimal  { background: linear-gradient(135deg, rgba(251,191,36,0.08), rgba(251,191,36,0.03)); border-color: rgba(251,191,36,0.3); border-left: 3px solid var(--amber); }
+        .dec-scenario.current  { background: linear-gradient(135deg, rgba(0,120,212,0.08), rgba(0,120,212,0.03)); border-color: rgba(0,120,212,0.25); border-left: 3px solid var(--blue1); }
+        .dec-scenario.max-val  { background: linear-gradient(135deg, rgba(74,222,128,0.06), rgba(74,222,128,0.02)); border-color: rgba(74,222,128,0.2); border-left: 3px solid var(--green); }
+        .ds-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
         .ds-label  { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
-        .ds-shares { font-size: 11px; font-weight: 700; }
-
-        .dec-scenario.optimal .ds-label  { color: var(--amber); }
-        .dec-scenario.current .ds-label  { color: var(--accent); }
-        .dec-scenario.max-val .ds-label  { color: var(--green); }
-
+        .dec-scenario.optimal .ds-label { color: var(--amber); }
+        .dec-scenario.current .ds-label { color: var(--accent); }
+        .dec-scenario.max-val .ds-label { color: var(--green); }
+        .ds-tag { font-size: 9px; color: rgba(255,255,255,0.35); }
         .ds-metrics { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; }
-
         .ds-metric { text-align: center; }
         .ds-metric-label { font-size: 7.5px; color: rgba(255,255,255,0.35); text-transform: uppercase; }
-        .ds-metric-value { font-size: 11px; font-weight: 800; }
-
+        .ds-metric-value { font-size: 11.5px; font-weight: 800; }
         .dec-scenario.optimal .ds-metric-value { color: var(--amber); }
         .dec-scenario.current .ds-metric-value { color: var(--accent); }
         .dec-scenario.max-val .ds-metric-value { color: var(--green); }
 
         .heatmap-wrap { overflow-x: auto; }
-
         .heatmap-table { border-collapse: collapse; font-size: 10px; width: 100%; }
-
         .heatmap-table th {
             padding: 5px 8px; background: rgba(0,51,102,0.8);
             color: rgba(255,255,255,0.55); font-size: 8.5px;
             text-transform: uppercase; letter-spacing: 0.3px; text-align: center;
         }
-
         .heatmap-table th:first-child { text-align: left; border-radius: 5px 0 0 0; }
         .heatmap-table th:last-child  { border-radius: 0 5px 0 0; }
-
         .heatmap-table td {
-            padding: 5px 8px; text-align: center;
-            font-weight: 600; font-size: 10px;
-            border: 1px solid rgba(255,255,255,0.03);
-            transition: opacity 0.2s;
+            padding: 5px 8px; text-align: center; font-weight: 600; font-size: 10px;
+            border: 1px solid rgba(255,255,255,0.03); transition: opacity 0.2s;
         }
-
-        .heatmap-table td:first-child {
-            font-weight: 700; color: var(--accent);
-            background: rgba(0,40,100,0.5) !important;
-            text-align: left;
-        }
-
+        .heatmap-table td:first-child { font-weight: 700; color: var(--accent); background: rgba(0,40,100,0.5) !important; text-align: left; }
         .heatmap-table tr:hover td { opacity: 0.85; }
 
-        /* ── FOOTER ── */
-        .footer-bar {
-            display: flex; align-items: center; justify-content: center;
-            padding: 3px 0; flex-shrink: 0;
-        }
-
+        .footer-bar { display: flex; align-items: center; justify-content: center; padding: 3px 0; }
         .footer-credit {
             font-size: 9.5px; font-weight: 500; color: rgba(255,255,255,0.2);
             letter-spacing: 0.8px; text-transform: uppercase; cursor: default;
             padding: 2px 12px; border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.06);
-            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02);
             transition: all 0.3s;
         }
-
         .footer-credit:hover { color: rgba(125,211,252,0.45); border-color: rgba(0,120,212,0.18); }
         .footer-credit.one-click { color: rgba(125,211,252,0.7); border-color: rgba(0,120,212,0.35); background: rgba(0,120,212,0.07); }
 
-        /* ── MODAL ── */
         .modal-overlay {
             position: fixed; inset: 0; background: rgba(0,0,0,0.6);
             backdrop-filter: blur(6px); z-index: 9999;
             display: flex; align-items: center; justify-content: center;
             opacity: 0; pointer-events: none; transition: opacity 0.3s;
         }
-
         .modal-overlay.show { opacity: 1; pointer-events: all; }
-
         .modal-box {
             background: linear-gradient(135deg, rgba(10,20,45,0.98), rgba(0,40,90,0.98));
             border: 1px solid rgba(0,120,212,0.38); border-radius: 14px;
@@ -684,96 +516,46 @@
             transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
             opacity: 0; max-width: 360px; width: 90%;
         }
-
         .modal-overlay.show .modal-box { transform: scale(1) translateY(0); opacity: 1; }
-
         .modal-avatar {
-            width: 60px; height: 60px;
-            background: linear-gradient(135deg, #0078d4, #00b4d8);
+            width: 60px; height: 60px; background: linear-gradient(135deg, #0078d4, #00b4d8);
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 28px; margin: 0 auto 14px;
-            box-shadow: 0 4px 20px rgba(0,120,212,0.55);
+            font-size: 28px; margin: 0 auto 14px; box-shadow: 0 4px 20px rgba(0,120,212,0.55);
             animation: float 3s ease-in-out infinite;
         }
-
         @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-
         .modal-tag   { font-size: 8.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 7px; }
         .modal-title { font-size: 10.5px; color: rgba(255,255,255,0.42); margin-bottom: 5px; }
         .modal-name  { font-size: 24px; font-weight: 900; background: linear-gradient(135deg, #60a5fa, #7dd3fc, #4ade80); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 5px; }
         .modal-dept  { font-size: 10.5px; color: rgba(255,255,255,0.32); margin-bottom: 20px; }
         .modal-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(0,120,212,0.38), transparent); margin-bottom: 16px; }
-
-        .modal-close {
-            background: linear-gradient(135deg, #0078d4, #0ea5e9); color: white;
-            border: none; border-radius: 7px; padding: 9px 26px;
-            font-size: 11.5px; font-weight: 700; cursor: pointer; transition: all 0.2s;
-        }
-
+        .modal-close { background: linear-gradient(135deg, #0078d4, #0ea5e9); color: white; border: none; border-radius: 7px; padding: 9px 26px; font-size: 11.5px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
         .modal-close:hover { transform: translateY(-2px); box-shadow: 0 5px 18px rgba(0,120,212,0.6); }
 
-        /* ══════════════════════════════════════════════════════════
-           PRINT STYLES
-        ══════════════════════════════════════════════════════════ */
+        /* ══ PRINT ══ */
         @media print {
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-
             body { background: #fff !important; color: #111 !important; font-size: 11pt; }
             body::before { display: none !important; }
-
             .app > * { display: none !important; }
             #printReport { display: block !important; }
-
-            #printReport {
-                padding: 0;
-                font-family: 'Segoe UI', Arial, sans-serif;
-                color: #111;
-            }
-
-            .pr-header {
-                background: #003366 !important; color: white !important;
-                padding: 16px 20px; border-radius: 8px; margin-bottom: 16px;
-                display: flex !important; justify-content: space-between; align-items: center;
-            }
-
+            #printReport { padding: 0; font-family: 'Segoe UI', Arial, sans-serif; color: #111; }
+            .pr-header { background: #003366 !important; color: white !important; padding: 16px 20px; border-radius: 8px; margin-bottom: 16px; display: flex !important; justify-content: space-between; align-items: center; }
             .pr-header h1 { font-size: 14pt; font-weight: 800; color: white !important; }
             .pr-header p  { font-size: 9pt; color: rgba(255,255,255,0.7) !important; margin-top: 3px; }
             .pr-header-right { text-align: right; font-size: 9pt; color: rgba(255,255,255,0.7) !important; }
-
-            .pr-optimal-banner {
-                background: #fff8e1 !important; border: 2px solid #f59e0b;
-                border-left: 5px solid #d97706; border-radius: 7px;
-                padding: 12px 16px; margin-bottom: 14px;
-            }
-
+            .pr-optimal-banner { background: #fff8e1 !important; border: 2px solid #f59e0b; border-left: 5px solid #d97706; border-radius: 7px; padding: 12px 16px; margin-bottom: 14px; }
             .pr-optimal-banner h3 { font-size: 11pt; font-weight: 800; color: #92400e !important; margin-bottom: 6px; }
             .pr-optimal-banner p  { font-size: 9.5pt; color: #78350f !important; line-height: 1.6; }
-            .pr-optimal-banner .pr-opt-pills { display: flex !important; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
-            .pr-optimal-banner .pr-opt-pill  { padding: 3px 10px; border-radius: 20px; font-size: 9pt; font-weight: 700; background: #fef3c7 !important; color: #92400e !important; border: 1px solid #f59e0b; }
-
-            .pr-section-title {
-                font-size: 10pt; font-weight: 800; text-transform: uppercase;
-                letter-spacing: 1px; color: #003366 !important;
-                border-bottom: 2px solid #003366;
-                padding-bottom: 4px; margin: 14px 0 8px;
-            }
-
-            .pr-kpi-row {
-                display: grid !important; grid-template-columns: repeat(4, 1fr);
-                gap: 8px; margin-bottom: 12px;
-            }
-
-            .pr-kpi {
-                border: 1.5px solid #003366; border-radius: 6px;
-                padding: 8px 10px; text-align: center; background: #f0f6ff !important;
-            }
-
-            .pr-kpi-label { font-size: 7.5pt; color: #555 !important; text-transform: uppercase; letter-spacing: 0.3px; }
+            .pr-opt-pills { display: flex !important; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+            .pr-opt-pill  { padding: 3px 10px; border-radius: 20px; font-size: 9pt; font-weight: 700; background: #fef3c7 !important; color: #92400e !important; border: 1px solid #f59e0b; }
+            .pr-section-title { font-size: 10pt; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #003366 !important; border-bottom: 2px solid #003366; padding-bottom: 4px; margin: 14px 0 8px; }
+            .pr-kpi-row { display: grid !important; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
+            .pr-kpi { border: 1.5px solid #003366; border-radius: 6px; padding: 8px 10px; text-align: center; background: #f0f6ff !important; }
+            .pr-kpi-label { font-size: 7.5pt; color: #555 !important; text-transform: uppercase; }
             .pr-kpi-value { font-size: 15pt; font-weight: 900; color: #003366 !important; margin: 2px 0; }
             .pr-kpi-sub   { font-size: 7.5pt; color: #777 !important; }
-
             .pr-two-col { display: grid !important; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-
             .pr-table { width: 100%; border-collapse: collapse; font-size: 9.5pt; margin-bottom: 12px; }
             .pr-table th { background: #003366 !important; color: white !important; padding: 5px 8px; text-align: left; font-size: 8pt; text-transform: uppercase; }
             .pr-table td { padding: 5px 8px; border-bottom: 1px solid #dde; font-size: 9.5pt; }
@@ -781,31 +563,24 @@
             .pr-table .tr-highlight td { background: #e8f0fe !important; font-weight: 700; color: #003366 !important; }
             .pr-table .tr-warn td { background: #fff8e1 !important; color: #b45309 !important; font-weight: 600; }
             .pr-table .tr-danger td { background: #fef2f2 !important; color: #991b1b !important; font-weight: 700; }
-
             .pr-info-row { display: flex !important; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #eee; font-size: 9.5pt; }
             .pr-info-row .pr-il { color: #555 !important; }
             .pr-info-row .pr-iv { font-weight: 700; color: #003366 !important; }
-
             .pr-box { border: 1.5px solid #ccd; border-radius: 6px; padding: 10px 12px; background: #f8faff !important; }
-            .pr-box-title { font-size: 9pt; font-weight: 800; color: #003366 !important; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid #ccd; }
-
+            .pr-box-title { font-size: 9pt; font-weight: 800; color: #003366 !important; text-transform: uppercase; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid #ccd; }
             .pr-heatmap-table { border-collapse: collapse; font-size: 8pt; width: 100%; margin-top: 6px; }
             .pr-heatmap-table th { background: #003366 !important; color: white !important; padding: 4px 6px; font-size: 7.5pt; text-align: center; }
             .pr-heatmap-table th:first-child { text-align: left; }
             .pr-heatmap-table td { padding: 4px 6px; text-align: center; font-weight: 600; font-size: 8pt; border: 1px solid #dde; }
             .pr-heatmap-table td:first-child { font-weight: 700; color: #003366 !important; background: #e8f0fe !important; text-align: left; }
-
             .pr-footer { margin-top: 16px; padding-top: 8px; border-top: 1px solid #ccd; font-size: 7.5pt; color: #888 !important; display: flex !important; justify-content: space-between; }
-
             .pr-green { color: #166534 !important; }
             .pr-red   { color: #991b1b !important; }
             .pr-blue  { color: #003366 !important; }
             .pr-amber { color: #92400e !important; }
-
             @page { size: A4; margin: 12mm 14mm; }
         }
 
-        /* ── RESPONSIVE ── */
         @media (max-width: 960px) {
             .calc-grid { grid-template-columns: 1fr; }
             .kpi-strip { grid-template-columns: repeat(3, 1fr); }
@@ -814,9 +589,7 @@
             .stat-row { grid-template-columns: repeat(2, 1fr); }
             .header-stats { display: none; }
             .smart-rec-banner { flex-direction: column; }
-            .srb-apply-btn { width: 100%; }
         }
-
         @media (max-width: 600px) {
             .app { padding: 5px; gap: 5px; }
             .header-badges { display: none; }
@@ -828,7 +601,6 @@
 <body>
 <div class="app">
 
-    <!-- HEADER -->
     <div class="header">
         <div class="header-left">
             <div class="logo-icon">📈</div>
@@ -852,9 +624,6 @@
         </div>
     </div>
 
-    <!-- ══════════════════════════════════════════════════════
-         SECTION 1: CALCULATOR
-    ══════════════════════════════════════════════════════ -->
     <div class="section-divider">
         <div class="section-divider-line"></div>
         <div class="section-divider-label">⚙️ Calculator — Your Inputs & Results</div>
@@ -862,8 +631,6 @@
     </div>
 
     <div class="calc-grid">
-
-        <!-- LEFT: INPUTS -->
         <div class="col">
             <div class="panel">
                 <div class="panel-title"><div class="pt-icon">⚙</div>Your Inputs</div>
@@ -891,10 +658,8 @@
 
                 <div class="input-group">
                     <label>Number of Shares (1–80)</label>
-                    <input type="number" id="numShares" class="no-prefix" min="1" max="80" value="20"
-                           oninput="syncSlider();calculate()">
-                    <input type="range" id="sharesSlider" min="1" max="80" value="20"
-                           oninput="syncInput();calculate()">
+                    <input type="number" id="numShares" class="no-prefix" min="1" max="80" value="20" oninput="syncSlider();calculate()">
+                    <input type="range" id="sharesSlider" min="1" max="80" value="20" oninput="syncInput();calculate()">
                     <div class="slider-labels"><span>1</span><span>20</span><span>40</span><span>60</span><span>80</span></div>
                     <div class="share-bar">
                         <div class="sb1" id="bar1" style="width:25%"></div>
@@ -933,42 +698,21 @@
             </div>
         </div>
 
-        <!-- MIDDLE: RESULTS -->
         <div class="col">
             <div class="panel">
                 <div class="panel-title"><div class="pt-icon">📊</div>Results & Breakdown</div>
 
                 <div class="stat-row">
-                    <div class="stat-box blue">
-                        <div class="sb-label">Total Purchase Cost</div>
-                        <div class="sb-value" id="r_totalCost">—</div>
-                        <div class="sb-sub">What you pay</div>
-                    </div>
-                    <div class="stat-box green">
-                        <div class="sb-label">Total Discount</div>
-                        <div class="sb-value" id="r_totalDiscount">—</div>
-                        <div class="sb-sub">vs. reference price</div>
-                    </div>
-                    <div class="stat-box indigo">
-                        <div class="sb-label">Gross Benefit in Kind</div>
-                        <div class="sb-value" id="r_grossBik">—</div>
-                        <div class="sb-sub">Before allowance</div>
-                    </div>
-                    <div class="stat-box amber">
-                        <div class="sb-label">Taxable BiK</div>
-                        <div class="sb-value" id="r_taxableBik">—</div>
-                        <div class="sb-sub">After €2,000 allowance</div>
-                    </div>
+                    <div class="stat-box blue"><div class="sb-label">Total Purchase Cost</div><div class="sb-value" id="r_totalCost">—</div><div class="sb-sub">What you pay</div></div>
+                    <div class="stat-box green"><div class="sb-label">Total Discount</div><div class="sb-value" id="r_totalDiscount">—</div><div class="sb-sub">vs. reference price</div></div>
+                    <div class="stat-box indigo"><div class="sb-label">Gross Benefit in Kind</div><div class="sb-value" id="r_grossBik">—</div><div class="sb-sub">Before allowance</div></div>
+                    <div class="stat-box amber"><div class="sb-label">Taxable BiK</div><div class="sb-value" id="r_taxableBik">—</div><div class="sb-sub">After €2,000 allowance</div></div>
                 </div>
 
                 <div class="table-wrap" style="margin-bottom:9px">
                     <table>
                         <thead>
-                            <tr>
-                                <th>Tier</th><th>Shares</th><th>Discount</th>
-                                <th>Price/Share</th><th>Total Cost</th>
-                                <th>BiK/Share</th><th>Total BiK</th>
-                            </tr>
+                            <tr><th>Tier</th><th>Shares</th><th>Discount</th><th>Price/Share</th><th>Total Cost</th><th>BiK/Share</th><th>Total BiK</th></tr>
                         </thead>
                         <tbody id="tableBody"></tbody>
                     </table>
@@ -985,7 +729,6 @@
             </div>
         </div>
 
-        <!-- RIGHT: TAX SUMMARY -->
         <div class="col">
             <div class="panel" style="display:flex;flex-direction:column;gap:7px">
                 <div class="panel-title"><div class="pt-icon">💡</div>Tax & Summary</div>
@@ -995,8 +738,8 @@
                     <svg class="gauge-svg" viewBox="0 0 160 95">
                         <defs>
                             <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%"   style="stop-color:#1d4ed8"/>
-                                <stop offset="50%"  style="stop-color:#0ea5e9"/>
+                                <stop offset="0%" style="stop-color:#1d4ed8"/>
+                                <stop offset="50%" style="stop-color:#0ea5e9"/>
                                 <stop offset="100%" style="stop-color:#4ade80"/>
                             </linearGradient>
                         </defs>
@@ -1038,41 +781,35 @@
                 </div>
             </div>
         </div>
-
     </div>
 
-    <!-- ══════════════════════════════════════════════════════
-         SMART RECOMMENDATION BANNER
-    ══════════════════════════════════════════════════════ -->
+    <!-- SMART RECOMMENDATION BANNER -->
     <div class="section-divider" style="margin-top:2px">
         <div class="section-divider-line"></div>
         <div class="section-divider-label">🎯 Smart Recommendation</div>
         <div class="section-divider-line"></div>
     </div>
 
-    <div class="smart-rec-banner" id="smartBanner">
+    <div class="smart-rec-banner">
         <div class="srb-icon">🎯</div>
         <div class="srb-body">
             <div class="srb-title">Optimal Selection — Calculated for You</div>
             <div class="srb-headline" id="srb_headline">Calculating…</div>
+            <div class="srb-reasoning" id="srb_reasoning"></div>
             <div class="srb-pills" id="srb_pills"></div>
-            <div class="srb-rationale" id="srb_rationale"></div>
         </div>
-        <button class="srb-apply-btn" id="srb_applyBtn" onclick="applyOptimal()">
-            ✨ Apply This Selection
-        </button>
+        <div class="srb-right">
+            <button class="srb-apply-btn" id="srb_applyBtn" onclick="applyOptimal()">✨ Apply</button>
+        </div>
     </div>
 
-    <!-- ══════════════════════════════════════════════════════
-         SECTION 2: ANALYTICS
-    ══════════════════════════════════════════════════════ -->
+    <!-- ANALYTICS -->
     <div class="section-divider" style="margin-top:4px">
         <div class="section-divider-line"></div>
         <div class="section-divider-label">📊 Analytics & Decision Intelligence</div>
         <div class="section-divider-line"></div>
     </div>
 
-    <!-- KPI STRIP -->
     <div class="kpi-strip">
         <div class="kpi-card kc-green">
             <div class="kpi-icon">💰</div>
@@ -1102,7 +839,7 @@
             <div class="kpi-sub">Price drop before loss</div>
             <div class="kpi-badge info" id="k_downside_badge">—</div>
         </div>
-        <div class="kpi-card kc-amber optimal-highlight" id="kpi_optimal_card">
+        <div class="kpi-card kc-amber optimal-highlight">
             <div class="kpi-icon">⭐</div>
             <div class="kpi-label">Recommended Shares</div>
             <div class="kpi-value" id="k_optimal">—</div>
@@ -1111,10 +848,7 @@
         </div>
     </div>
 
-    <!-- ANALYTICS GRID -->
     <div class="analytics-grid">
-
-        <!-- Sensitivity: Net Gain vs Price -->
         <div class="chart-panel span2">
             <div class="chart-title">
                 <div class="chart-title-left"><div class="pt-icon">📈</div>Net Gain vs. Share Price</div>
@@ -1125,16 +859,14 @@
             </div>
         </div>
 
-        <!-- Decision Scenarios -->
         <div class="chart-panel">
             <div class="chart-title">
                 <div class="chart-title-left"><div class="pt-icon">💡</div>Scenario Comparison</div>
-                <span class="chart-badge" id="cb_scenarios">3 scenarios</span>
+                <span class="chart-badge">3 scenarios</span>
             </div>
             <div class="decision-panel" id="decisionPanel"></div>
         </div>
 
-        <!-- ROI by Share Count -->
         <div class="chart-panel">
             <div class="chart-title">
                 <div class="chart-title-left"><div class="pt-icon">🎯</div>Net Gain by Share Count</div>
@@ -1145,7 +877,6 @@
             </div>
         </div>
 
-        <!-- Tax Rate Sensitivity -->
         <div class="chart-panel">
             <div class="chart-title">
                 <div class="chart-title-left"><div class="pt-icon">🔢</div>Tax Rate Impact</div>
@@ -1156,7 +887,6 @@
             </div>
         </div>
 
-        <!-- Allowance utilisation -->
         <div class="chart-panel">
             <div class="chart-title">
                 <div class="chart-title-left"><div class="pt-icon">🛡️</div>Allowance Utilisation</div>
@@ -1167,30 +897,22 @@
             </div>
         </div>
 
-        <!-- Heatmap -->
         <div class="chart-panel span3">
             <div class="chart-title">
                 <div class="chart-title-left"><div class="pt-icon">🌡️</div>Net Gain Heatmap — Shares × Booking Price</div>
-                <span style="font-size:9px;color:var(--muted)">Green = profit · Red = loss · ★ = recommended · ◀ = your selection</span>
+                <span style="font-size:9px;color:var(--muted)">Green = profit · Red = loss · ⭐ = recommended · ◀ = your selection</span>
             </div>
-            <div class="heatmap-wrap">
-                <div id="heatmapContainer"></div>
-            </div>
+            <div class="heatmap-wrap"><div id="heatmapContainer"></div></div>
         </div>
-
     </div>
 
-    <!-- FOOTER -->
     <div class="footer-bar">
         <span class="footer-credit" id="footerCredit">✦ Designed for Revenue Management ✦</span>
     </div>
-
 </div>
 
-<!-- PRINT REPORT -->
 <div id="printReport" style="display:none"></div>
 
-<!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
     <div class="modal-box" onclick="event.stopPropagation()">
         <div class="modal-avatar">👨‍💻</div>
@@ -1208,14 +930,14 @@
    CONSTANTS
 ══════════════════════════════════════════════════════════════ */
 const REF   = 241.60;
-const P1    = 96.64;
-const P2    = 193.28;
-const P3    = 217.44;
+const P1    = 96.64;   // Tier 1: 60% off
+const P2    = 193.28;  // Tier 2: 20% off
+const P3    = 217.44;  // Tier 3: 10% off
 const ALLOW = 2000;
 const MAX   = 80;
 
 const charts = {};
-let _optimalShares = 20; // global store for apply button
+let _optimalShares = 20;
 
 /* ══════════════════════════════════════════════════════════════
    HELPERS
@@ -1263,16 +985,10 @@ function destroyChart(id) {
 }
 
 const CHART_BASE = {
-    responsive: true,
-    maintainAspectRatio: false,
+    responsive: true, maintainAspectRatio: false,
     plugins: {
         legend: { labels: { color: 'rgba(255,255,255,0.55)', font: { size: 10 }, boxWidth: 11 } },
-        tooltip: {
-            backgroundColor: 'rgba(0,15,40,0.95)',
-            titleColor: '#7dd3fc', bodyColor: 'rgba(255,255,255,0.78)',
-            borderColor: 'rgba(0,120,212,0.35)', borderWidth: 1,
-            padding: 9, cornerRadius: 7
-        }
+        tooltip: { backgroundColor: 'rgba(0,15,40,0.95)', titleColor: '#7dd3fc', bodyColor: 'rgba(255,255,255,0.78)', borderColor: 'rgba(0,120,212,0.35)', borderWidth: 1, padding: 9, cornerRadius: 7 }
     },
     scales: {
         x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: 'rgba(255,255,255,0.4)', font: { size: 9.5 } } },
@@ -1281,17 +997,46 @@ const CHART_BASE = {
 };
 
 /* ══════════════════════════════════════════════════════════════
-   OPTIMAL SHARE FINDER
-   Logic: Find the share count that maximises absolute net gain
-   while fully utilising the €2,000 tax-free allowance.
-   Priority order:
-     1. Full allowance utilisation (grossBik >= €2,000)
-     2. Maximum absolute net gain (not just ROI %)
-     3. Stays within Tier 1 (≤20) if allowance is already met there
+   OPTIMAL SHARE FINDER — CORRECT LOGIC
+   ─────────────────────────────────────────────────────────────
+   The goal is NOT maximum absolute net gain (that always = 80 sh)
+   and NOT maximum ROI % (that always = 1 sh).
+
+   The correct goal is:
+   "What is the MINIMUM number of shares that fully exhausts the
+    €2,000 tax-free allowance, staying in the best discount tier
+    possible?"
+
+   Why this is the right answer:
+   • Every euro of BiK below €2,000 is TAX FREE — this is the
+     most valuable benefit in the programme.
+   • Once the allowance is exhausted, each additional share
+     generates taxable BiK — you pay tax on the gain.
+   • The 60% discount tier (Tier 1, ≤20 shares) gives the best
+     value per share. If the allowance is exhausted within Tier 1,
+     there is NO financial reason to buy Tier 2/3 shares unless
+     you want more shares for their own sake.
+   • If the allowance requires Tier 2 shares, recommend the exact
+     count needed — not more.
+   • If the allowance is never reachable (very low booking price),
+     recommend 20 shares (full Tier 1 — best discount).
+   • NEVER recommend Tier 3 shares (10% off) purely for allowance
+     reasons — the marginal benefit per share is too low.
 ══════════════════════════════════════════════════════════════ */
 function findOptimalShares(bPrice, taxRate) {
-    // Step 1: find the minimum shares needed to exhaust the €2,000 allowance
-    let allowanceShares = MAX; // default: max if allowance never reached
+    // Edge case: booking price at or below Tier 1 price — no BiK at all
+    if (bPrice <= P1) {
+        return {
+            shares: 20,
+            allowanceShares: null,
+            data: calc(20, bPrice, taxRate),
+            reason: 'no_bik',
+            reasonText: 'no BiK generated (booking price ≤ purchase price)'
+        };
+    }
+
+    // Find minimum shares to exhaust the €2,000 allowance
+    let allowanceShares = null;
     for (let s = 1; s <= MAX; s++) {
         if (calc(s, bPrice, taxRate).allowUsed >= ALLOW) {
             allowanceShares = s;
@@ -1299,54 +1044,50 @@ function findOptimalShares(bPrice, taxRate) {
         }
     }
 
-    // Step 2: among shares >= allowanceShares, find the one with max net gain
-    // We cap at 20 unless going beyond 20 meaningfully increases net gain
-    // (Tier 2 at 20% discount still adds value but less per share)
-    // Strategy: find max net gain across all valid counts, but prefer
-    // the smallest count that achieves within 5% of the maximum net gain
-    // (to avoid recommending 80 shares just for marginal extra gain)
-
-    let bestNetGain = -Infinity;
-    let bestShares  = allowanceShares;
-
-    // Scan all share counts from allowanceShares to MAX
-    for (let s = allowanceShares; s <= MAX; s++) {
-        const d = calc(s, bPrice, taxRate);
-        if (d.netGain > bestNetGain) {
-            bestNetGain = d.netGain;
-            bestShares  = s;
-        }
+    // Allowance never reached even at 80 shares
+    if (allowanceShares === null) {
+        // Recommend 20 shares — full Tier 1, best discount, all BiK tax-free
+        return {
+            shares: 20,
+            allowanceShares: null,
+            data: calc(20, bPrice, taxRate),
+            reason: 'allowance_unreachable',
+            reasonText: 'allowance cannot be fully used at this price — 20 shares (full Tier 1) maximises tax-free gain'
+        };
     }
 
-    // Step 3: find the "efficient frontier" — the smallest share count
-    // that achieves at least 90% of the maximum net gain
-    // This avoids recommending 80 shares when 20 gives nearly the same result
-    const threshold = bestNetGain * 0.90;
-    let efficientShares = bestShares;
-    for (let s = allowanceShares; s <= MAX; s++) {
-        const d = calc(s, bPrice, taxRate);
-        if (d.netGain >= threshold) {
-            efficientShares = s;
-            break;
-        }
+    // Allowance exhausted within Tier 1 (≤20 shares) — ideal scenario
+    if (allowanceShares <= 20) {
+        return {
+            shares: allowanceShares,
+            allowanceShares,
+            data: calc(allowanceShares, bPrice, taxRate),
+            reason: 'tier1_allowance',
+            reasonText: `${allowanceShares} shares exhausts the full €2,000 allowance within Tier 1 (60% off) — optimal`
+        };
     }
 
-    // Step 4: if allowance is never reached (very low booking price),
-    // just recommend 20 (full Tier 1 — best discount tier)
-    if (allowanceShares === MAX && calc(MAX, bPrice, taxRate).allowUsed < ALLOW) {
-        efficientShares = 20;
+    // Allowance needs Tier 2 shares (21–40) — recommend exact count, cap at 40
+    if (allowanceShares <= 40) {
+        return {
+            shares: allowanceShares,
+            allowanceShares,
+            data: calc(allowanceShares, bPrice, taxRate),
+            reason: 'tier2_allowance',
+            reasonText: `${allowanceShares} shares needed to exhaust the €2,000 allowance (enters Tier 2 at 20% off)`
+        };
     }
 
-    // Step 5: never recommend fewer than what's needed to use the allowance
-    // unless the allowance is genuinely unreachable
-    const finalShares = Math.max(efficientShares, Math.min(allowanceShares, MAX));
-
+    // Allowance would need Tier 3 shares (>40) — NOT recommended
+    // In this case the booking price is very low relative to purchase price
+    // Recommend 20 shares (full Tier 1) — best discount, partial allowance use
+    // is still better than paying Tier 3 prices for marginal allowance benefit
     return {
-        shares: finalShares,
+        shares: 20,
         allowanceShares,
-        data: calc(finalShares, bPrice, taxRate),
-        maxNetGain: bestNetGain,
-        maxNetGainShares: bestShares
+        data: calc(20, bPrice, taxRate),
+        reason: 'tier3_not_recommended',
+        reasonText: `Full allowance would need ${allowanceShares} shares (Tier 3 at 10% off) — not cost-effective. 20 shares (Tier 1, 60% off) is better value`
     };
 }
 
@@ -1364,10 +1105,20 @@ function updateSmartBanner(bPrice, taxRate, currentShares) {
     // Headline
     const headlineEl = document.getElementById('srb_headline');
     if (isCurrentOptimal) {
-        headlineEl.innerHTML = `✅ You've selected the optimal <span class="highlight-green">${opt.shares} shares</span> — maximum value with full allowance utilisation.`;
+        headlineEl.innerHTML = `✅ Your <span class="hl-green">${opt.shares} shares</span> is the optimal selection — <span class="hl-green">${fmt(d.netGain)}</span> net gain.`;
     } else {
-        headlineEl.innerHTML = `Programme recommends <span class="highlight-amber">${opt.shares} shares</span> — net gain of <span class="highlight-green">${fmt(d.netGain)}</span> with full €2,000 allowance used.`;
+        headlineEl.innerHTML = `Minimum recommended <span class="hl-amber">${opt.shares} shares</span> → net gain <span class="hl-green">${fmt(d.netGain)}</span>`;
     }
+
+    // Reasoning steps — show the WHY clearly
+    const reasoningEl = document.getElementById('srb_reasoning');
+    const steps = buildReasoningSteps(opt, bPrice, taxRate, currentShares);
+    reasoningEl.innerHTML = steps.map(s => `
+        <div class="srb-step">
+            <div class="srb-step-num ${s.cls}">${s.num}</div>
+            <div class="srb-step-text">${s.text}</div>
+        </div>
+    `).join('');
 
     // Pills
     const pillsEl = document.getElementById('srb_pills');
@@ -1379,52 +1130,84 @@ function updateSmartBanner(bPrice, taxRate, currentShares) {
         <span class="srb-pill blue">💸 Cost: ${fmt(d.totalCost)}</span>
     `;
 
-    // Rationale
-    const ratEl = document.getElementById('srb_rationale');
-    const t1 = Math.min(opt.shares, 20);
-    const t2 = Math.max(0, Math.min(opt.shares - 20, 20));
-    const t3 = Math.max(0, opt.shares - 40);
-
-    let rationale = `<strong>${opt.shares} shares</strong> = `;
-    const parts = [];
-    if (t1 > 0) parts.push(`${t1} at 60% off (€${P1})`);
-    if (t2 > 0) parts.push(`${t2} at 20% off (€${P2})`);
-    if (t3 > 0) parts.push(`${t3} at 10% off (€${P3})`);
-    rationale += parts.join(' + ') + '. ';
-
-    if (d.allowUsed >= ALLOW) {
-        rationale += `The full <strong>€2,000 tax-free allowance</strong> is consumed, shielding the maximum BiK from tax. `;
-    } else {
-        rationale += `Note: the €2,000 allowance is not fully used at this price — consider buying more shares. `;
-    }
-
-    if (!isCurrentOptimal) {
-        const gainDiff = d.netGain - cur.netGain;
-        rationale += `Switching from your current <strong>${currentShares} shares</strong> would ${gainDiff >= 0 ? 'increase' : 'change'} your net gain by <strong>${gainDiff >= 0 ? '+' : ''}${fmt(gainDiff)}</strong>.`;
-    } else {
-        rationale += `Your current selection is already optimal — no adjustment needed.`;
-    }
-
-    ratEl.innerHTML = rationale;
-
     // Apply button
     const applyBtn = document.getElementById('srb_applyBtn');
     if (isCurrentOptimal) {
         applyBtn.textContent = '✅ Already Optimal';
-        applyBtn.style.background = 'linear-gradient(135deg,#166534,#16a34a)';
-        applyBtn.style.boxShadow  = '0 3px 12px rgba(22,163,74,0.4)';
+        applyBtn.className = 'srb-apply-btn optimal';
     } else {
         applyBtn.textContent = `✨ Apply ${opt.shares} Shares`;
-        applyBtn.style.background = 'linear-gradient(135deg,#0078d4,#00b4d8)';
-        applyBtn.style.boxShadow  = '0 3px 12px rgba(0,120,212,0.45)';
+        applyBtn.className = 'srb-apply-btn';
     }
 
     // KPI card
     document.getElementById('k_optimal').textContent = opt.shares + ' sh';
-    document.getElementById('k_optimal_sub').textContent = 'Full allowance + max value';
+    document.getElementById('k_optimal_sub').textContent = opt.reason === 'no_bik' ? 'Full Tier 1, zero BiK' : 'Full allowance utilised';
     const optBadge = document.getElementById('k_optimal_badge');
     optBadge.textContent = fmt(d.netGain) + ' gain';
     optBadge.className = 'kpi-badge star';
+}
+
+function buildReasoningSteps(opt, bPrice, taxRate, currentShares) {
+    const steps = [];
+    const d = opt.data;
+
+    // Step 1: Tier analysis
+    const t1 = Math.min(opt.shares, 20);
+    const t2 = Math.max(0, Math.min(opt.shares - 20, 20));
+    const t3 = Math.max(0, opt.shares - 40);
+    const tierParts = [];
+    if (t1 > 0) tierParts.push(`<strong>${t1} shares × 60% off</strong> = ${fmt(t1 * P1)}`);
+    if (t2 > 0) tierParts.push(`<strong>${t2} shares × 20% off</strong> = ${fmt(t2 * P2)}`);
+    if (t3 > 0) tierParts.push(`<strong>${t3} shares × 10% off</strong> = ${fmt(t3 * P3)}`);
+
+    steps.push({
+        num: '1', cls: 'info',
+        text: `<strong>Tier allocation:</strong> ${tierParts.join(' + ')} → total cost <strong>${fmt(d.totalCost)}</strong>`
+    });
+
+    // Step 2: Allowance logic
+    if (opt.reason === 'no_bik') {
+        steps.push({ num: '2', cls: 'done', text: `Booking price (${fmt(bPrice)}) ≤ purchase price — <strong>zero BiK generated</strong>. All gain is pure discount, fully tax-free.` });
+    } else if (opt.reason === 'allowance_unreachable') {
+        steps.push({ num: '2', cls: 'warn', text: `At ${fmt(bPrice)}, even 80 shares only generates <strong>${fmt(calc(80, bPrice, taxRate).grossBik)}</strong> BiK — below the €2,000 allowance. All BiK is tax-free regardless.` });
+    } else if (opt.reason === 'tier3_not_recommended') {
+        steps.push({ num: '2', cls: 'warn', text: `Full €2,000 allowance would need <strong>${opt.allowanceShares} shares</strong> (Tier 3 at 10% off). Tier 3 discount is too small — <strong>20 Tier 1 shares at 60% off</strong> gives better value per euro spent.` });
+    } else {
+        steps.push({
+            num: '2', cls: 'done',
+            text: `<strong>${opt.shares} shares</strong> generates exactly <strong>${fmt(d.grossBik)}</strong> BiK — fully covered by the <strong>€2,000 tax-free allowance</strong>. Zero tax on this gain.`
+        });
+    }
+
+    // Step 3: Why not more shares?
+    if (opt.shares < MAX && opt.reason !== 'tier3_not_recommended') {
+        const next = calc(opt.shares + 1, bPrice, taxRate);
+        const extraBik = next.grossBik - d.grossBik;
+        const extraTax = next.taxDue - d.taxDue;
+        steps.push({
+            num: '3', cls: 'warn',
+            text: `Adding share #${opt.shares + 1} generates <strong>${fmt(extraBik)}</strong> extra BiK — now <strong>taxable</strong> (above €2,000 allowance). That's <strong>${fmt(extraTax)}</strong> extra tax for diminishing return.`
+        });
+    } else if (opt.reason === 'tier3_not_recommended') {
+        steps.push({
+            num: '3', cls: 'warn',
+            text: `Tier 3 shares cost <strong>€217.44</strong> each (only 10% off). The extra BiK generated is taxable and the discount barely covers the tax cost — <strong>not worth it</strong>.`
+        });
+    }
+
+    // Step 4: vs current selection
+    if (currentShares !== opt.shares) {
+        const gainDiff = d.netGain - calc(currentShares, bPrice, taxRate).netGain;
+        steps.push({
+            num: '4', cls: gainDiff >= 0 ? 'done' : 'warn',
+            text: `Switching from your <strong>${currentShares} shares</strong> to <strong>${opt.shares} shares</strong> ${gainDiff >= 0 ? 'increases' : 'changes'} net gain by <strong>${gainDiff >= 0 ? '+' : ''}${fmt(gainDiff)}</strong>.`
+        });
+    } else {
+        steps.push({ num: '4', cls: 'done', text: `Your current selection of <strong>${currentShares} shares</strong> is already the optimal choice. ✅` });
+    }
+
+    return steps;
 }
 
 function applyOptimal() {
@@ -1435,7 +1218,7 @@ function applyOptimal() {
 }
 
 /* ══════════════════════════════════════════════════════════════
-   SYNC SLIDER / INPUT / BAR
+   SYNC / BAR / GAUGE
 ══════════════════════════════════════════════════════════════ */
 function syncSlider() {
     const v = Math.min(Math.max(parseInt(document.getElementById('numShares').value) || 1, 1), MAX);
@@ -1453,7 +1236,6 @@ function updateBar(total) {
     const t1 = Math.min(total, 20);
     const t2 = Math.max(0, Math.min(total - 20, 20));
     const t3 = Math.max(0, total - 40);
-
     document.getElementById('bar1').style.width = (t1 / MAX * 100) + '%';
     document.getElementById('bar2').style.width = (t2 / MAX * 100) + '%';
     document.getElementById('bar3').style.width = (t3 / MAX * 100) + '%';
@@ -1465,9 +1247,6 @@ function updateBar(total) {
     document.getElementById('tp3fill').style.width = (t3 / 40 * 100) + '%';
 }
 
-/* ══════════════════════════════════════════════════════════════
-   GAUGE
-══════════════════════════════════════════════════════════════ */
 function updateGauge(pct) {
     const c = Math.min(Math.max(pct, 0), 100);
     document.getElementById('gaugeFill').style.strokeDashoffset = 195 - (c / 100 * 195);
@@ -1519,7 +1298,6 @@ function calculate() {
     updateGauge(d.effDisc);
     updateBar(shares);
 
-    // Table
     const tbody = document.getElementById('tableBody');
     tbody.innerHTML = '';
 
@@ -1550,7 +1328,6 @@ function calculate() {
     addRow('tr-allowance',['§3 No.39 Allowance', '', '', '', '', '', '- ' + fmt(d.allowUsed)]);
     addRow('tr-taxable',  ['Taxable Benefit in Kind', '', '', '', '', '', fmt(d.taxableBik)]);
 
-    // Update smart banner & analytics
     updateSmartBanner(bPrice, taxRate, shares);
     updateAnalytics();
 }
@@ -1565,81 +1342,50 @@ function updateAnalytics() {
     const d   = calc(shares, bPrice, taxRate);
     const opt = findOptimalShares(bPrice, taxRate);
 
-    /* ── Break-even price ── */
     let bePrice = 0;
     for (let p = bPrice; p >= 0; p -= 0.5) {
         if (calc(shares, p, taxRate).netGain <= 0) { bePrice = p + 0.5; break; }
     }
-
     const downside = bPrice > 0 ? ((bPrice - bePrice) / bPrice * 100) : 0;
 
-    /* ── KPI Cards ── */
     const setKPI = (id, val, badgeId, badgeTxt, badgeCls) => {
         document.getElementById(id).textContent = val;
         const b = document.getElementById(badgeId);
-        b.textContent = badgeTxt;
-        b.className = 'kpi-badge ' + badgeCls;
+        b.textContent = badgeTxt; b.className = 'kpi-badge ' + badgeCls;
     };
 
-    setKPI('k_netGain',  fmt(d.netGain),  'k_netGain_badge',
-        d.netGain >= 0 ? '↑ Profit' : '↓ Loss',
-        d.netGain >= 0 ? 'up' : 'down');
+    setKPI('k_netGain',   fmt(d.netGain),  'k_netGain_badge',  d.netGain >= 0 ? '↑ Profit' : '↓ Loss', d.netGain >= 0 ? 'up' : 'down');
+    setKPI('k_roi',       fmtP(d.roi),     'k_roi_badge',      d.roi >= 0 ? '↑ Positive' : '↓ Negative', d.roi >= 0 ? 'up' : 'down');
+    setKPI('k_breakeven', fmt(bePrice),    'k_be_badge',       bePrice < REF ? '✓ Below ref.' : '↑ Above ref.', bePrice < REF ? 'up' : 'warn');
+    setKPI('k_downside',  fmtP(downside),  'k_downside_badge', fmt(bPrice - bePrice) + ' buffer', 'info');
 
-    setKPI('k_roi',      fmtP(d.roi),     'k_roi_badge',
-        d.roi >= 0 ? '↑ Positive' : '↓ Negative',
-        d.roi >= 0 ? 'up' : 'down');
-
-    setKPI('k_breakeven', fmt(bePrice),   'k_be_badge',
-        bePrice < REF ? '✓ Below ref.' : '↑ Above ref.',
-        bePrice < REF ? 'up' : 'warn');
-
-    setKPI('k_downside',  fmtP(downside), 'k_downside_badge',
-        fmt(bPrice - bePrice) + ' buffer', 'info');
-
-    /* ── Chart badges ── */
     document.getElementById('cb_sensitivity').textContent = 'Break-even ~' + fmt(bePrice);
-    document.getElementById('cb_roi').textContent = 'Recommended: ' + opt.shares + ' sh';
+    document.getElementById('cb_roi').textContent = '⭐ Recommended: ' + opt.shares + ' sh';
     document.getElementById('cb_tax').textContent = 'Current: ' + fmtP(taxRate);
-    document.getElementById('cb_allow').textContent = 'Full at: ' + opt.allowanceShares + ' sh';
+    document.getElementById('cb_allow').textContent = opt.allowanceShares ? 'Full at: ' + opt.allowanceShares + ' sh' : 'Unreachable';
 
-    /* ── Decision Scenarios ── */
     buildDecisionScenarios(bPrice, taxRate, shares, opt);
-
-    /* ── Charts ── */
     buildSensitivity(shares, taxRate, bePrice, bPrice, opt.shares);
     buildROIChart(bPrice, taxRate, shares, opt.shares);
     buildTaxChart(shares, bPrice);
     buildAllowanceChart(bPrice, taxRate, opt.allowanceShares, shares);
     buildHeatmap(taxRate, shares, bPrice, opt.shares);
 
-    /* ── Store for print ── */
     window._printData = { d, shares, bPrice, taxRate, bePrice, opt, downside };
 }
 
-/* ── Decision Scenarios ── */
 function buildDecisionScenarios(bPrice, taxRate, currentShares, opt) {
     const el = document.getElementById('decisionPanel');
 
-    // Three scenarios: current, optimal (recommended), max value (80 shares)
     const scenarios = [
-        {
-            cls: 'optimal', label: '⭐ Recommended', shares: opt.shares,
-            note: 'Full allowance + max value'
-        },
-        {
-            cls: 'current', label: '📍 Your Selection', shares: currentShares,
-            note: 'Current input'
-        },
-        {
-            cls: 'max-val', label: '🚀 Maximum (80 sh)', shares: 80,
-            note: 'Highest absolute gain'
-        }
+        { cls: 'optimal', label: '⭐ Recommended', shares: opt.shares, note: 'Best value + full allowance' },
+        { cls: 'current', label: '📍 Your Selection', shares: currentShares, note: 'Current input' },
+        { cls: 'max-val', label: '🚀 Full Tier 1 (20 sh)', shares: 20, note: 'Best discount tier' }
     ];
 
-    // Remove duplicate if current === optimal
-    const unique = scenarios.filter((s, i, arr) =>
-        arr.findIndex(x => x.shares === s.shares) === i
-    );
+    // Deduplicate
+    const seen = new Set();
+    const unique = scenarios.filter(s => { if (seen.has(s.shares)) return false; seen.add(s.shares); return true; });
 
     el.innerHTML = unique.map(s => {
         const d = calc(s.shares, bPrice, taxRate);
@@ -1647,27 +1393,17 @@ function buildDecisionScenarios(bPrice, taxRate, currentShares, opt) {
         <div class="dec-scenario ${s.cls}">
             <div class="ds-header">
                 <span class="ds-label">${s.label}</span>
-                <span class="ds-shares" style="color:rgba(255,255,255,0.5)">${s.shares} shares · ${s.note}</span>
+                <span class="ds-tag">${s.shares} sh · ${s.note}</span>
             </div>
             <div class="ds-metrics">
-                <div class="ds-metric">
-                    <div class="ds-metric-label">Net Gain</div>
-                    <div class="ds-metric-value">${fmt(d.netGain)}</div>
-                </div>
-                <div class="ds-metric">
-                    <div class="ds-metric-label">ROI</div>
-                    <div class="ds-metric-value">${fmtP(d.roi)}</div>
-                </div>
-                <div class="ds-metric">
-                    <div class="ds-metric-label">Allowance</div>
-                    <div class="ds-metric-value">${fmt(d.allowUsed)}</div>
-                </div>
+                <div class="ds-metric"><div class="ds-metric-label">Net Gain</div><div class="ds-metric-value">${fmt(d.netGain)}</div></div>
+                <div class="ds-metric"><div class="ds-metric-label">ROI</div><div class="ds-metric-value">${fmtP(d.roi)}</div></div>
+                <div class="ds-metric"><div class="ds-metric-label">Allowance</div><div class="ds-metric-value">${fmt(d.allowUsed)}</div></div>
             </div>
         </div>`;
     }).join('');
 }
 
-/* ── Sensitivity Chart ── */
 function buildSensitivity(shares, taxRate, bePrice, currentPrice, optShares) {
     destroyChart('sensitivity');
     const ctx = document.getElementById('chartSensitivity');
@@ -1694,10 +1430,8 @@ function buildSensitivity(shares, taxRate, bePrice, currentPrice, optShares) {
                 {
                     label: `Recommended (${optShares} sh)`,
                     data: optGains,
-                    borderColor: '#fbbf24',
-                    backgroundColor: 'rgba(251,191,36,0.05)',
-                    fill: true, borderWidth: 2, tension: 0.4,
-                    pointRadius: 0, pointHoverRadius: 5,
+                    borderColor: '#fbbf24', backgroundColor: 'rgba(251,191,36,0.05)',
+                    fill: true, borderWidth: 2, tension: 0.4, pointRadius: 0, pointHoverRadius: 5,
                     borderDash: shares === optShares ? [] : [5, 3]
                 },
                 {
@@ -1711,19 +1445,12 @@ function buildSensitivity(shares, taxRate, bePrice, currentPrice, optShares) {
         options: {
             ...CHART_BASE,
             interaction: { mode: 'index', intersect: false },
-            plugins: {
-                ...CHART_BASE.plugins,
-                tooltip: { ...CHART_BASE.plugins.tooltip, callbacks: { label: ctx => ctx.dataset.label + ': ' + fmt(ctx.raw ?? 0) } }
-            },
-            scales: {
-                x: { ...CHART_BASE.scales.x },
-                y: { ...CHART_BASE.scales.y, ticks: { ...CHART_BASE.scales.y.ticks, callback: v => '€' + fmtN(v) } }
-            }
+            plugins: { ...CHART_BASE.plugins, tooltip: { ...CHART_BASE.plugins.tooltip, callbacks: { label: ctx => ctx.dataset.label + ': ' + fmt(ctx.raw ?? 0) } } },
+            scales: { x: { ...CHART_BASE.scales.x }, y: { ...CHART_BASE.scales.y, ticks: { ...CHART_BASE.scales.y.ticks, callback: v => '€' + fmtN(v) } } }
         }
     });
 }
 
-/* ── Net Gain by Share Count (replaces pure ROI chart) ── */
 function buildROIChart(bPrice, taxRate, currentShares, optShares) {
     destroyChart('roi');
     const ctx = document.getElementById('chartROI');
@@ -1754,29 +1481,22 @@ function buildROIChart(bPrice, taxRate, currentShares, optShares) {
             ...CHART_BASE,
             plugins: {
                 ...CHART_BASE.plugins, legend: { display: false },
-                tooltip: {
-                    ...CHART_BASE.plugins.tooltip,
-                    callbacks: {
-                        title: ctx => ctx[0].label + ' shares',
-                        label: ctx => {
-                            const s = counts[ctx.dataIndex];
-                            let lbl = 'Net Gain: ' + fmt(ctx.raw);
-                            if (s === optShares) lbl += ' ⭐ Recommended';
-                            if (s === currentShares && s !== optShares) lbl += ' ← You';
-                            return lbl;
-                        }
+                tooltip: { ...CHART_BASE.plugins.tooltip, callbacks: {
+                    title: ctx => ctx[0].label + ' shares',
+                    label: ctx => {
+                        const s = counts[ctx.dataIndex];
+                        let lbl = 'Net Gain: ' + fmt(ctx.raw);
+                        if (s === optShares) lbl += ' ⭐';
+                        if (s === currentShares && s !== optShares) lbl += ' ← You';
+                        return lbl;
                     }
-                }
+                }}
             },
-            scales: {
-                x: { ...CHART_BASE.scales.x },
-                y: { ...CHART_BASE.scales.y, ticks: { ...CHART_BASE.scales.y.ticks, callback: v => '€' + fmtN(v) } }
-            }
+            scales: { x: { ...CHART_BASE.scales.x }, y: { ...CHART_BASE.scales.y, ticks: { ...CHART_BASE.scales.y.ticks, callback: v => '€' + fmtN(v) } } }
         }
     });
 }
 
-/* ── Tax Rate Impact ── */
 function buildTaxChart(shares, bPrice) {
     destroyChart('tax');
     const ctx = document.getElementById('chartTax');
@@ -1804,7 +1524,6 @@ function buildTaxChart(shares, bPrice) {
     });
 }
 
-/* ── Allowance Utilisation ── */
 function buildAllowanceChart(bPrice, taxRate, allowShares, currentShares) {
     destroyChart('allowance');
     const ctx = document.getElementById('chartAllowance');
@@ -1835,7 +1554,6 @@ function buildAllowanceChart(bPrice, taxRate, allowShares, currentShares) {
     });
 }
 
-/* ── Heatmap ── */
 function buildHeatmap(taxRate, currentShares, currentPrice, optShares) {
     const container = document.getElementById('heatmapContainer');
     if (!container) return;
@@ -1843,8 +1561,7 @@ function buildHeatmap(taxRate, currentShares, currentPrice, optShares) {
     const shareCounts = [5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80];
     const prices      = [180, 200, 220, 241.60, 260, 280, 300, 320, 350, 400];
 
-    let html = '<table class="heatmap-table"><thead><tr>';
-    html += '<th>Shares \\ Price</th>';
+    let html = '<table class="heatmap-table"><thead><tr><th>Shares \\ Price</th>';
     prices.forEach(p => { html += `<th>€${p === 241.60 ? '241.60' : p}</th>`; });
     html += '</tr></thead><tbody>';
 
@@ -1877,7 +1594,7 @@ function buildHeatmap(taxRate, currentShares, currentPrice, optShares) {
 }
 
 /* ══════════════════════════════════════════════════════════════
-   PRINT REPORT
+   PRINT
 ══════════════════════════════════════════════════════════════ */
 function printReport() {
     const { shares, bPrice, taxRate } = getInputs();
@@ -1902,8 +1619,7 @@ function printReport() {
     hmHtml += '</tr></thead><tbody>';
 
     hmShares.forEach(s => {
-        const isRow = s === shares;
-        const isOpt = s === opt.shares;
+        const isRow = s === shares, isOpt = s === opt.shares;
         const lbl = isOpt && isRow ? `${s} sh ⭐◀` : isOpt ? `${s} sh ⭐` : isRow ? `${s} sh ◀` : `${s} sh`;
         hmHtml += `<tr><td>${lbl}</td>`;
         hmPrices.forEach(p => {
@@ -1911,12 +1627,9 @@ function printReport() {
             const intensity = Math.min(Math.abs(dd.roi) / 180, 1);
             const isCell = isRow && Math.abs(p - bPrice) < 15;
             const isOptCell = isOpt && Math.abs(p - bPrice) < 15;
-            const bg = dd.netGain >= 0
-                ? `rgba(22,101,52,${0.12 + intensity * 0.45})`
-                : `rgba(153,27,27,${0.12 + intensity * 0.45})`;
+            const bg = dd.netGain >= 0 ? `rgba(22,101,52,${0.12 + intensity * 0.45})` : `rgba(153,27,27,${0.12 + intensity * 0.45})`;
             const color = dd.netGain >= 0 ? '#166534' : '#991b1b';
-            const outline = isOptCell ? 'outline:2.5px solid #d97706;outline-offset:-2px;font-weight:900;' :
-                            isCell    ? 'outline:2px solid #1d4ed8;outline-offset:-2px;' : '';
+            const outline = isOptCell ? 'outline:2.5px solid #d97706;outline-offset:-2px;font-weight:900;' : isCell ? 'outline:2px solid #1d4ed8;outline-offset:-2px;' : '';
             hmHtml += `<td style="background:${bg};color:${color};${outline}">${fmt(dd.netGain)}</td>`;
         });
         hmHtml += '</tr>';
@@ -1925,123 +1638,58 @@ function printReport() {
 
     const isCurrentOptimal = shares === opt.shares;
 
-    const report = document.getElementById('printReport');
-    report.innerHTML = `
+    document.getElementById('printReport').innerHTML = `
         <div class="pr-header">
-            <div>
-                <h1>Deutsche Börse Group — Group Share Plan 2026</h1>
-                <p>Investment Calculator Report · Generated ${now}</p>
-            </div>
-            <div class="pr-header-right">
-                <div><strong style="color:white">${shares} Shares</strong> selected</div>
-                <div>Booking Price: ${fmt(bPrice)}</div>
-                <div>Tax Rate: ${fmtP(taxRate)}</div>
-            </div>
+            <div><h1>Deutsche Börse Group — Group Share Plan 2026</h1><p>Investment Calculator Report · Generated ${now}</p></div>
+            <div class="pr-header-right"><div><strong style="color:white">${shares} Shares</strong> selected</div><div>Booking Price: ${fmt(bPrice)}</div><div>Tax Rate: ${fmtP(taxRate)}</div></div>
         </div>
 
-        <!-- OPTIMAL RECOMMENDATION BANNER -->
         <div class="pr-optimal-banner">
-            <h3>⭐ Smart Recommendation: ${opt.shares} Shares${isCurrentOptimal ? ' (Your Current Selection — Optimal!)' : ''}</h3>
-            <p>
-                <strong>${opt.shares} shares</strong> is the recommended selection — it fully utilises the €2,000 tax-free allowance
-                and delivers a net gain of <strong>${fmt(optD.netGain)}</strong> (ROI: ${fmtP(optD.roi)}) at the estimated booking price of ${fmt(bPrice)}.
-                ${!isCurrentOptimal ? `Your current selection of ${shares} shares delivers ${fmt(d.netGain)} net gain — a difference of ${fmt(optD.netGain - d.netGain)}.` : ''}
-            </p>
+            <h3>⭐ Recommended: ${opt.shares} Shares${isCurrentOptimal ? ' ✅ (Your Current Selection)' : ''}</h3>
+            <p>${opt.reasonText}. Net gain: <strong>${fmt(optD.netGain)}</strong> · ROI: ${fmtP(optD.roi)} · Allowance used: ${fmt(optD.allowUsed)} · Tax due: ${fmt(optD.taxDue)}.
+            ${!isCurrentOptimal ? ` Your ${shares} shares delivers ${fmt(d.netGain)} — difference: ${fmt(optD.netGain - d.netGain)}.` : ''}</p>
             <div class="pr-opt-pills">
                 <span class="pr-opt-pill">Net Gain: ${fmt(optD.netGain)}</span>
                 <span class="pr-opt-pill">ROI: ${fmtP(optD.roi)}</span>
-                <span class="pr-opt-pill">Allowance Used: ${fmt(optD.allowUsed)}</span>
+                <span class="pr-opt-pill">Allowance: ${fmt(optD.allowUsed)}</span>
                 <span class="pr-opt-pill">Cost: ${fmt(optD.totalCost)}</span>
                 <span class="pr-opt-pill">Tax Due: ${fmt(optD.taxDue)}</span>
             </div>
         </div>
 
-        <!-- KPI ROW -->
         <div class="pr-section-title">Your Selection — Key Metrics (${shares} Shares)</div>
         <div class="pr-kpi-row">
-            <div class="pr-kpi">
-                <div class="pr-kpi-label">Total Purchase Cost</div>
-                <div class="pr-kpi-value pr-blue">${fmt(d.totalCost)}</div>
-                <div class="pr-kpi-sub">What you pay</div>
-            </div>
-            <div class="pr-kpi">
-                <div class="pr-kpi-label">Est. Net Gain</div>
-                <div class="pr-kpi-value ${d.netGain>=0?'pr-green':'pr-red'}">${fmt(d.netGain)}</div>
-                <div class="pr-kpi-sub">After cost & tax</div>
-            </div>
-            <div class="pr-kpi">
-                <div class="pr-kpi-label">ROI on Cost</div>
-                <div class="pr-kpi-value ${d.roi>=0?'pr-green':'pr-red'}">${fmtP(d.roi)}</div>
-                <div class="pr-kpi-sub">Net gain / cost paid</div>
-            </div>
-            <div class="pr-kpi">
-                <div class="pr-kpi-label">Break-Even Price</div>
-                <div class="pr-kpi-value pr-amber">${fmt(bePrice)}</div>
-                <div class="pr-kpi-sub">Min price for profit</div>
-            </div>
+            <div class="pr-kpi"><div class="pr-kpi-label">Total Purchase Cost</div><div class="pr-kpi-value pr-blue">${fmt(d.totalCost)}</div><div class="pr-kpi-sub">What you pay</div></div>
+            <div class="pr-kpi"><div class="pr-kpi-label">Est. Net Gain</div><div class="pr-kpi-value ${d.netGain>=0?'pr-green':'pr-red'}">${fmt(d.netGain)}</div><div class="pr-kpi-sub">After cost & tax</div></div>
+            <div class="pr-kpi"><div class="pr-kpi-label">ROI on Cost</div><div class="pr-kpi-value ${d.roi>=0?'pr-green':'pr-red'}">${fmtP(d.roi)}</div><div class="pr-kpi-sub">Net gain / cost paid</div></div>
+            <div class="pr-kpi"><div class="pr-kpi-label">Break-Even Price</div><div class="pr-kpi-value pr-amber">${fmt(bePrice)}</div><div class="pr-kpi-sub">Min price for profit</div></div>
         </div>
         <div class="pr-kpi-row">
-            <div class="pr-kpi">
-                <div class="pr-kpi-label">Total Discount</div>
-                <div class="pr-kpi-value pr-green">${fmt(d.totalDiscount)}</div>
-                <div class="pr-kpi-sub">vs. reference price</div>
-            </div>
-            <div class="pr-kpi">
-                <div class="pr-kpi-label">Gross BiK</div>
-                <div class="pr-kpi-value pr-blue">${fmt(d.grossBik)}</div>
-                <div class="pr-kpi-sub">Before allowance</div>
-            </div>
-            <div class="pr-kpi">
-                <div class="pr-kpi-label">Est. Tax Due</div>
-                <div class="pr-kpi-value pr-red">${fmt(d.taxDue)}</div>
-                <div class="pr-kpi-sub">On taxable BiK</div>
-            </div>
-            <div class="pr-kpi">
-                <div class="pr-kpi-label">Downside Buffer</div>
-                <div class="pr-kpi-value pr-blue">${fmtP(downside)}</div>
-                <div class="pr-kpi-sub">Price drop before loss</div>
-            </div>
+            <div class="pr-kpi"><div class="pr-kpi-label">Total Discount</div><div class="pr-kpi-value pr-green">${fmt(d.totalDiscount)}</div><div class="pr-kpi-sub">vs. reference price</div></div>
+            <div class="pr-kpi"><div class="pr-kpi-label">Gross BiK</div><div class="pr-kpi-value pr-blue">${fmt(d.grossBik)}</div><div class="pr-kpi-sub">Before allowance</div></div>
+            <div class="pr-kpi"><div class="pr-kpi-label">Est. Tax Due</div><div class="pr-kpi-value pr-red">${fmt(d.taxDue)}</div><div class="pr-kpi-sub">On taxable BiK</div></div>
+            <div class="pr-kpi"><div class="pr-kpi-label">Downside Buffer</div><div class="pr-kpi-value pr-blue">${fmtP(downside)}</div><div class="pr-kpi-sub">Price drop before loss</div></div>
         </div>
 
-        <!-- TIER BREAKDOWN TABLE -->
         <div class="pr-section-title">Tier Breakdown</div>
         <table class="pr-table">
-            <thead>
-                <tr><th>Tier</th><th>Shares</th><th>Discount</th><th>Price/Share</th><th>Total Cost</th><th>BiK/Share</th><th>Total BiK</th></tr>
-            </thead>
+            <thead><tr><th>Tier</th><th>Shares</th><th>Discount</th><th>Price/Share</th><th>Total Cost</th><th>BiK/Share</th><th>Total BiK</th></tr></thead>
             <tbody>
-                ${tierRows.map(r => `
-                <tr>
-                    <td>${r.label}</td><td><strong>${r.sh}</strong></td>
-                    <td class="pr-green"><strong>${r.disc}</strong></td>
-                    <td>${fmt(r.price)}</td><td>${fmt(r.cost)}</td>
-                    <td>${fmt(r.bikPS)}</td><td><strong>${fmt(r.bik)}</strong></td>
-                </tr>`).join('')}
-                <tr class="tr-highlight">
-                    <td><strong>TOTAL</strong></td><td><strong>${shares} shares</strong></td>
-                    <td>—</td><td>—</td><td><strong>${fmt(d.totalCost)}</strong></td>
-                    <td>—</td><td><strong>${fmt(d.grossBik)}</strong></td>
-                </tr>
-                <tr class="tr-warn">
-                    <td>§3 No.39 Allowance</td>
-                    <td colspan="6" style="text-align:right">- ${fmt(d.allowUsed)}</td>
-                </tr>
-                <tr class="tr-danger">
-                    <td><strong>Taxable Benefit in Kind</strong></td>
-                    <td colspan="6" style="text-align:right"><strong>${fmt(d.taxableBik)}</strong></td>
-                </tr>
+                ${tierRows.map(r => `<tr><td>${r.label}</td><td><strong>${r.sh}</strong></td><td class="pr-green"><strong>${r.disc}</strong></td><td>${fmt(r.price)}</td><td>${fmt(r.cost)}</td><td>${fmt(r.bikPS)}</td><td><strong>${fmt(r.bik)}</strong></td></tr>`).join('')}
+                <tr class="tr-highlight"><td><strong>TOTAL</strong></td><td><strong>${shares} shares</strong></td><td>—</td><td>—</td><td><strong>${fmt(d.totalCost)}</strong></td><td>—</td><td><strong>${fmt(d.grossBik)}</strong></td></tr>
+                <tr class="tr-warn"><td>§3 No.39 Allowance</td><td colspan="6" style="text-align:right">- ${fmt(d.allowUsed)}</td></tr>
+                <tr class="tr-danger"><td><strong>Taxable Benefit in Kind</strong></td><td colspan="6" style="text-align:right"><strong>${fmt(d.taxableBik)}</strong></td></tr>
             </tbody>
         </table>
 
-        <!-- TAX & FINANCIAL SUMMARY -->
         <div class="pr-section-title">Tax & Financial Summary</div>
         <div class="pr-two-col">
             <div class="pr-box">
-                <div class="pr-box-title">Benefit in Kind Calculation</div>
+                <div class="pr-box-title">Benefit in Kind</div>
                 <div class="pr-info-row"><span class="pr-il">Gross BiK</span><span class="pr-iv">${fmt(d.grossBik)}</span></div>
                 <div class="pr-info-row"><span class="pr-il">§3 No.39 Allowance</span><span class="pr-iv pr-green">- ${fmt(d.allowUsed)}</span></div>
                 <div class="pr-info-row"><span class="pr-il">Taxable BiK</span><span class="pr-iv pr-red">${fmt(d.taxableBik)}</span></div>
-                <div class="pr-info-row"><span class="pr-il">Tax Rate Applied</span><span class="pr-iv">${fmtP(taxRate)}</span></div>
+                <div class="pr-info-row"><span class="pr-il">Tax Rate</span><span class="pr-iv">${fmtP(taxRate)}</span></div>
                 <div class="pr-info-row"><span class="pr-il">Est. Tax Due</span><span class="pr-iv pr-red">${fmt(d.taxDue)}</span></div>
             </div>
             <div class="pr-box">
@@ -2054,33 +1702,30 @@ function printReport() {
             </div>
         </div>
 
-        <!-- HEATMAP -->
-        <div class="pr-section-title">Net Gain Heatmap — Shares × Booking Price (⭐ = recommended · ◀ = your selection)</div>
+        <div class="pr-section-title">Net Gain Heatmap (⭐ = recommended · ◀ = your selection)</div>
         ${hmHtml}
 
-        <!-- PROGRAMME INFO -->
         <div class="pr-section-title">Programme Information</div>
         <div class="pr-two-col">
             <div class="pr-box">
                 <div class="pr-box-title">Key Dates</div>
                 <div class="pr-info-row"><span class="pr-il">Xetra® Reference Date</span><span class="pr-iv">14 May 2026</span></div>
                 <div class="pr-info-row"><span class="pr-il">Terms Published</span><span class="pr-iv">Jun 8–12, 2026</span></div>
-                <div class="pr-info-row"><span class="pr-il">New Participant Docs</span><span class="pr-iv">Jul 6–10, 2026</span></div>
                 <div class="pr-info-row"><span class="pr-il">Subscription Opens</span><span class="pr-iv">Jul 23, 2026</span></div>
-                <div class="pr-info-row"><span class="pr-il">Subscription Deadline</span><span class="pr-iv">Aug 5, 2026 23:59 CEST</span></div>
+                <div class="pr-info-row"><span class="pr-il">Deadline</span><span class="pr-iv">Aug 5, 2026 23:59 CEST</span></div>
             </div>
             <div class="pr-box">
                 <div class="pr-box-title">Pricing Structure</div>
                 <div class="pr-info-row"><span class="pr-il">Reference Price</span><span class="pr-iv">€241.60</span></div>
-                <div class="pr-info-row"><span class="pr-il">Tier 1 (1–20 shares, 60% off)</span><span class="pr-iv pr-green">€96.64</span></div>
-                <div class="pr-info-row"><span class="pr-il">Tier 2 (21–40 shares, 20% off)</span><span class="pr-iv pr-blue">€193.28</span></div>
-                <div class="pr-info-row"><span class="pr-il">Tier 3 (41–80 shares, 10% off)</span><span class="pr-iv pr-blue">€217.44</span></div>
+                <div class="pr-info-row"><span class="pr-il">Tier 1 (1–20, 60% off)</span><span class="pr-iv pr-green">€96.64</span></div>
+                <div class="pr-info-row"><span class="pr-il">Tier 2 (21–40, 20% off)</span><span class="pr-iv pr-blue">€193.28</span></div>
+                <div class="pr-info-row"><span class="pr-il">Tier 3 (41–80, 10% off)</span><span class="pr-iv pr-blue">€217.44</span></div>
                 <div class="pr-info-row"><span class="pr-il">Processor</span><span class="pr-iv">Commerzbank AG</span></div>
             </div>
         </div>
 
         <div class="pr-footer">
-            <span>Deutsche Börse Group Share Plan 2026 · Illustrative purposes only · Consult your tax advisor</span>
+            <span>Deutsche Börse Group Share Plan 2026 · Illustrative only · Consult your tax advisor</span>
             <span>Generated ${now} · Excludes church tax, solidarity surcharge & social security</span>
         </div>
     `;
@@ -2089,27 +1734,22 @@ function printReport() {
 }
 
 /* ══════════════════════════════════════════════════════════════
-   RESET
+   RESET / EASTER EGG / INIT
 ══════════════════════════════════════════════════════════════ */
 function resetForm() {
     document.getElementById('numShares').value    = 20;
     document.getElementById('sharesSlider').value = 20;
     document.getElementById('bookingPrice').value = 285.00;
     document.getElementById('taxRate').value      = 42;
-    calculate();
-    updateBar(20);
+    calculate(); updateBar(20);
 }
 
-/* ══════════════════════════════════════════════════════════════
-   EASTER EGG
-══════════════════════════════════════════════════════════════ */
 let rcCount = 0, rcTimer = null;
 const footerCredit = document.getElementById('footerCredit');
 const modalOverlay = document.getElementById('modalOverlay');
 
 footerCredit.addEventListener('contextmenu', e => {
-    e.preventDefault();
-    rcCount++;
+    e.preventDefault(); rcCount++;
     if (rcCount === 1) {
         footerCredit.classList.add('one-click');
         rcTimer = setTimeout(() => { rcCount = 0; footerCredit.classList.remove('one-click'); }, 1500);
@@ -2120,15 +1760,9 @@ footerCredit.addEventListener('contextmenu', e => {
     }
 });
 
-function closeModal(e) {
-    if (!e || e.target === modalOverlay) modalOverlay.classList.remove('show');
-}
-
+function closeModal(e) { if (!e || e.target === modalOverlay) modalOverlay.classList.remove('show'); }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') modalOverlay.classList.remove('show'); });
 
-/* ══════════════════════════════════════════════════════════════
-   INIT
-══════════════════════════════════════════════════════════════ */
 window.onload = () => { calculate(); updateBar(20); };
 </script>
 </body>
